@@ -1,8 +1,19 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
-// Variables
-@import 'variables';
+@charset 'UTF-8';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+// 1. Variables and Mixins
+@import 'abstracts/variables';
+@import 'abstracts/functions';
+@import 'abstracts/mixins';
+
+// 2. Base styling
+@import 'base/base';
+@import 'base/fonts';
+@import 'base/typography';
+@import 'base/helpers';
+
+// 3. Components 
+@import 'components/sidebar';
+@import 'components/header';

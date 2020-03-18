@@ -1,0 +1,44 @@
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    height: 75px;
+    background-color: #fff;
+    box-shadow: 0 0 40px 0 rgba(82, 63, 105, .1);
+
+    &__menu {
+        display: flex;
+        padding-right: $p-md;
+    }
+
+    &__menu-item {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    &__menu-user {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+        padding: 0 $p-xs;
+        border-radius: 50px;
+
+        &:hover {
+            background-color: $light-blue;
+        }
+
+        &--username {
+            padding: 0 $p-xs 0 0;
+        }
+
+        &--picture {
+            align-self: center;
+            max-width: 38px;
+            max-height: 38px;
+            border-radius: 50%;
+        }
+    }
+}
