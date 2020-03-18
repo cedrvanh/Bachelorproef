@@ -1,0 +1,21 @@
+.nav {
+    color: $light-text;
+    font-weight: 500;
+}
+
+.nav-item {
+    margin: 0;
+
+    &__section {
+        font-weight: 500;
+        color: $dark-text;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+}
+
+.nav-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
