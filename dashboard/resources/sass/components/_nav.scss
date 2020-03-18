@@ -14,8 +14,21 @@
     }
 }
 
-.nav-link {
+.nav__link {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    min-height: 45px;
+    cursor: pointer;
+
+    &-text {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+    }
+
+    &-icon {
+        line-height: 0;
+        flex: 0 0 30px;
+        color: $dark-text;
+    }
 }

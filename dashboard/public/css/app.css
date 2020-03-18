@@ -16808,6 +16808,33 @@ body {
   flex-direction: column;
 }
 
+.subheader {
+  display: flex;
+  margin: 16px 0;
+}
+
+.subheader__main {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.subheader__main-title {
+  padding: 0 16px 0 0;
+}
+
+.subheader__breadcrumbs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.subheader__breadcrumbs--link {
+  padding: 0 8px 0 0;
+}
+
 .header {
   width: 100%;
   display: flex;
@@ -16869,9 +16896,22 @@ body {
   letter-spacing: 2px;
 }
 
-.nav-link {
+.nav__link {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  min-height: 45px;
+  cursor: pointer;
+}
+
+.nav__link-text {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.nav__link-icon {
+  line-height: 0;
+  flex: 0 0 30px;
+  color: #606a8c;
 }
 

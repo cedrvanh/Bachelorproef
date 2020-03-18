@@ -1,0 +1,26 @@
+.subheader {
+    display: flex;
+    margin: $p-md 0;
+
+    &__main {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+        &-title {
+            padding: 0 $p-md 0 0;
+        }
+    }
+
+    &__breadcrumbs {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 0;
+        padding:  0;
+
+        &--link {
+            padding: 0 $p-xs 0 0;
+        }
+    }
+}

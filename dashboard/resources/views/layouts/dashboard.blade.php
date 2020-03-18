@@ -27,8 +27,16 @@
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10">
                 <div class="row">
                     @include("partials.header")
-        
-                    @yield("content")
+                    
+                    <div class="container-fluid">
+                        <div class="row">
+                            @include("partials.subheader")
+                        </div>
+                        <div class="row justify-content-center">
+                            @yield("content")
+                        </div>
+                        </div>
+                    </div>
                 </div>
             </main>
         </div>
