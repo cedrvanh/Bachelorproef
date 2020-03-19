@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CharacterClass extends Model
+class Route extends Model
 {
     protected $fillable = [
-        'name', 'description', 'image'
+        'name', 'description', 'thumbnail'  
     ];
 }

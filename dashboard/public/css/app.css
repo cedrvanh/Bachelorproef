@@ -16894,11 +16894,11 @@ body {
   font-weight: 500;
 }
 
-.nav-item {
+.nav__item {
   margin: 0;
 }
 
-.nav-item__section {
+.nav__item-section {
   font-weight: 500;
   color: #606a8c;
   text-transform: uppercase;
@@ -16907,7 +16907,9 @@ body {
 
 .nav__link {
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  flex-grow: 1;
   min-height: 45px;
   cursor: pointer;
 }

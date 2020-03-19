@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\CharacterClass;
+use App\Http\Requests\CharacterClassStoreRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CharacterClassController extends Controller
 {
@@ -14,7 +16,8 @@ class CharacterClassController extends Controller
      */
     public function index()
     {
-        return 'Character Class Pagina';
+        $characterClasses = CharacterClass::all();
+        return view('characters.classes.index', compact('characterClasses'));
     }
 
     /**
@@ -24,7 +27,7 @@ class CharacterClassController extends Controller
      */
     public function create()
     {
-        //
+        return view('characters.classes.create');
     }
 
     /**
@@ -33,9 +36,22 @@ class CharacterClassController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CharacterClassStoreRequest $request)
     {
-        //
+        $validated = $request->validated();
+        
+        // Store image with slugified name
+        $file = $request->file('image');
+        $path = $file->storeAs(
+            'images/character-classes', Str::slug($request->name). '.' .$file->extension()
+        );
+
+        // Save new class record
+        $characterClass = new CharacterClass($validated);
+        $characterClass->image = $path;
+        $characterClass->save();
+
+        return redirect('character-classes');
     }
 
     /**
@@ -80,6 +96,9 @@ class CharacterClassController extends Controller
      */
     public function destroy(CharacterClass $CharacterClass)
     {
-        //
+        $characterClass = CharacterClass::find($CharacterClass->id);
+        $characterClass->delete();
+
+        return redirect('character-classes');
     }
 }

@@ -1,34 +1,36 @@
 .nav {
     color: $light-text;
     font-weight: 500;
-}
 
-.nav-item {
-    margin: 0;
-
-    &__section {
-        font-weight: 500;
-        color: $dark-text;
-        text-transform: uppercase;
-        letter-spacing: 2px;
+    &__item {
+        margin: 0;
+        
+        &-section {
+            font-weight: 500;
+            color: $dark-text;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
     }
-}
 
-.nav__link {
-    display: flex;
-    align-items: center;
-    min-height: 45px;
-    cursor: pointer;
-
-    &-text {
+    &__link {
         display: flex;
+        justify-content: space-between;
         align-items: center;
         flex-grow: 1;
-    }
-
-    &-icon {
-        line-height: 0;
-        flex: 0 0 30px;
-        color: $dark-text;
+        min-height: 45px;
+        cursor: pointer;
+    
+        &-text {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+        }
+    
+        &-icon {
+            line-height: 0;
+            flex: 0 0 30px;
+            color: $dark-text;
+        }
     }
 }
