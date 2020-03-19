@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserStoreRequest;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -34,9 +35,13 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $user = new User($validated);
+        $user->save();
+
+        return redirect('users');
     }
 
     /**

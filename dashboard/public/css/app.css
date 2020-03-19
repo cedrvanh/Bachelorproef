@@ -16822,6 +16822,7 @@ body {
 }
 
 .subheader__main-title {
+  margin: 0;
   padding: 0 16px 0 0;
 }
 
@@ -16921,6 +16922,12 @@ body {
   line-height: 0;
   flex: 0 0 30px;
   color: #606a8c;
+}
+
+.table__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .table--white {
