@@ -1,0 +1,34 @@
+.btn {
+    color: #fff;
+    transition: all .3s ease-in-out;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: $navy-light;
+    border-color: $navy-light;
+}
+
+.btn-danger {
+    color: $danger;
+    background-color: lighten($danger, 35);
+    border: none;
+    font-weight: 500;
+
+    &:hover {
+        color: #fff;
+        background-color: $danger;
+    }
+}
+
+.btn-warning {
+    color: $navy-light;
+    background-color: lighten($navy-light, 28);
+    border: none;
+    font-weight: 500;
+
+    &:hover {
+        color: #fff;
+        background-color: $navy-light;
+    }
+}

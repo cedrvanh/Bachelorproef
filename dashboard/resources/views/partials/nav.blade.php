@@ -32,7 +32,7 @@
         </div>
     </li>
     <li class="nav-item">
-        <a class="nav__link">
+        <a class="nav__link" href="users">
             <span class="nav__link-text">Users</span>
         </a>
     </li>

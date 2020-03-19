@@ -1,23 +1,29 @@
 @charset 'UTF-8';
 
-// Vendors
+// 1. Variables
+@import 'abstracts/variables';
+
+// 2. Vendors
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
 @import '~@fortawesome/fontawesome-free/scss/solid.scss';
 
-// 1. Variables and Mixins
-@import 'abstracts/variables';
+// 3. Mixins
 @import 'abstracts/functions';
 @import 'abstracts/mixins';
 
-// 2. Base styling
+// 4. Base styling
 @import 'base/base';
 @import 'base/fonts';
 @import 'base/typography';
 @import 'base/helpers';
 
-// 3. Components 
+// 5. Components 
 @import 'components/sidebar';
 @import 'components/subheader';
 @import 'components/header';
 @import 'components/nav';
+@import 'components/table';
+@import 'components/button';
+@import 'components/form';
+@import 'components/card';

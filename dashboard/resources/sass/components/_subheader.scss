@@ -1,5 +1,7 @@
 .subheader {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin: $p-md 0;
 
     &__main {
@@ -22,5 +24,11 @@
         &--link {
             padding: 0 $p-xs 0 0;
         }
+    }
+
+    &__actions {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
     }
 }
