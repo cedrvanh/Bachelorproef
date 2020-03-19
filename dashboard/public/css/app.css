@@ -16971,7 +16971,6 @@ body {
 }
 
 .card {
-  height: 500px;
   box-shadow: 0 0 40px 0 rgba(82, 63, 105, 0.1);
   border: none;
 }

@@ -6,7 +6,7 @@
         </div>
     </div>
     <div class="subheader__actions">
-        <a class="btn btn-primary">
+        <a class="btn btn-primary" href="/users/create">
             Add User
         </a>
     </div>

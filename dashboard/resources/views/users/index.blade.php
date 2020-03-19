@@ -21,9 +21,14 @@
                             <a href="/users/{{ $user->id }}/edit" class="btn btn-warning">
                                 Edit
                             </a>
-                            <button class="btn btn-danger">
-                                Delete
-                            </button>
+                            <form action="/users/{{ $user->id }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                
+                                <button type="submit" class="btn btn-danger">
+                                    Delete
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
