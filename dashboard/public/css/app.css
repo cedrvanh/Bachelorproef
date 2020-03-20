@@ -16984,3 +16984,14 @@ body {
   border: none;
 }
 
+.card-user {
+  display: flex;
+  align-items: center;
+}
+
+.card-user__avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+}
+

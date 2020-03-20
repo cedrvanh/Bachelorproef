@@ -7,29 +7,20 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Join Date</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($characterClasses as $characterClass)
+                @foreach($cityes as $city)
                     <tr>
-                        <th scope="row">{{ $characterClass->id }}</th>
-                        <td>
-                            <div class="card-user">
-                                {{-- <img alt="Class Avatar" src={{ asset("storage/$characterClass->image") }} class="card-user__avatar" /> --}}
-                                <span>{{ $characterClass->name }}</span>
-                            </div>
-                        </td>
-                        <td>{{ $characterClass->description }}</td>
-                        <td>{{ $characterClass->created_at }}</td>
+                        <th scope="row">{{ $city->id }}</th>
+                        <td><span>{{ $city->name }}</span></td>
                         <td>
                             <div class="table__actions">
-                                <a href="/character-classes/{{ $characterClass->id }}/edit" class="btn btn-warning mr-2">
+                                <a href="/cities/{{ $city->id }}/edit" class="btn btn-warning mr-2">
                                     Edit
                                 </a>
-                                <form action="/character-classes/{{ $characterClass->id }}" method="POST">
+                                <form action="/cities/{{ $city->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     

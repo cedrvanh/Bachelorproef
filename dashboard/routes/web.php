@@ -22,6 +22,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resources([
+    'cities' => 'CityController',
     'users' => 'UserController',
     'characters' => 'CharacterController',
     'character-classes' => 'CharacterClassController',
