@@ -33,7 +33,19 @@
                             @include("partials.subheader")
                         </div>
                         <div class="row justify-content-center">
-                            @yield("content")
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="row">
+                                        <div class="col-lg-6 mx-auto">
+                                            @include("partials.form", [
+                                                'route' => $route,
+                                                'name' => $name,
+                                                'method' => $method ?? ''
+                                            ])
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

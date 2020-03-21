@@ -16,7 +16,7 @@ class CreateCharactersTable extends Migration
         Schema::create('characters', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255);
-            $table->integer('coins');
+            $table->integer('gold');
             $table->timestamps();
         });
     }

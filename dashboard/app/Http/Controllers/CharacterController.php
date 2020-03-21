@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Character;
+use App\Http\Requests\CharacterStoreRequest;
 use Illuminate\Http\Request;
 
 class CharacterController extends Controller
@@ -14,7 +15,8 @@ class CharacterController extends Controller
      */
     public function index()
     {
-        //
+        $characters = Character::all();
+        return view('characters.index', compact('characters'));
     }
 
     /**
@@ -24,7 +26,7 @@ class CharacterController extends Controller
      */
     public function create()
     {
-        //
+        return view('characters.create');
     }
 
     /**
@@ -33,9 +35,13 @@ class CharacterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CharacterStoreRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $character = new Character($validated);
+        $character->save();
+
+        return redirect('characters');
     }
 
     /**
@@ -57,7 +63,7 @@ class CharacterController extends Controller
      */
     public function edit(Character $character)
     {
-        //
+        return view('characters.edit');
     }
 
     /**
@@ -80,6 +86,9 @@ class CharacterController extends Controller
      */
     public function destroy(Character $character)
     {
-        //
+        $character = Character::find($character->id);
+        $character->delete();
+        
+        return redirect('characters');
     }
 }
