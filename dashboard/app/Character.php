@@ -15,8 +15,13 @@ class Character extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function characterClass()
+    public function class()
     {
         return $this->belongsTo('App\CharacterClass');
+    }
+
+    public function items()
+    {
+        return $this->hasMany('App\Item');
     }
 }

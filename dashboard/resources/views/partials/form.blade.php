@@ -11,9 +11,7 @@
 <form class="form" action="/{{ $route }}" method="POST" enctype="multipart/form-data">
     @csrf
     @isset($method)
-        @if($method === 'PUT')
-            @method('PUT')
-        @endif
+        @method('{{ $method }}')
     @endisset
     <h3 class="mt-3 mb-5">Create a {{ $name }}</h3>
     <div class="form__section">

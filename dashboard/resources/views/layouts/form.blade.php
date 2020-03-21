@@ -39,7 +39,7 @@
                                         <div class="col-lg-6 mx-auto">
                                             @include("partials.form", [
                                                 'route' => $route,
-                                                'name' => $name,
+                                                'name' => Str::singular($route),
                                                 'method' => $method ?? ''
                                             ])
                                         </div>

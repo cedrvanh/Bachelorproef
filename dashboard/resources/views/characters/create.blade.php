@@ -1,6 +1,5 @@
 @extends("layouts.form", [
-    'name' => 'character',
-    'route' => 'characters'
+    'route' => Request::segment(1)
 ])
 
 @section("form-fields")
