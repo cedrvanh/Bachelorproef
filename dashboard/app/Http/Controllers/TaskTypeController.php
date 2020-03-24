@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TaskTypeStoreRequest;
 use App\TaskType;
 use Illuminate\Http\Request;
 
@@ -14,8 +15,8 @@ class TaskTypeController extends Controller
      */
     public function index()
     {
-        $task_types = TaskType::all();
-        return view('routes.task-types.index', compact('task_types'));
+        $taskTypes = TaskType::all();
+        return view('routes.task-types.index', compact('taskTypes'));
     }
 
     /**
@@ -34,9 +35,13 @@ class TaskTypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TaskTypeStoreRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $taskType = new TaskType($validated);
+        $taskType->save();
+
+        return redirect('task-types');
     }
 
     /**
@@ -58,7 +63,7 @@ class TaskTypeController extends Controller
      */
     public function edit(TaskType $taskType)
     {
-        return view('routes.task-types.edit');
+        return view('routes.task-types.edit', compact('taskType'));
     }
 
     /**
@@ -70,7 +75,10 @@ class TaskTypeController extends Controller
      */
     public function update(Request $request, TaskType $taskType)
     {
-        //
+        $taskType->update($request->all());
+        $taskType->save();
+
+        return redirect('task-types');
     }
 
     /**
@@ -81,6 +89,9 @@ class TaskTypeController extends Controller
      */
     public function destroy(TaskType $taskType)
     {
-        //
+        $taskType = TaskType::findOrFail($taskType->id);
+        $taskType->delete();
+
+        return redirect('task-types');
     }
 }

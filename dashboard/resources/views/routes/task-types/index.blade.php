@@ -7,24 +7,24 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Join Date</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Created Date</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($task_types as $task_type)
+                @foreach($taskTypes as $taskType)
                     <tr>
-                        <th scope="row">{{ $task_type->id }}</th>
-                        <td>{{ $task_type->name }}</td>
-                        <td>{{ $task_type->email }}</td>
-                        <td>{{ $task_type->created_at }}</td>
+                        <th scope="row">{{ $taskType->id }}</th>
+                        <td>{{ $taskType->name }}</td>
+                        <td>{{ $taskType->description }}</td>
+                        <td>{{ $taskType->created_at }}</td>
                         <td>
                             <div class="table__actions">
-                                <a href="/task-types/{{ $task_type->id }}/edit" class="btn btn-warning mr-2">
+                                <a href="/task-types/{{ $taskType->id }}/edit" class="btn btn-warning mr-2">
                                     Edit
                                 </a>
-                                <form action="/task-types/{{ $task_type->id }}" method="POST">
+                                <form action="/task-types/{{ $taskType->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     

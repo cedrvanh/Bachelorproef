@@ -40,7 +40,7 @@
                                             @include("partials.form", [
                                                 'route' => $route,
                                                 'name' => Str::singular($route),
-                                                'method' => $method ?? ''
+                                                'method' => $method ?? null
                                             ])
                                         </div>
                                     </div>
