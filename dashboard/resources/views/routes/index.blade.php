@@ -7,24 +7,24 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Join Date</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Created Date</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($users as $user)
+                @foreach($routes as $route)
                     <tr>
-                        <th scope="row">{{ $user->id }}</th>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->created_at }}</td>
+                        <th scope="row">{{ $route->id }}</th>
+                        <td>{{ $route->name }}</td>
+                        <td>{{ $route->status }}</td>
+                        <td>{{ $route->created_at }}</td>
                         <td>
                             <div class="table__actions">
-                                <a href="/users/{{ $user->id }}/edit" class="btn btn-warning mr-2">
+                                <a href="/routes/{{ $route->id }}/edit" class="btn btn-warning mr-2">
                                     Edit
                                 </a>
-                                <form action="/users/{{ $user->id }}" method="POST">
+                                <form action="/routes/{{ $route->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     

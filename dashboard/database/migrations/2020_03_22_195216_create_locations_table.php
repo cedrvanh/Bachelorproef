@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTaskTypesTable extends Migration
+class CreateLocationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateTaskTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('task_types', function (Blueprint $table) {
+        Schema::create('locations', function (Blueprint $table) {
             $table->id();
             $table->string('name', 70);
-            $table->longText('description');
+            $table->decimal('latitude', 10, 8);
+            $table->decimal('longitude', 11, 8);
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateTaskTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('task_types');
+        Schema::dropIfExists('locations');
     }
 }

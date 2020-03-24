@@ -4,19 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Route extends Model
+class Location extends Model
 {
     protected $fillable = [
-        'name', 'description', 'thumbnail', 'status' 
+        'name', 'longitude', 'latitude'
     ];
 
     public function city()
     {
         $this->belongsTo('App\City');
-    }
-
-    public function tasks()
-    {
-        $this->hasMany('App\Task');
     }
 }

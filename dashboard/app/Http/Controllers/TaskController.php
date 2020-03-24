@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Task;
+use App\TaskType;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -14,7 +15,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        $tasks = Task::all();
+        return view('routes.tasks.index', compact('tasks'));
     }
 
     /**
@@ -24,7 +26,8 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        $task_types = TaskType::all();
+        return view('routes.tasks.create', compact('task_types'));
     }
 
     /**
@@ -57,7 +60,7 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        return view('routes.tasks.edit');
     }
 
     /**

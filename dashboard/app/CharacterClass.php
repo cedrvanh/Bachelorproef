@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CharacterClass extends Model
 {
     protected $fillable = [
-        'name', 'description', 'image'
+        'name', 'description', 'image', 'model'
     ];
 
     // Update character timestamps when given class changes

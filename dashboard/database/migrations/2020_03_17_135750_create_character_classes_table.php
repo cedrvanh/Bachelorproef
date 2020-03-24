@@ -15,9 +15,10 @@ class CreateCharacterClassesTable extends Migration
     {
         Schema::create('Character_classes', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description');
-            $table->string('image');
+            $table->string('name', 70);
+            $table->longText('description')->nullable();
+            $table->string('image', 512)->nullable();
+            $table->string('model', 512)->nullable();
             $table->timestamps();
         });
     }

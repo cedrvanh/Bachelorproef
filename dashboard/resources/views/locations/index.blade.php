@@ -13,18 +13,18 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($users as $user)
+                @foreach($locations as $location)
                     <tr>
-                        <th scope="row">{{ $user->id }}</th>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->created_at }}</td>
+                        <th scope="row">{{ $location->id }}</th>
+                        <td>{{ $location->name }}</td>
+                        <td>{{ $location->email }}</td>
+                        <td>{{ $location->created_at }}</td>
                         <td>
                             <div class="table__actions">
-                                <a href="/users/{{ $user->id }}/edit" class="btn btn-warning mr-2">
+                                <a href="/locations/{{ $location->id }}/edit" class="btn btn-warning mr-2">
                                     Edit
                                 </a>
-                                <form action="/users/{{ $user->id }}" method="POST">
+                                <form action="/locations/{{ $location->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     

@@ -11,7 +11,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($cityes as $city)
+                @foreach($cities as $city)
                     <tr>
                         <th scope="row">{{ $city->id }}</th>
                         <td><span>{{ $city->name }}</span></td>

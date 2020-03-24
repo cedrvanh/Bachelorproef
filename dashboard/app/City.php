@@ -9,4 +9,14 @@ class City extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function locations() 
+    {
+        $this->hasMany('App\Location');
+    }
+
+    public function routes()
+    {
+        $this->hasMany('App\Route');
+    }
 }

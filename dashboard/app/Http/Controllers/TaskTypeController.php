@@ -14,7 +14,8 @@ class TaskTypeController extends Controller
      */
     public function index()
     {
-        //
+        $task_types = TaskType::all();
+        return view('routes.task-types.index', compact('task_types'));
     }
 
     /**
@@ -24,7 +25,7 @@ class TaskTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('routes.task-types.create');
     }
 
     /**
@@ -57,7 +58,7 @@ class TaskTypeController extends Controller
      */
     public function edit(TaskType $taskType)
     {
-        //
+        return view('routes.task-types.edit');
     }
 
     /**

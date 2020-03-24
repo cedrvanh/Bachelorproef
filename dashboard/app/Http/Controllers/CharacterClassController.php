@@ -96,7 +96,7 @@ class CharacterClassController extends Controller
      */
     public function destroy(CharacterClass $CharacterClass)
     {
-        $characterClass = CharacterClass::find($CharacterClass->id);
+        $characterClass = CharacterClass::findOrFail($CharacterClass->id);
         $characterClass->delete();
 
         return redirect('character-classes');

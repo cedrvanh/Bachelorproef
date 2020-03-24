@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Character;
-use App\Http\Requests\CharacterStoreRequest;
+use App\Item;
 use Illuminate\Http\Request;
 
-class CharacterController extends Controller
+class ItemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,8 @@ class CharacterController extends Controller
      */
     public function index()
     {
-        $characters = Character::all();
-        return view('characters.index', compact('characters'));
+        $items = Item::all();
+        return view('characters.items.index', compact('items'));
     }
 
     /**
@@ -26,7 +25,7 @@ class CharacterController extends Controller
      */
     public function create()
     {
-        return view('characters.create');
+        return view('characters.items.create');
     }
 
     /**
@@ -35,22 +34,18 @@ class CharacterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CharacterStoreRequest $request)
+    public function store(Request $request)
     {
-        $validated = $request->validated();
-        $character = new Character($validated);
-        $character->save();
-
-        return redirect('characters');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Character  $character
+     * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function show(Character $character)
+    public function show(Item $item)
     {
         //
     }
@@ -58,22 +53,22 @@ class CharacterController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Character  $character
+     * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function edit(Character $character)
+    public function edit(Item $item)
     {
-        return view('characters.edit');
+        return view('characters.items.edit');        
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Character  $character
+     * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Character $character)
+    public function update(Request $request, Item $item)
     {
         //
     }
@@ -81,14 +76,11 @@ class CharacterController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Character  $character
+     * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Character $character)
+    public function destroy(Item $item)
     {
-        $character = Character::findOrFail($character->id);
-        $character->delete();
-        
-        return redirect('characters');
+        //
     }
 }

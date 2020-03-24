@@ -22,11 +22,14 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resources([
-    'cities' => 'CityController',
-    'users' => 'UserController',
+    'routes' => 'RouteController',
+    'tasks' => 'TaskController',
+    'task-types' => 'TaskTypeController',
     'characters' => 'CharacterController',
     'character-classes' => 'CharacterClassController',
-    'routes' => 'RouteController'
+    'locations' => 'LocationController',
+    'cities' => 'CityController',
+    'users' => 'UserController'
 ]);
 
-Route::get('/characterclass', 'CharacterClassController@index');
+// Route::get('/characterclass', 'CharacterClassController@index');

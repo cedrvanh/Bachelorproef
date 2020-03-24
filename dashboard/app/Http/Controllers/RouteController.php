@@ -14,7 +14,8 @@ class RouteController extends Controller
      */
     public function index()
     {
-        //
+        $routes = Route::all();
+        return view('routes.index', compact('routes'));
     }
 
     /**
@@ -24,7 +25,7 @@ class RouteController extends Controller
      */
     public function create()
     {
-        //
+        return view('routes.create');
     }
 
     /**
@@ -57,7 +58,7 @@ class RouteController extends Controller
      */
     public function edit(Route $route)
     {
-        //
+        return view('routes.edit');
     }
 
     /**
