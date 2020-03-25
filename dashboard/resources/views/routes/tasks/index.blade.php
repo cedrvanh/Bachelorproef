@@ -7,6 +7,7 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
+                    <th scope="col">Description</th>
                     <th scope="col">Reward</th>
                     <th scope="col">Created Date</th>
                     <th scope="col">Actions</th>
@@ -17,6 +18,7 @@
                     <tr>
                         <th scope="row">{{ $task->id }}</th>
                         <td>{{ $task->name }}</td>
+                        <td>{{ $task->description }}</td>
                         <td>{{ $task->reward }}</td>
                         <td>{{ $task->created_at }}</td>
                         <td>

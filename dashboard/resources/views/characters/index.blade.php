@@ -29,7 +29,7 @@
                         <td>{{ $character->updated_at }}</td>
                         <td>
                             <div class="table__actions">
-                                <a href="/character/{{ $character->id }}/edit" class="btn btn-warning mr-2">
+                                <a href="/characters/{{ $character->id }}/edit" class="btn btn-warning mr-2">
                                     Edit
                                 </a>
                                 <form action="/characters/{{ $character->id }}" method="POST">

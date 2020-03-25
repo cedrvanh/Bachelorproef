@@ -10,8 +10,13 @@ class Task extends Model
         'name', 'description', 'reward', 'image'
     ];
 
+    public function taskable()
+    {
+        return $this->morphTo();
+    }
+
     public function route()
     {
-        $this->belongsTo('App\Route');
+        return $this->belongsTo('App\Route');
     }
 }
