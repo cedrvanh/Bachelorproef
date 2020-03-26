@@ -18,5 +18,13 @@
     <div class="form-group">
         <label for="inputImage">Optional Image</label>
         <input type="file" class="form-control-file" id="inputImage" name="image">
+    </div>    
+    <div class="form-group">
+        <label for="taskType">Select the task type</label>
+        <select class="form-control" id="taskType">
+            @foreach($taskTypes as $taskType)
+                <option>{{ $taskType }}</option>
+            @endforeach
+        </select>
     </div>
 @endsection

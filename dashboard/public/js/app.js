@@ -39467,16 +39467,34 @@ module.exports = function(module) {
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// Use bootstrap
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Initialize feather icons
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var feather_icons__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! feather-icons */ "./node_modules/feather-icons/dist/feather.js");
+/* harmony import */ var feather_icons__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(feather_icons__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+/* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_bootstrap__WEBPACK_IMPORTED_MODULE_1__);
+// // Use bootstrap
+// require('./bootstrap');
+// // Initialize feather icons
+// const feather = require('feather-icons');
+// feather.replace();
+// const mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
+// mapboxgl.accessToken = 'pk.eyJ1IjoiY2VkcnZhbmgiLCJhIjoiY2s4N3Y5YnplMDI0OTNsbWpwMzM1bWE2cSJ9.-eXwQtoLHrWZY01jjx9V5g';
+// let map = new mapboxgl.Map({
+//     container: 'map',
+//     style: 'mapbox://styles/mapbox/streets-v11'
+// });
 
+ // import './map';
 
-var feather = __webpack_require__(/*! feather-icons */ "./node_modules/feather-icons/dist/feather.js");
+var initApp = function initApp() {
+  feather_icons__WEBPACK_IMPORTED_MODULE_0___default.a.replace();
+};
 
-feather.replace();
+initApp();
 
 /***/ }),
 

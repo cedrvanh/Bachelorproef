@@ -27,8 +27,16 @@ class TaskController extends Controller
      */
     public function create()
     {
-        $task_types = TaskType::all();
-        return view('routes.tasks.create', compact('task_types'));
+        // $task_types = TaskType::all();
+
+        $taskTypes = [
+            'Question',
+            'Scan',
+            'Info',
+            'Video'
+        ];
+
+        return view('routes.tasks.create', compact('taskTypes'));
     }
 
     /**
