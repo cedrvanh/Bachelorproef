@@ -12,8 +12,12 @@
         <div class="input-group">
             <input type="text" class="form-control" id="inputAddress" placeholder="Enter location address" name="address">
             <div class="input-group-append">
-                <button class="btn btn-secondary" type="button" id="mapBtn">Open map</button>
+                <button class="btn btn-secondary" type="button" id="mapBtn" data-toggle="modal" data-target="#mapModal">Open map</button>
             </div>
         </div>
     </div>
+
+    <x-modal title="Select an address">
+        @include("partials.map")
+    </x-modal>
 @endsection

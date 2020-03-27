@@ -5,11 +5,14 @@
     $formattedRoute = Str::singular(Str::title($route));
 @endphp
 
+
 <div class="subheader col-lg-12">
     <div class="subheader__main">
         <h4 class="subheader__main-title">Dashboard</h4>
         <div class="subheader__breadcrumbs">
-            <span class="subheader__breadcrumbs--link">Home</span>
+            <span class="subheader__breadcrumbs--link">
+                {{ Breadcrumbs::render('users') }}
+            </span>
         </div>
     </div>
     <div class="subheader__actions">

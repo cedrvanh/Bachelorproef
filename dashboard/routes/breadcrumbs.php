@@ -6,5 +6,5 @@ Breadcrumbs::for('home', function($trail) {
 
 Breadcrumbs::for('users', function($trail) {
     $trail->parent('home');
-    $trail->push('Users', route('users'));
+    $trail->push('Users', route('home'));
 });
