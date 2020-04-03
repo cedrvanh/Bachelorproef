@@ -27,6 +27,7 @@ class LocationStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|max:70',
+            'address' => 'required',
             'latitude' => ['required', new Latitude],
             'longitude' => ['required', new Longitude]
         ];
@@ -39,8 +40,11 @@ class LocationStoreRequest extends FormRequest
      */
     protected function prepareForValidation()
     {
+        $coords = \Geocoder::getCoordinatesForAddress($this->input('address'));
+
         $this->merge([
-            'slug' => Str::slug($this->slug),
+            'latitude' => $coords['lat'],
+            'longitude' => $coords['lng'],
         ]);
     }
 }

@@ -17,7 +17,6 @@ class LocationController extends Controller
      */
     public function index()
     {
-        dd(\Geocoder::getCoordinatesForAddress('Infinite Loop 1, Cupertino'));
         $locations = Location::all();
         return view('locations.index', compact('locations'));
     }
@@ -38,15 +37,14 @@ class LocationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LocationStoreRequest $request)
     {
-        // $address = $request->input('address');
-        // $split = explode(',', $address);
-        // $request->merge($split);
-        // $new = $request->except('address');
-        // dd($new);
-        // $validated = $request->validated();
-        // dd($validated);
+        $validated = $request->validated();
+
+        $location = new Location($validated);
+        $location->save();
+
+        return redirect('locations');
     }
 
     /**

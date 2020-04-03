@@ -25,48 +25,45 @@ initApp();
 
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl';
 
-import { initMap } from './map';
+import { initMap, reverseGeocode } from './map';
 
-// const map = initMap();
+// CHECK IF DOM CONTAINER IS FOUND
+if(document.querySelector('#map')){
 
-mapboxgl.accessToken = process.env.MIX_MAPBOX_APP_KEY;
+    // Instance map
+    const map = initMap();
 
-let map = new mapboxgl.Map({
-    container: 'map',
-    center: [3.719014, 51.053447],
-    zoom: 13,
-    style: 'mapbox://styles/mapbox/outdoors-v11',
-});
+    let marker = new mapboxgl.Marker()
+        .setLngLat([0, 0])
+        .addTo(map);
 
-let marker = new mapboxgl.Marker()
-    .setLngLat([0, 0])
-    .addTo(map);
+    $('#mapModal').on('shown.bs.modal', () => {
+        map.resize();
+    })
 
+    map.on('move', function(e) {
+        console.log(`Current Map Center: ${map.getCenter()}`);
+        marker.setLngLat(map.getCenter());
+    });
 
-$('#mapModal').on('shown.bs.modal', () => {
-    map.resize();
-})
+    map.on('click', function(e) {
+        console.log(e.lngLat.wrap());
+    })
 
-map.on('move', function(e) {
-    console.log(`Current Map Center: ${map.getCenter()}`);
-    marker.setLngLat(map.getCenter());
-});
+    $('#mapModal').on('shown.bs.modal', () => {
+        map.resize();
+    })
 
-map.on('click', function(e) {
-    console.log(e.lngLat.wrap());
-})
+    let saveCoordsBtn = document.querySelector('#saveCoords');
+    
+    saveCoordsBtn.addEventListener('click', async () => {
+        // Set coördinates to input field
+        let coords = map.getCenter().toArray();
+        let inputAddress = document.querySelector('#inputAddress');
+        inputAddress.value = await reverseGeocode(coords);;
 
-$('#mapModal').on('shown.bs.modal', () => {
-    map.resize();
-})
+        // Hide modal
+        $('#mapModal').modal('hide');
+    });
 
-let saveCoordsBtn = document.querySelector('#saveCoords');
- 
-saveCoordsBtn.addEventListener('click', () => {
-    // Set coördinates to input
-    let inputAddress = document.querySelector('#inputAddress');
-    inputAddress.value = map.getCenter().toArray();
-
-    // Hide modal
-    $('#mapModal').modal('hide');
-});
+}

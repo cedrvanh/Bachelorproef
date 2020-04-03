@@ -7,8 +7,8 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Join Date</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Created Date</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
@@ -17,7 +17,7 @@
                     <tr>
                         <th scope="row">{{ $location->id }}</th>
                         <td>{{ $location->name }}</td>
-                        <td>{{ $location->email }}</td>
+                        <td>{{ $location->address }}</td>
                         <td>{{ $location->created_at }}</td>
                         <td>
                             <div class="table__actions">
