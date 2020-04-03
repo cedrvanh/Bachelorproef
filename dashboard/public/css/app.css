@@ -16792,6 +16792,10 @@ body {
   margin: 3rem 0 1rem 0;
 }
 
+.no-padding {
+  padding: 0;
+}
+
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -16807,8 +16811,14 @@ body {
 .sidebar__brand {
   display: flex;
   align-items: center;
+  padding: 0 16px;
   height: 75px;
   color: #fff;
+}
+
+.sidebar__brand-logo {
+  margin: 0;
+  padding: 0;
 }
 
 .sidebar__menu {
@@ -16908,16 +16918,21 @@ body {
 .nav__item-section {
   font-weight: 500;
   color: #606a8c;
+  padding: 0 16px;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
 
+.nav__item:hover {
+  background-color: #1f2433;
+}
+
 .nav__link {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   flex-grow: 1;
   min-height: 45px;
+  padding: 0 16px;
   cursor: pointer;
 }
 
@@ -16928,8 +16943,13 @@ body {
 }
 
 .nav__link-icon {
+  stroke-width: 1px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
   line-height: 0;
-  flex: 0 0 30px;
+  margin-right: 16px;
   color: #606a8c;
 }
 

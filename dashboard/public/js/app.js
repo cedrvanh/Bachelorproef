@@ -39526,6 +39526,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var feather_icons__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(feather_icons__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mapbox-gl/dist/mapbox-gl */ "./node_modules/mapbox-gl/dist/mapbox-gl.js");
 /* harmony import */ var mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _map__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./map */ "./resources/js/map.js");
 // // Use bootstrap
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // // Initialize feather icons
 // const feather = require('feather-icons');
@@ -39538,8 +39539,15 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // // Ini
 // });
 
 
-
  // import './bootstrap';
+
+var initApp = function initApp() {
+  feather_icons__WEBPACK_IMPORTED_MODULE_0___default.a.replace();
+};
+
+initApp();
+
+ // const map = initMap();
 
 mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_1___default.a.accessToken = "pk.eyJ1IjoiY2VkcnZhbmgiLCJhIjoiY2s4N3Y5YnplMDI0OTNsbWpwMzM1bWE2cSJ9.-eXwQtoLHrWZY01jjx9V5g";
 var map = new mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_1___default.a.Map({
@@ -39570,12 +39578,6 @@ saveCoordsBtn.addEventListener('click', function () {
 
   $('#mapModal').modal('hide');
 });
-
-var initApp = function initApp() {
-  feather_icons__WEBPACK_IMPORTED_MODULE_0___default.a.replace();
-};
-
-initApp();
 
 /***/ }),
 
@@ -39621,6 +39623,32 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/map.js":
+/*!*****************************!*\
+  !*** ./resources/js/map.js ***!
+  \*****************************/
+/*! exports provided: initMap */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initMap", function() { return initMap; });
+/* harmony import */ var mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mapbox-gl/dist/mapbox-gl */ "./node_modules/mapbox-gl/dist/mapbox-gl.js");
+/* harmony import */ var mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_0__);
+
+var initMap = function initMap() {
+  var coords = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_0___default.a.accessToken = "pk.eyJ1IjoiY2VkcnZhbmgiLCJhIjoiY2s4N3Y5YnplMDI0OTNsbWpwMzM1bWE2cSJ9.-eXwQtoLHrWZY01jjx9V5g";
+  return new mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_0___default.a.Map({
+    container: 'map',
+    center: coords || [3.719014, 51.053447],
+    zoom: 13,
+    style: 'mapbox://styles/mapbox/outdoors-v11'
+  });
+};
 
 /***/ }),
 
