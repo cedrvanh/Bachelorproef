@@ -4,23 +4,28 @@
 
     &__item {
         margin: 0;
-        
+
         &-section {
             font-weight: 500;
             color: $dark-text;
+            padding: 0 $p-md;
             text-transform: uppercase;
             letter-spacing: 2px;
+        }
+
+        &:hover {
+            background-color: $navy-darkest;
         }
     }
 
     &__link {
         display: flex;
-        justify-content: space-between;
         align-items: center;
         flex-grow: 1;
         min-height: 45px;
+        padding: 0 $p-md;
         cursor: pointer;
-    
+
         &-text {
             display: flex;
             align-items: center;
@@ -28,8 +33,14 @@
         }
     
         &-icon {
+            stroke-width: 1px;
+            width: 20px;
+            height: 20px;
+
+            display: flex;
+            align-items: center;
             line-height: 0;
-            flex: 0 0 30px;
+            margin-right: $p-md;
             color: $dark-text;
         }
     }

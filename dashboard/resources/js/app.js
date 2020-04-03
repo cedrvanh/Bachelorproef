@@ -14,12 +14,22 @@ require('./bootstrap');
 // });
 
 import feather from 'feather-icons';
-import mapboxgl from 'mapbox-gl/dist/mapbox-gl';
 
 // import './bootstrap';
 
-mapboxgl.accessToken = process.env.MIX_MAPBOX_APP_KEY;
+const initApp = () => {
+    feather.replace();
+}
 
+initApp();
+
+import mapboxgl from 'mapbox-gl/dist/mapbox-gl';
+
+import { initMap } from './map';
+
+// const map = initMap();
+
+mapboxgl.accessToken = process.env.MIX_MAPBOX_APP_KEY;
 
 let map = new mapboxgl.Map({
     container: 'map',
@@ -60,9 +70,3 @@ saveCoordsBtn.addEventListener('click', () => {
     // Hide modal
     $('#mapModal').modal('hide');
 });
-
-const initApp = () => {
-    feather.replace();
-}
-
-initApp();

@@ -8,9 +8,7 @@
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
                     <th scope="col">Gold</th>
-                    @isset($character->user)
-                        <th scope="col">Belongs to</th>
-                    @endisset
+                    <th scope="col">Owner</th>
                     <th scope="col">Creation Date</th>
                     <th scope="col">Last Updated</th>
                     <th scope="col">Actions</th>
@@ -23,7 +21,7 @@
                         <td>{{ $character->name }}</td>
                         <td>{{ $character->gold }}</td>
                         @isset($character->user)
-                            <td>{{ $character->user }}</td>
+                            <td>{{ $character->user->name }}</td>
                         @endisset
                         <td>{{ $character->created_at }}</td>
                         <td>{{ $character->updated_at }}</td>

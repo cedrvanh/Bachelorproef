@@ -4,18 +4,19 @@
     </li>
     <li class="nav__item">
         <a class="nav__link collapsed" data-toggle="collapse" data-target="#dropdown1">
-            Routes
+            <i data-feather="mail" class="nav__link-icon"></i>
+            <span class="nav__link-text">Routes</span>
             <i data-feather="chevron-down"></i>
         </a> 
         <div class="collapse" id="dropdown1" aria-expanded="false">
             <ul class="nav flex-column">
                 <li class="nav__item">
-                    <a class="nav-link" href="/routes">
+                    <a class="nav-link" href="{{ route('routes.index') }}">
                         <span class="nav__link-text">Routes</span>
                     </a>
                 </li>
                 <li class="nav__item">
-                    <a class="nav-link" href="/tasks">
+                    <a class="nav-link" href="{{ route('tasks.index') }}">
                         <span class="nav__link-text">Tasks</span>
                     </a>
                 </li>
@@ -29,18 +30,19 @@
     </li>
     <li class="nav__item">
         <a class="nav__link collapsed" data-toggle="collapse" data-target="#dropdown2">
-            Characters
+            <i data-feather="database" class="nav__link-icon"></i>
+            <span class="nav__link-text">Characters</span>
             <i data-feather="chevron-down"></i>
         </a>
         <div class="collapse" id="dropdown2" aria-expanded="false">
             <ul class="nav flex-column">
                 <li class="nav__item">
-                    <a class="nav-link" href="/characters">
+                    <a class="nav-link" href="{{ route('characters.index') }}">
                         <span class="nav__link-text">Characters</span>
                     </a>
                 </li>
                 <li class="nav__item">
-                    <a class="nav-link" href="/character-classes">
+                    <a class="nav-link"href="{{ route('character-classes.index') }}">
                         <span class="nav__link-text">Classes</span>
                     </a>
                 </li>
@@ -49,18 +51,19 @@
     </li>
     <li class="nav__item">
         <a class="nav__link collapsed" data-toggle="collapse" data-target="#dropdown3">
-            Locations
+            <i data-feather="globe" class="nav__link-icon"></i>
+            <span class="nav__link-text">Locations</span>
             <i data-feather="chevron-down"></i>
         </a>
         <div class="collapse" id="dropdown3" aria-expanded="false">
             <ul class="nav flex-column">
                 <li class="nav__item">
-                    <a class="nav-link" href="/cities">
+                    <a class="nav-link" href="{{ route('cities.index') }}">
                         <span class="nav__link-text">Cities</span>
                     </a>
                 </li>
                 <li class="nav__item">
-                    <a class="nav-link" href="/locations">
+                    <a class="nav-link" href="{{ route('locations.index') }}">
                         <span class="nav__link-text">Locations</span>
                     </a>
                 </li>
@@ -68,7 +71,8 @@
         </div>
     </li>
     <li class="nav__item">
-        <a class="nav__link" href="/users">
+        <a class="nav__link" href="{{ route('users.index') }}">
+            <i data-feather="user" class="nav__link-icon"></i>
             <span class="nav__link-text">Users</span>
         </a>
     </li>
