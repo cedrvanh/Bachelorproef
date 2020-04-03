@@ -12,12 +12,12 @@ class CreateCharacterClassesTable extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::create('Character_classes', function (Blueprint $table) {
+    {        
+        Schema::create('character_classes', function (Blueprint $table) {
             $table->id();
             $table->string('name', 70);
             $table->longText('description')->nullable();
-            $table->string('image', 512)->nullable();
+            $table->string('image', 512);
             $table->string('model', 512)->nullable();
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class CreateCharacterClassesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Character_classes');
+        Schema::dropIfExists('character_classes');
     }
 }

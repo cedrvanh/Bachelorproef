@@ -17,7 +17,7 @@ class CreateTasksTable extends Migration
             $table->id();
             $table->string('name', 70);
             $table->longText('description')->nullable();
-            $table->decimal('reward', 5, 2);
+            $table->integer('reward');
             $table->string('image', 512);
             $table->nullableMorphs('taskable');
             $table->timestamps();
