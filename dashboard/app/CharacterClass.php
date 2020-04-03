@@ -10,11 +10,8 @@ class CharacterClass extends Model
         'name', 'description', 'image', 'model'
     ];
 
-    // Update character timestamps when given class changes
-    protected $touches = ['character'];
-
-    public function character() 
+    public function characters() 
     {
-        return $this->belongsTo('App\Character');
+        return $this->hasMany('App\Character');
     }
 }

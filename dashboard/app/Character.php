@@ -17,7 +17,7 @@ class Character extends Model
 
     public function class()
     {
-        return $this->belongsTo('App\CharacterClass');
+        return $this->belongsTo('App\CharacterClass', 'character_class_id');
     }
 
     public function items()

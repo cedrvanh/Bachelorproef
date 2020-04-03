@@ -41,7 +41,7 @@ class UserController extends Controller
         $user = new User($validated);
         $user->save();
 
-        return redirect('users');
+        return redirect('users')->with('message', 'User has been created');
     }
 
     /**

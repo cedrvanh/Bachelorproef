@@ -36,7 +36,14 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:100'
+        ]);
+
+        $city = new City($validated);
+        $city->save();
+
+        return redirect('cities')->with('message', 'Created a city');
     }
 
     /**
@@ -81,6 +88,8 @@ class CityController extends Controller
      */
     public function destroy(City $city)
     {
-        //
+        $city->delete();
+
+        return redirect('cities');
     }
 }

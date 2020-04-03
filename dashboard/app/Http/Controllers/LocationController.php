@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Geocoder;
+
+use App\Http\Requests\LocationStoreRequest;
 use App\Location;
 use Illuminate\Http\Request;
 
@@ -14,6 +17,7 @@ class LocationController extends Controller
      */
     public function index()
     {
+        dd(\Geocoder::getCoordinatesForAddress('Infinite Loop 1, Cupertino'));
         $locations = Location::all();
         return view('locations.index', compact('locations'));
     }
@@ -36,7 +40,13 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        // $address = $request->input('address');
+        // $split = explode(',', $address);
+        // $request->merge($split);
+        // $new = $request->except('address');
+        // dd($new);
+        // $validated = $request->validated();
+        // dd($validated);
     }
 
     /**
