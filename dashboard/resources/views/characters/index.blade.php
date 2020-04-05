@@ -8,6 +8,7 @@
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
                     <th scope="col">Gold</th>
+                    <th scope="col">Class</th>
                     <th scope="col">Owner</th>
                     <th scope="col">Creation Date</th>
                     <th scope="col">Last Updated</th>
@@ -20,6 +21,7 @@
                         <th scope="row">{{ $character->id }}</th>
                         <td>{{ $character->name }}</td>
                         <td>{{ $character->gold }}</td>
+                        <td>{{ $character->class->name }}</td>
                         @isset($character->user)
                             <td>{{ $character->user->name }}</td>
                         @endisset

@@ -22,9 +22,16 @@
     <div class="form-group">
         <label for="taskType">Select the task type</label>
         <select class="form-control" id="taskType">
+            {{-- <option selected disabled> Type: </option> --}}
             @foreach($taskTypes as $taskType)
-                <option>{{ $taskType }}</option>
+                <option value="{{ $loop->iteration }}">{{ $taskType }}</option>
             @endforeach
         </select>
     </div>
+
+    @foreach($taskTypes as $taskType)
+        @include("partials.form-elements." . Str::slug($taskType), [
+            "iteration" => $loop->iteration
+        ])
+    @endforeach
 @endsection

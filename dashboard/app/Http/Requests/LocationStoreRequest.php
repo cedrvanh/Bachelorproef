@@ -28,6 +28,7 @@ class LocationStoreRequest extends FormRequest
         return [
             'name' => 'required|max:70',
             'address' => 'required',
+            // 'city' => 'string',
             'latitude' => ['required', new Latitude],
             'longitude' => ['required', new Longitude]
         ];
@@ -40,11 +41,16 @@ class LocationStoreRequest extends FormRequest
      */
     protected function prepareForValidation()
     {
+        // Get city from string
+        // $city = substr($this->input('address'), strpos($this->input('address'), ',') + 2);
+        
+        // Reverser geocode coordinates from address
         $coords = \Geocoder::getCoordinatesForAddress($this->input('address'));
 
         $this->merge([
             'latitude' => $coords['lat'],
             'longitude' => $coords['lng'],
+            // 'city' => $city,
         ]);
     }
 }

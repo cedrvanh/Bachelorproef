@@ -41,7 +41,7 @@
                                 <div class="card">
                                     <div class="row">
                                         <div class="col-lg-6 mx-auto">
-                                            @include("partials.form", [
+                                            @include("partials.form-elements.form", [
                                                 'route' => $route,
                                                 'name' => Str::singular($route),
                                                 'method' => $method ?? null

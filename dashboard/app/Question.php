@@ -10,6 +10,11 @@ class Question extends Model
         'question', 'hint'
     ];
 
+    public function choices()
+    {
+        return $this->hasMany('App\Choice');
+    }
+
     public function task()
     {
         return $this->morphOne('App\Task', 'taskable');

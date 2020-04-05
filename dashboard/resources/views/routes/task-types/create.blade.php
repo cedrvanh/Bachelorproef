@@ -9,6 +9,6 @@
     </div>
     <div class="form-group">
         <label for="inputDescription">Description</label>
-        <textarea type="number" class="form-control" id="inputDescription" placeholder="Enter a short task type description" name="description" rows="3"></textarea>
+        <textarea class="form-control" id="inputDescription" placeholder="Enter a short task type description" name="description" rows="3"></textarea>
     </div>
 @endsection

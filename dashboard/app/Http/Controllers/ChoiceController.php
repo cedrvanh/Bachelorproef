@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\City;
-use Geocoder;
-
-use App\Http\Requests\LocationStoreRequest;
-use App\Location;
+use App\Choice;
 use Illuminate\Http\Request;
 
-class LocationController extends Controller
+class ChoiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +14,7 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $locations = Location::all();
-        return view('locations.index', compact('locations'));
+        //
     }
 
     /**
@@ -29,7 +24,7 @@ class LocationController extends Controller
      */
     public function create()
     {
-        return view('locations.create');
+        //
     }
 
     /**
@@ -38,30 +33,18 @@ class LocationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(LocationStoreRequest $request)
+    public function store(Request $request)
     {
-        $validated = $request->validated();
-
-        // if(!City::where('name', '=', $validated['city'])->exists()) {
-        //     $city = new City([
-        //         'name' => $validated['city']
-        //     ]);
-        //     $city->save();
-        // }
-        
-        $location = new Location($validated);
-        $location->save();
-
-        return redirect('locations');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Location  $location
+     * @param  \App\Choice  $Choice
      * @return \Illuminate\Http\Response
      */
-    public function show(Location $location)
+    public function show(Choice $Choice)
     {
         //
     }
@@ -69,22 +52,22 @@ class LocationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Location  $location
+     * @param  \App\Choice  $Choice
      * @return \Illuminate\Http\Response
      */
-    public function edit(Location $location)
+    public function edit(Choice $Choice)
     {
-        return view('locations.edit');
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Location  $location
+     * @param  \App\Choice  $Choice
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Location $location)
+    public function update(Request $request, Choice $Choice)
     {
         //
     }
@@ -92,10 +75,10 @@ class LocationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Location  $location
+     * @param  \App\Choice  $Choice
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Location $location)
+    public function destroy(Choice $Choice)
     {
         //
     }

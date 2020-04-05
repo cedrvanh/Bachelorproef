@@ -1,0 +1,21 @@
+.flash-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    right: $p-md;
+
+    &__icon {
+        width: 16px;
+        height: 16px;
+    }
+    
+    &__action {
+        margin-left: $p-md;
+    }
+
+    &__content {
+        margin-right: $p-md;
+    }
+}

@@ -16796,6 +16796,14 @@ body {
   padding: 0;
 }
 
+.show {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -17034,5 +17042,27 @@ body {
   width: 38px;
   height: 38px;
   border-radius: 50%;
+}
+
+.flash-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  right: 16px;
+}
+
+.flash-message__icon {
+  width: 16px;
+  height: 16px;
+}
+
+.flash-message__action {
+  margin-left: 16px;
+}
+
+.flash-message__content {
+  margin-right: 16px;
 }
 

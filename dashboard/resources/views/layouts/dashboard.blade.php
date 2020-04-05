@@ -40,7 +40,9 @@
             </main>
         </div>
 
-        {{-- @include("partials.flash") --}}
+        @include("partials.flash", [
+            "flash" => "User was created"
+        ])
     </div>
 </body>
 </html>

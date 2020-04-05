@@ -40281,6 +40281,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! mapbox-gl/dist/mapbox-gl */ "./node_modules/mapbox-gl/dist/mapbox-gl.js");
 /* harmony import */ var mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./map */ "./resources/js/map.js");
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./helper */ "./resources/js/helper.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -40288,71 +40289,80 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 // // Use bootstrap
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // // Initialize feather icons
-// const feather = require('feather-icons');
-// feather.replace();
-// const mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
-// mapboxgl.accessToken = 'pk.eyJ1IjoiY2VkcnZhbmgiLCJhIjoiY2s4N3Y5YnplMDI0OTNsbWpwMzM1bWE2cSJ9.-eXwQtoLHrWZY01jjx9V5g';
-// let map = new mapboxgl.Map({
-//     container: 'map',
-//     style: 'mapbox://styles/mapbox/streets-v11'
-// });
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
- // import './bootstrap';
+
+
+
 
 var initApp = function initApp() {
-  feather_icons__WEBPACK_IMPORTED_MODULE_1___default.a.replace();
+  feather_icons__WEBPACK_IMPORTED_MODULE_1___default.a.replace(); // CHECK IF DOM CONTAINER IS FOUND
+
+  if (document.querySelector('#map')) {
+    // Instance map
+    var map = Object(_map__WEBPACK_IMPORTED_MODULE_3__["initMap"])();
+    var marker = new mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_2___default.a.Marker().setLngLat([0, 0]).addTo(map);
+    $('#mapModal').on('shown.bs.modal', function () {
+      map.resize();
+    });
+    map.on('move', function (e) {
+      marker.setLngLat(map.getCenter());
+    });
+    $('#mapModal').on('shown.bs.modal', function () {
+      map.resize();
+    });
+    var saveCoordsBtn = document.querySelector('#saveCoords');
+    saveCoordsBtn.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var coords, inputAddress;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              // Set coördinates to input field
+              coords = map.getCenter().toArray();
+              inputAddress = document.querySelector('#inputAddress');
+              _context.next = 4;
+              return Object(_map__WEBPACK_IMPORTED_MODULE_3__["reverseGeocode"])(coords);
+
+            case 4:
+              inputAddress.value = _context.sent;
+              ; // Hide modal
+
+              $('#mapModal').modal('hide');
+
+            case 7:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    })));
+  }
+
+  initMessages();
+};
+
+if (document.querySelector('#taskType')) {
+  var typeInput = document.querySelector('#taskType');
+  var typeDom = document.querySelector('.type');
+  var types = document.querySelectorAll('.task-type');
+  typeInput.addEventListener('change', function (e) {
+    types.forEach(function (type) {
+      type.classList.add('hidden');
+    });
+    document.querySelector("#type-".concat(e.target.value)).classList.remove('hidden');
+    document.querySelector("#type-".concat(e.target.value)).classList.add('show');
+  });
+}
+
+var initMessages = function initMessages() {
+  $(".alert").fadeTo(2000, 500).fadeOut(1000, function () {
+    $(".alert").fadeOut(1000);
+  });
 };
 
 initApp();
-
- // CHECK IF DOM CONTAINER IS FOUND
-
-if (document.querySelector('#map')) {
-  // Instance map
-  var map = Object(_map__WEBPACK_IMPORTED_MODULE_3__["initMap"])();
-  var marker = new mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_2___default.a.Marker().setLngLat([0, 0]).addTo(map);
-  $('#mapModal').on('shown.bs.modal', function () {
-    map.resize();
-  });
-  map.on('move', function (e) {
-    console.log("Current Map Center: ".concat(map.getCenter()));
-    marker.setLngLat(map.getCenter());
-  });
-  map.on('click', function (e) {
-    console.log(e.lngLat.wrap());
-  });
-  $('#mapModal').on('shown.bs.modal', function () {
-    map.resize();
-  });
-  var saveCoordsBtn = document.querySelector('#saveCoords');
-  saveCoordsBtn.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-    var coords, inputAddress;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            // Set coördinates to input field
-            coords = map.getCenter().toArray();
-            inputAddress = document.querySelector('#inputAddress');
-            _context.next = 4;
-            return Object(_map__WEBPACK_IMPORTED_MODULE_3__["reverseGeocode"])(coords);
-
-          case 4:
-            inputAddress.value = _context.sent;
-            ; // Hide modal
-
-            $('#mapModal').modal('hide');
-
-          case 7:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  })));
-}
 
 /***/ }),
 
@@ -40405,13 +40415,14 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*!********************************!*\
   !*** ./resources/js/helper.js ***!
   \********************************/
-/*! exports provided: fetchData, getStreetAddress */
+/*! exports provided: fetchData, getStreetAddress, toggleVisibility */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchData", function() { return fetchData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getStreetAddress", function() { return getStreetAddress; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toggleVisibility", function() { return toggleVisibility; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -40422,6 +40433,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+ // Axios GET request
 
 var fetchData = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(url) {
@@ -40452,6 +40464,15 @@ var fetchData = /*#__PURE__*/function () {
 
 var getStreetAddress = function getStreetAddress(string) {
   return string.substr(0, string.indexOf(','));
+}; // export const getStreetAddress = (string) => {
+//     // string.substr(0, string.indexOf(','));
+//     let index = string.indexOf(',', string.indexOf(',') + 1);
+//     return string.slice(0, index);
+// }
+
+var toggleVisibility = function toggleVisibility(element) {
+  element.classList.remove('hidden');
+  element.classLIst.add('show');
 };
 
 /***/ }),
