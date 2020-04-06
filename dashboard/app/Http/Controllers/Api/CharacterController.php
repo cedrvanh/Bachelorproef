@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Choice;
+use App\Character;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\CharacterResource;
 use Illuminate\Http\Request;
 
-class ChoiceController extends Controller
+class CharacterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,17 +16,9 @@ class ChoiceController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $characters = Character::paginate(10);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return CharacterResource::collection($characters);  
     }
 
     /**
@@ -41,33 +35,24 @@ class ChoiceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Choice  $Choice
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Choice $Choice)
+    public function show($id)
     {
-        //
-    }
+        $character = Character::findOrFail($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Choice  $Choice
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Choice $Choice)
-    {
-        //
+        return new CharacterResource($character);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Choice  $Choice
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Choice $Choice)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +60,10 @@ class ChoiceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Choice  $Choice
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Choice $Choice)
+    public function destroy($id)
     {
         //
     }

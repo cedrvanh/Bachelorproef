@@ -8,6 +8,7 @@
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Roles</th>
                     <th scope="col">Join Date</th>
                     <th scope="col">Actions</th>
                 </tr>
@@ -18,6 +19,11 @@
                         <th scope="row">{{ $user->id }}</th>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
+                        <td>
+                        @foreach($user->roles as $role)
+                            {{ $role->name }}  
+                        @endforeach
+                        </td>
                         <td>{{ $user->created_at }}</td>
                         <td>
                             <div class="table__actions">
