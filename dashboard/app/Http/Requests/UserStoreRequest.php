@@ -25,8 +25,9 @@ class UserStoreRequest extends FormRequest
     {
         return [
             'email' => 'bail|required|email|unique:users|max:255',
-            'password' => 'required|string|min:6',
-            'name' => 'required|max:45'
+            'password' => 'required|min:6',
+            'name' => 'required|max:45',
+            'role' => 'required|exists:roles,id'
         ];
     }
 }

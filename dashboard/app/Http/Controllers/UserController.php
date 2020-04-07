@@ -16,7 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(10);
+        // dd($users);
         return view('users.index', compact('users'));
     }
 
@@ -41,8 +42,10 @@ class UserController extends Controller
     public function store(UserStoreRequest $request)
     {
         $validated = $request->validated();
+
         $user = new User($validated);
         $user->save();
+        $user->roles()->sync($validated['role']);
 
         return redirect('users')->with('message', 'User has been created');
     }
@@ -67,6 +70,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
+
         return view('users.edit', compact('user'));
     }
 

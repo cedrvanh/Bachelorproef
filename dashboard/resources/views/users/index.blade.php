@@ -21,7 +21,7 @@
                         <td>{{ $user->email }}</td>
                         <td>
                         @foreach($user->roles as $role)
-                            {{ $role->name }}  
+                            <x-badge :name="$role->name" class="p-2" />
                         @endforeach
                         </td>
                         <td>{{ $user->created_at }}</td>
@@ -44,5 +44,7 @@
                 @endforeach
             </tbody>
         </table>
+        
+        {{ $users->links() }}
     </div>
 @endsection

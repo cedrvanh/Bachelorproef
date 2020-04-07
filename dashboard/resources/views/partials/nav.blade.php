@@ -28,29 +28,6 @@
             </ul>
         </div>
     </li>
-    @if(Auth::user()->hasRole('Admin'))
-        <li class="nav__item">
-            <a class="nav__link collapsed" data-toggle="collapse" data-target="#dropdown2">
-                <i data-feather="database" class="nav__link-icon"></i>
-                <span class="nav__link-text">Characters</span>
-                <i data-feather="chevron-down"></i>
-            </a>
-            <div class="collapse" id="dropdown2" aria-expanded="false">
-                <ul class="nav flex-column">
-                    <li class="nav__item">
-                        <a class="nav-link" href="{{ route('characters.index') }}">
-                            <span class="nav__link-text">Characters</span>
-                        </a>
-                    </li>
-                    <li class="nav__item">
-                        <a class="nav-link"href="{{ route('character-classes.index') }}">
-                            <span class="nav__link-text">Classes</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-    @endif
     <li class="nav__item">
         <a class="nav__link collapsed" data-toggle="collapse" data-target="#dropdown3">
             <i data-feather="globe" class="nav__link-icon"></i>
@@ -73,6 +50,27 @@
         </div>
     </li>
     @if(Auth::user()->hasRole('Admin'))
+        <li class="nav__item">
+            <a class="nav__link collapsed" data-toggle="collapse" data-target="#dropdown2">
+                <i data-feather="database" class="nav__link-icon"></i>
+                <span class="nav__link-text">Characters</span>
+                <i data-feather="chevron-down"></i>
+            </a>
+            <div class="collapse" id="dropdown2" aria-expanded="false">
+                <ul class="nav flex-column">
+                    <li class="nav__item">
+                        <a class="nav-link" href="{{ route('characters.index') }}">
+                            <span class="nav__link-text">Characters</span>
+                        </a>
+                    </li>
+                    <li class="nav__item">
+                        <a class="nav-link"href="{{ route('character-classes.index') }}">
+                            <span class="nav__link-text">Classes</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
         <li class="nav__item">
             <a class="nav__link collapsed" data-toggle="collapse" data-target="#dropdown4">
                 <i data-feather="user" class="nav__link-icon"></i>

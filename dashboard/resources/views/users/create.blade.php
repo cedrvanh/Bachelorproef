@@ -17,9 +17,9 @@
     </div>
     <div class="form-group">
         <label for="inputRole">Role</label>
-        <select class="form-control" id="inputRole">
+        <select class="form-control" id="inputRole" name="role">
             @foreach ($roles as $role)
-                <option value="{{ $loop->iteration }}">{{ $role->name }}</option>
+                <option value="{{ $role->id }}">{{ $role->name }}</option>
             @endforeach
         </select>
     </div>

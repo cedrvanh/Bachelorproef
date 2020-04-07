@@ -17066,3 +17066,7 @@ body {
   margin-right: 16px;
 }
 
+.pagination {
+  justify-content: flex-end;
+}
+
