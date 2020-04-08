@@ -25,6 +25,7 @@ Breadcrumbs::macro('resource', function ($name, $title) {
 
 // Define breadcrumbs for resource routes
 Breadcrumbs::resource('users', 'Users');
+Breadcrumbs::resource('roles', 'Roles');
 Breadcrumbs::resource('routes', 'Routes');
 Breadcrumbs::resource('tasks', 'Tasks');
 Breadcrumbs::resource('task-types', 'Task Types');

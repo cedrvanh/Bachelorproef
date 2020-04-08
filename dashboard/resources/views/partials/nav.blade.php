@@ -85,7 +85,7 @@
                         </a>
                     </li>
                     <li class="nav__item">
-                        <a class="nav-link"href="{{ route('users.index') }}">
+                        <a class="nav-link"href="{{ route('roles.index') }}">
                             <span class="nav__link-text">Roles</span>
                         </a>
                     </li>

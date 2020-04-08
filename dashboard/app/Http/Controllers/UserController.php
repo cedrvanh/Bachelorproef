@@ -70,8 +70,9 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
+        $roles = Role::all();
 
-        return view('users.edit', compact('user'));
+        return view('users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -86,6 +87,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->update($request->all());
         $user->save();
+        $user->roles()->sync($request->input('role'));
 
         return redirect('users');
     }
@@ -99,6 +101,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
+        $user->roles()->detach();
         $user->delete();
 
         return redirect('users');

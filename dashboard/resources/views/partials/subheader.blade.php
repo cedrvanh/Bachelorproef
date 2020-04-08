@@ -15,9 +15,11 @@
             </span>
         </div>
     </div>
-    <div class="subheader__actions">
-        <a class="btn btn-primary" href="/{{ $route }}/create">
-            Add {{ replaceDash($formattedRoute) }}
-        </a>
-    </div>
+    @if(Route::currentRouteName() !== 'home')
+        <div class="subheader__actions">
+            <a class="btn btn-primary" href="/{{ $route }}/create">
+                Add {{ replaceDash($formattedRoute) }}
+            </a>
+        </div>
+    @endif
 </div>

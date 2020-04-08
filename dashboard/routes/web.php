@@ -30,7 +30,8 @@ Route::resources([
     'character-classes' => 'CharacterClassController',
     'locations' => 'LocationController',
     'cities' => 'CityController',
-    'users' => 'UserController'
+    'users' => 'UserController',
+    'roles' => 'RoleController'
 ]);
 
 // Route::get('/characterclass', 'CharacterClassController@index');
