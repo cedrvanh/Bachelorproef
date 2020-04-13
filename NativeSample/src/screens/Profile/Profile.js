@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-export default class ProfileScreen extends Component {
-    render() {
-        return (
-            <Container>
-                <Title>Profile Screen</Title>
-            </Container>
-        )
-    }
+export default ProfileScreen = () => {
+    return (
+        <Container>
+            <Title>Profile Screen</Title>
+        </Container>
+    )
 }
 
 const Container = styled.View`
