@@ -8,15 +8,11 @@ import SignInForm from '../../../components/SignInForm';
 import Logo from '../../../components/Logo';
 
 export default SignInScreen = ({ navigation }) => {
-    _signInUser = async () => {
-        await AsyncStorage.setItem('token', 'aaa');
-        navigation.navigate('Home');
-    }
-
     return (
         <Container>
-            <Logo />
+            <Logo tagline />
             <SignInForm />
+            <Message onPress={() => navigation.navigate('SignUp')}>Don't have an account? Sign Up</Message>
         </Container>
     )
 }
@@ -27,4 +23,8 @@ const Container = styled.View`
     justifyContent: center;
     background-color: ${ colors.SECONDARY_COLOR };
     padding: 24px;
+`
+
+const Message = styled.Text`
+    color: ${ colors.TEXT_COLOR }
 `

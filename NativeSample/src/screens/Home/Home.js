@@ -2,21 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 import colors from '../../styles/colors';
+import MapContainer from '../../components/Map/MapContainer';
 
 export default HomeScreen = ({ navigation }) => {
-    return (
-        <Container>
-            <Title>Home Pagina</Title>
-            <Button 
-                title="Go to Profile" 
-                onPress={() => navigation.navigate('Profile')}
-            />
-        </Container>
-    )
+    return <MapContainer />
 }
 
 const Container = styled.View`
-    background-color: ${ colors.SECONDARY_COLOR }
     flex: 1;
 `;
 

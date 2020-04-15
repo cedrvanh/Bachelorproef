@@ -3,5 +3,6 @@ export default {
     SECONDARY_COLOR: '#2A2E2E',
     GREY_COLOR: '#383E3E',
     PLACEHOLDER_COLOR: '#ACACAC',
-    TEXT_COLOR: '#FFFFFF'
+    TEXT_COLOR: '#FFFFFF',
+    TEXT_GREY_COLOR: '#B9B9B9'
 };

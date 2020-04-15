@@ -7,11 +7,11 @@ import { useForm } from '../hooks';
 import Input from './Input';
 import Button from './Button';
 
-export default SignInForm = () => {
+export default SignInForm = (props) => {
     const { values, setValue, handleSubmit } = useForm();
     
     _onLogin = async () => {
-        await AsyncStorage.setItem('token', values.username)
+        // await AsyncStorage.setItem('token', values.username);
     }
 
     return (

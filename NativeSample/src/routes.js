@@ -33,7 +33,7 @@ export default createAppContainer(
             Auth: AuthNavigator
         },
         {
-            initialRouteName: 'Auth',
+            initialRouteName: 'App',
         }
     )
 );

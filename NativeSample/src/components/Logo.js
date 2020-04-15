@@ -4,10 +4,13 @@ import styled from 'styled-components';
 import colors from "../styles/colors";
 
 
-export default Logo = () => {
+export default Logo = ({ tagline = false }) => {
     return (
         <Wrapper>
             <Title>Augmented Routes</Title>
+            {tagline &&
+                <TagLine>Discover the rich history near you</TagLine>
+            }
         </Wrapper>
     )
 }
@@ -22,5 +25,10 @@ const Title = styled.Text`
     color: ${ colors.TEXT_COLOR };
     fontWeight: bold;
     fontSize: 28px;
-    margin: 20px 0;
+    margin: 10px 0;
+    textTransform: uppercase;
+`
+
+const TagLine = styled.Text`
+    color: ${ colors.TEXT_GREY_COLOR }
 `
