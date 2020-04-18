@@ -18,5 +18,5 @@ export default HomeScreen = ({ navigation }) => {
 
 const Container = styled.View`
     flex: 1;
-    backgroundColor: ${ colors.SECONDARY_COLOR };
+    backgroundColor: ${ colors.DARK_COLOR };
 `
