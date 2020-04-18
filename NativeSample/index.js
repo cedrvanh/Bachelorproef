@@ -1,5 +1,7 @@
-import { AppRegistry } from 'react-native';
-import App from './src/App.js/index.js';
+import { AppRegistry, YellowBox } from 'react-native';
+import App from './src/App';
+
+YellowBox.ignoreWarnings(['Remote Debugger']);
 
 AppRegistry.registerComponent('NativeSample', () => App);
 

@@ -1,26 +1,30 @@
-import React, { useState } from 'react';
-import { PermissionsAndroid } from 'react-native';
-import MapView from 'react-native-maps';
+import React, { useState, useEffect } from 'react';
+import Geolocation from '@react-native-community/geolocation';
+
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import styled from 'styled-components';
 
 import mapStyle from '../../styles/map';
 
-export default MapContainer = () => {
-
-    const [region, setRegion] = useState({
-        latitude: 51.053447,
-        longitude: 3.719014,
-        latitudeDelta: 0.01,
-        longitudeDelta: 0.01
-    })
+export default MapContainer = ({ location }) => {
+    const LATITUDE_DELTA = 0.01;
+    const LONGITUDE_DELTA = 0.01
 
     return (
         <Container>
-            <MapView 
-                initialRegion={region}
-                customMapStyle={mapStyle}
-                style={{ flex: 1 }}
-            />
+            {/* {location !== null && (
+                <MapView
+                    provider={PROVIDER_GOOGLE}
+                    showsUserLocation={true}
+                    region={{
+                        ...location,
+                        latitudeDelta: LATITUDE_DELTA,
+                        longitudeDelta: LONGITUDE_DELTA
+                    }}
+                    customMapStyle={mapStyle}
+                    style={{ flex: 1 }}
+                />
+            )} */}
         </Container>
     )
 }

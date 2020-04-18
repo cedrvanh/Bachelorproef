@@ -3,20 +3,20 @@ import styled from 'styled-components';
 
 import colors from '../../styles/colors';
 import MapContainer from '../../components/Map/MapContainer';
+import usePosition from '../../hooks/usePosition';
 
 export default HomeScreen = ({ navigation }) => {
-    return <MapContainer />
+    // const { latitude, longitude, error } = usePosition();
+
+    // if(error) {
+    //     return `Geolocation Error: ${error}`;
+    // }
+
+    // return <MapContainer location={{ latitude, longitude }} />
+    return <Container />
 }
 
 const Container = styled.View`
     flex: 1;
-`;
-
-const Title = styled.Text`
-    color: ${ colors.PRIMARY_COLOR }
-    fontSize: 24px;
-`;
-
-const Button = styled.Button`
-    background-color: green;
+    backgroundColor: ${ colors.SECONDARY_COLOR };
 `

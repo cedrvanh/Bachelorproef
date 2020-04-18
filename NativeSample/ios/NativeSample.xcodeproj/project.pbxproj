@@ -47,6 +47,7 @@
 		3EA0C019EAD74BA0AAD2ABB1 /* libRNScreens.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C494338DA7A546928678645F /* libRNScreens.a */; };
 		4E0FA6488A0B4081BC14A4E0 /* libRNScreens-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF17C29D9D00413F88694654 /* libRNScreens-tvOS.a */; };
 		644DA16435B24F89930A72F4 /* libRNCSafeAreaContext.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F0CB087ABAE40B094C74E3F /* libRNCSafeAreaContext.a */; };
+		D437660FDA17459488885A23 /* libRNCGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA626806DA6C4A56A3464C99 /* libRNCGeolocation.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -365,6 +366,8 @@
 		CF17C29D9D00413F88694654 /* libRNScreens-tvOS.a */ = {isa = PBXFileReference; name = "libRNScreens-tvOS.a"; path = "libRNScreens-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		895303B184A44CABA78B6699 /* SafeAreaView.xcodeproj */ = {isa = PBXFileReference; name = "SafeAreaView.xcodeproj"; path = "../node_modules/react-native-safe-area-context/ios/SafeAreaView.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		7F0CB087ABAE40B094C74E3F /* libRNCSafeAreaContext.a */ = {isa = PBXFileReference; name = "libRNCSafeAreaContext.a"; path = "libRNCSafeAreaContext.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		AA357CE75F0C4002A675ABBA /* RNCGeolocation.xcodeproj */ = {isa = PBXFileReference; name = "RNCGeolocation.xcodeproj"; path = "../node_modules/@react-native-community/geolocation/ios/RNCGeolocation.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		EA626806DA6C4A56A3464C99 /* libRNCGeolocation.a */ = {isa = PBXFileReference; name = "libRNCGeolocation.a"; path = "libRNCGeolocation.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -397,6 +400,7 @@
 				F1C1E214E42A4DDE8D5B45D9 /* libRNGestureHandler.a in Frameworks */,
 				3EA0C019EAD74BA0AAD2ABB1 /* libRNScreens.a in Frameworks */,
 				644DA16435B24F89930A72F4 /* libRNCSafeAreaContext.a in Frameworks */,
+				D437660FDA17459488885A23 /* libRNCGeolocation.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,6 +597,7 @@
 				9CA476F2B3704184A689A675 /* RNGestureHandler.xcodeproj */,
 				F4255804DDA84F76B618DE35 /* RNScreens.xcodeproj */,
 				895303B184A44CABA78B6699 /* SafeAreaView.xcodeproj */,
+				AA357CE75F0C4002A675ABBA /* RNCGeolocation.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1227,6 +1232,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1234,6 +1240,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-screens\ios",
 					"$(SRCROOT)\..\node_modules\react-native-safe-area-context\ios\SafeAreaView",
+					"$(SRCROOT)\..\node_modules\@react-native-community\geolocation\ios",
 				);
 			};
 			name = Debug;
@@ -1262,6 +1269,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1269,6 +1277,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-screens\ios",
 					"$(SRCROOT)\..\node_modules\react-native-safe-area-context\ios\SafeAreaView",
+					"$(SRCROOT)\..\node_modules\@react-native-community\geolocation\ios",
 				);
 			};
 			name = Release;
@@ -1295,6 +1304,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-screens\ios",
 					"$(SRCROOT)\..\node_modules\react-native-safe-area-context\ios\SafeAreaView",
+					"$(SRCROOT)\..\node_modules\@react-native-community\geolocation\ios",
 				);
 			};
 			name = Debug;
@@ -1320,6 +1330,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-screens\ios",
 					"$(SRCROOT)\..\node_modules\react-native-safe-area-context\ios\SafeAreaView",
+					"$(SRCROOT)\..\node_modules\@react-native-community\geolocation\ios",
 				);
 			};
 			name = Release;
@@ -1356,6 +1367,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1363,6 +1375,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-screens\ios",
 					"$(SRCROOT)\..\node_modules\react-native-safe-area-context\ios\SafeAreaView",
+					"$(SRCROOT)\..\node_modules\@react-native-community\geolocation\ios",
 				);
 			};
 			name = Debug;
@@ -1399,6 +1412,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1406,6 +1420,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-screens\ios",
 					"$(SRCROOT)\..\node_modules\react-native-safe-area-context\ios\SafeAreaView",
+					"$(SRCROOT)\..\node_modules\@react-native-community\geolocation\ios",
 				);
 			};
 			name = Release;
@@ -1441,6 +1456,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1448,6 +1464,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-screens\ios",
 					"$(SRCROOT)\..\node_modules\react-native-safe-area-context\ios\SafeAreaView",
+					"$(SRCROOT)\..\node_modules\@react-native-community\geolocation\ios",
 				);
 			};
 			name = Debug;
@@ -1483,6 +1500,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1490,6 +1508,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-gesture-handler\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-screens\ios",
 					"$(SRCROOT)\..\node_modules\react-native-safe-area-context\ios\SafeAreaView",
+					"$(SRCROOT)\..\node_modules\@react-native-community\geolocation\ios",
 				);
 			};
 			name = Release;
