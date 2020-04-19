@@ -20,6 +20,6 @@ const StyledInput = styled.TextInput.attrs({
     height: 45px;
     marginTop: 16px;
     padding: 8px 16px;
-    color: ${ colors.TEXT_COLOR };
+    color: ${ colors.WHITE };
     backgroundColor: ${ colors.GREY_COLOR };
 `;

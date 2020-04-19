@@ -4,6 +4,6 @@ export default {
     DARK_COLOR: '#141414',
     GREY_COLOR: '#383E3E',
     PLACEHOLDER_COLOR: '#ACACAC',
-    TEXT_COLOR: '#FFFFFF',
-    TEXT_GREY_COLOR: '#B9B9B9'
+    TEXT_GREY_COLOR: '#B9B9B9',
+    WHITE: '#FFF'
 };

@@ -22,7 +22,7 @@ const Wrapper = styled.View`
 `
 
 const Title = styled.Text`
-    color: ${ colors.TEXT_COLOR };
+    color: ${ colors.WHITE };
     fontWeight: bold;
     fontSize: 28px;
     margin: 10px 0;

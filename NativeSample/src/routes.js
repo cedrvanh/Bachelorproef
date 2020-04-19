@@ -12,7 +12,7 @@ import SignInScreen from './screens/Auth/SignIn';
 import Icon from './components/Icon';
 import colors from './styles/colors';
 
-
+const ICON_SIZE = 28;
 
 const AuthNavigator = createStackNavigator(
     {
@@ -29,7 +29,7 @@ const AppNavigator = createBottomTabNavigator(
             screen: HomeScreen,
             navigationOptions: {
                 tabBarIcon: ({ tintcolor }) => (
-                    <Icon name="ios-map" size={28} />
+                    <Icon name="ios-map" size={ICON_SIZE} />
                 )
             }
         },
@@ -37,7 +37,7 @@ const AppNavigator = createBottomTabNavigator(
             screen: CameraScreen,
             navigationOptions: {
                 tabBarIcon: ({ tintcolor }) => (
-                    <Icon name="ios-camera" size={28} />
+                    <Icon name="ios-camera" size={ICON_SIZE} />
                 )
             }
         },
@@ -45,7 +45,7 @@ const AppNavigator = createBottomTabNavigator(
             screen: ProfileScreen,
             navigationOptions: {
                 tabBarIcon: ({ tintcolor }) => (
-                    <Icon name="ios-cart" size={28} />
+                    <Icon name="ios-cart" size={ICON_SIZE} />
                 )
             }
         }

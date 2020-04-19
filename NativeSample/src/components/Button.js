@@ -27,6 +27,6 @@ const StyledButton = styled.View`
 `
 
 const Label = styled.Text`
-    color: ${ colors.TEXT_COLOR }
+    color: ${ colors.WHITE }
     fontWeight: bold;
 `

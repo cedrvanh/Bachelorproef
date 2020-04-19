@@ -26,5 +26,5 @@ const Container = styled.View`
 `
 
 const Message = styled.Text`
-    color: ${ colors.TEXT_COLOR }
+    color: ${ colors.WHITE }
 `
