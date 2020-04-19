@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components';
 
-import colors from '../styles/colors';
+import { colors } from '../styles';
 
 export default Button = ({ label, onPress, disabled = false }) => {
     return (

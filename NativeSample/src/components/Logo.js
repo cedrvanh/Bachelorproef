@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import colors from "../styles/colors";
-
+import { colors, utils } from '../styles';
 
 export default Logo = ({ tagline = false }) => {
     return (
@@ -25,7 +24,7 @@ const Title = styled.Text`
     color: ${ colors.WHITE };
     fontWeight: bold;
     fontSize: 28px;
-    margin: 10px 0;
+    margin: ${ utils.GUTTER_SMALL } 0;
     textTransform: uppercase;
 `
 

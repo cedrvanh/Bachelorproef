@@ -2,7 +2,7 @@ import React from 'react';
 import { AsyncStorage } from 'react-native';
 import styled from 'styled-components';
 
-import colors from '../../../styles/colors';
+import { colors, utils } from '../../../styles';
 
 import SignInForm from '../../../components/SignInForm';
 import Logo from '../../../components/Logo';
@@ -22,7 +22,7 @@ const Container = styled.View`
     alignItems: center;
     justifyContent: center;
     background-color: ${ colors.SECONDARY_COLOR };
-    padding: 24px;
+    padding: ${ utils.GUTTER_LARGE };
 `
 
 const Message = styled.Text`

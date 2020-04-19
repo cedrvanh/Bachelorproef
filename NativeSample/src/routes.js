@@ -10,7 +10,7 @@ import CameraScreen from './screens/Camera';
 import SignInScreen from './screens/Auth/SignIn';
 
 import Icon from './components/Icon';
-import colors from './styles/colors';
+import { colors } from './styles';
 
 const ICON_SIZE = 28;
 
