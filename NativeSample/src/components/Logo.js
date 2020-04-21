@@ -5,20 +5,14 @@ import { colors, utils } from '../styles';
 
 export default Logo = ({ tagline = false }) => {
     return (
-        <Wrapper>
+        <React.Fragment>
             <Title>Augmented Routes</Title>
             {tagline &&
                 <TagLine>Discover the rich history near you</TagLine>
             }
-        </Wrapper>
+        </React.Fragment>
     )
 }
-
-const Wrapper = styled.View`
-    flex: 1;
-    alignItems: center;
-    justifyContent: center;
-`
 
 const Title = styled.Text`
     color: ${ colors.WHITE };

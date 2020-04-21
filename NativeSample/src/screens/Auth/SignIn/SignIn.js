@@ -10,7 +10,9 @@ import Logo from '../../../components/Logo';
 export default SignInScreen = ({ navigation }) => {
     return (
         <Container>
-            <Logo tagline />
+            <LogoWrapper>
+                <Logo tagline />
+            </LogoWrapper>
             <SignInForm />
             <Message onPress={() => navigation.navigate('SignUp')}>Don't have an account? Sign Up</Message>
         </Container>
@@ -23,6 +25,12 @@ const Container = styled.View`
     justifyContent: center;
     background-color: ${ colors.SECONDARY_COLOR };
     padding: ${ utils.GUTTER_LARGE };
+`
+
+const LogoWrapper = styled.View`
+    flex: 1;
+    alignItems: center;
+    justifyContent: center;
 `
 
 const Message = styled.Text`

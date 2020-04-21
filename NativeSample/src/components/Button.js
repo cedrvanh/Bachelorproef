@@ -2,28 +2,37 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components';
 
-import { colors } from '../styles';
+import { colors, utils } from '../styles';
 
-export default Button = ({ label, onPress, disabled = false }) => {
+export default Button = ({ label, onPress, disabled = false, small }) => {
+    const RenderButton = small ? SmallButton : DefaultButton;
+    
     return (
         <TouchableOpacity
             activeOpacity={ disabled ? 1 : 0.7 }
             onPress={onPress}
         >
-            <StyledButton>
+            <RenderButton>
                 <Label>{ label.toUpperCase() }</Label>
-            </StyledButton>
+            </RenderButton>
         </TouchableOpacity>
     )
 }
 
-const StyledButton = styled.View`
+
+const DefaultButton = styled.View`
     justifyContent: center;
     alignItems: center;
     height: 45px;
     padding: 8px 16px;
     marginTop: 24px;
-    backgroundColor: ${ colors.PRIMARY_COLOR }
+    backgroundColor: ${colors.PRIMARY_COLOR};
+`
+
+const SmallButton = styled(DefaultButton)`
+    alignSelf: flex-start;
+    height: 28px;
+    borderRadius: ${ utils.BORDER_RADIUS };
 `
 
 const Label = styled.Text`

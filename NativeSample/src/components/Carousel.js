@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, Dimensions } from 'react-native';
+import { ScrollView, Dimensions, Text } from 'react-native';
 import styled from 'styled-components';
 import SnapCarousel from 'react-native-snap-carousel';
 
@@ -19,7 +19,7 @@ export default Carousel = () => {
         },
         {
             id: 2,
-            title: 'Sint-Pieters Plein',
+            title: 'Sint-Pietersplein',
             description: 'Bandits are hiding inside the park, find them!'
         },
         {
@@ -30,9 +30,8 @@ export default Carousel = () => {
     ]
 
     renderCards = ({ item, index }) => {
-        console.log(index)
         return (
-            <Card title={item.title} key={index} />
+            <Card item={item} key={index} />
         );
     }
 

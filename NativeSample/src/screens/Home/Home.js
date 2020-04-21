@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -6,10 +6,12 @@ import MapContainer from '../../components/Map/MapContainer';
 import Header from '../../components/Header';
 import usePosition from '../../hooks/usePosition';
 import Carousel from '../../components/Carousel';
+import UserIcon from '../../components/UserIcon';
 
 
 export default HomeScreen = ({ navigation }) => {
     const { position, error } = usePosition();
+    const { visible, setVisiblity } = useState(false);
 
     if(error) {
         return <ErrorMessage>Geolocation Error: {error.message}</ErrorMessage>;
@@ -21,8 +23,14 @@ export default HomeScreen = ({ navigation }) => {
                 <MapContainer location={ position } />
             )}
             <Content>
+                <UserIcon />
                 <Header title ={ 'Select a route' || navigation.state.routeName } />
-                <Carousel />
+
+                {visible && (
+                    <CarouselWrapper>
+                        <Carousel />
+                    </CarouselWrapper>
+                )}
             </Content>
         </Container>
     )
@@ -47,6 +55,12 @@ const Content = styled.View`
     bottom: 0;
     flex: 1;
     alignItems: center;
+`
+
+const CarouselWrapper = styled.View`
+    position: absolute;
+    bottom: 75px;
+    left: 0;
 `
 
 const ErrorMessage = styled.Text`

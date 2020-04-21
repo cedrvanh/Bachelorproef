@@ -62,7 +62,7 @@ const AppNavigator = createBottomTabNavigator(
         }
     }
 );
-  
+
 export default createAppContainer(
     createSwitchNavigator(
         {
@@ -70,7 +70,7 @@ export default createAppContainer(
             Auth: AuthNavigator
         },
         {
-            initialRouteName: 'App',
+            initialRouteName: 'Auth',
         }
     )
 );
