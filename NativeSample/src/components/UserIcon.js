@@ -16,6 +16,6 @@ const UserCircle = styled.View`
     height: 25px;
     borderRadius: 50px;
     backgroundColor: ${ colors.DARK_COLOR };
-    borderColor: ${ colors.PRIMARY_COLOR };
+    borderColor: ${ colors.ACCENT_COLOR };
     borderWidth: 3px;
 `

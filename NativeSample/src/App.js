@@ -10,7 +10,7 @@ import { colors } from './styles';
 export default App = () => {
     return (
         <SafeAreaView  style={{ flex: 1 }}>
-          <StatusBar backgroundColor={ colors.SECONDARY_COLOR } />
+          <StatusBar backgroundColor={ colors.PRIMARY_COLOR } />
 
           <AppContainer />
         </SafeAreaView>

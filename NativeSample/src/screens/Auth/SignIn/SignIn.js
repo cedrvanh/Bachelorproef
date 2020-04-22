@@ -23,7 +23,7 @@ const Container = styled.View`
     flex: 1;
     alignItems: center;
     justifyContent: center;
-    background-color: ${ colors.SECONDARY_COLOR };
+    background-color: ${ colors.PRIMARY_COLOR };
     padding: ${ utils.GUTTER_LARGE };
 `
 

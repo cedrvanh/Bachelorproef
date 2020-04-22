@@ -23,14 +23,14 @@ export default HomeScreen = ({ navigation }) => {
                 <MapContainer location={ position } />
             )}
             <Content>
-                <UserIcon />
+                {/* <UserIcon /> */}
                 <Header title ={ 'Select a route' || navigation.state.routeName } />
-
+{/* 
                 {visible && (
                     <CarouselWrapper>
                         <Carousel />
                     </CarouselWrapper>
-                )}
+                )} */}
             </Content>
         </Container>
     )

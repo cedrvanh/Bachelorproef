@@ -54,7 +54,7 @@ export default MapContainer = ({ location }) => {
                         latitude: marker.coords.latitude, 
                         longitude: marker.coords.longitude
                     }}
-                    pinColor={ colors.PRIMARY_COLOR }
+                    pinColor={ colors.ACCENT_COLOR }
                 />
             ))} */}
         </MapView>

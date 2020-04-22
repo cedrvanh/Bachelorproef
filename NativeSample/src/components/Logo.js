@@ -23,5 +23,5 @@ const Title = styled.Text`
 `
 
 const TagLine = styled.Text`
-    color: ${ colors.TEXT_GREY_COLOR }
+    color: ${ colors.TEXT_PRIMARY_LIGHT_COLOR }
 `

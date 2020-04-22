@@ -1,4 +1,5 @@
 import React from 'react';
+
 import styled from 'styled-components';
 
 import { colors, utils, typography } from '../styles';
@@ -12,7 +13,11 @@ export default Header = ({ title }) => {
 }
 
 const Wrapper = styled.View`
-    padding: ${ utils.GUTTER } 0;
+    alignSelf: stretch;
+    alignItems: center;
+    justifyContent: center;
+    height: ${ utils.HEADER_HEIGHT };
+    padding: 0 ${ utils.GUTTER };
 `
 
 const Title = styled.Text`

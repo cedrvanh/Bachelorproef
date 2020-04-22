@@ -7,6 +7,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import HomeScreen from './screens/Home';
 import ProfileScreen from './screens/Profile';
 import CameraScreen from './screens/Camera';
+import LeaderboardScreen from './screens/Leaderboard';
 import SignInScreen from './screens/Auth/SignIn';
 
 import Icon from './components/Icon';
@@ -56,10 +57,20 @@ const AppNavigator = createBottomTabNavigator(
             showIcon: true,
             showLabel: false,
             style: {
-                backgroundColor: colors.SECONDARY_COLOR,
+                backgroundColor: colors.PRIMARY_COLOR,
                 borderTopColor: 'transparent'
             }
         }
+    }
+);
+
+const UserNavigator = createStackNavigator(
+    {
+        Leaderboard: LeaderboardScreen,
+    }, 
+    {
+        initialRouteName: 'Leaderboard',
+        headerMode: 'none'
     }
 );
 
@@ -67,10 +78,11 @@ export default createAppContainer(
     createSwitchNavigator(
         {
             App: AppNavigator,
-            Auth: AuthNavigator
+            Auth: AuthNavigator,
+            User: UserNavigator
         },
         {
-            initialRouteName: 'Auth',
+            initialRouteName: 'User',
         }
     )
 );

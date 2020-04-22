@@ -28,7 +28,7 @@ const UserMarker = styled.View`
     width: 20px;
     height: 20px;
     borderWidth: 5px;
-    borderColor: ${ colors.PRIMARY_COLOR };
+    borderColor: ${ colors.ACCENT_COLOR };
     borderRadius: 16px;
     backgroundColor: ${ colors.WHITE };
 `

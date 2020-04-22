@@ -21,5 +21,5 @@ const StyledInput = styled.TextInput.attrs({
     marginTop: 16px;
     padding: 8px 16px;
     color: ${ colors.WHITE };
-    backgroundColor: ${ colors.GREY_COLOR };
+    backgroundColor: ${ colors.PRIMARY_LIGHT_COLOR };
 `;

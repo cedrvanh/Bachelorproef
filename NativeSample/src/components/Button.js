@@ -26,7 +26,7 @@ const DefaultButton = styled.View`
     height: 45px;
     padding: 8px 16px;
     marginTop: 24px;
-    backgroundColor: ${colors.PRIMARY_COLOR};
+    backgroundColor: ${ colors.ACCENT_COLOR };
 `
 
 const SmallButton = styled(DefaultButton)`

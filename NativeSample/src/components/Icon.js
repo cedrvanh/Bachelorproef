@@ -8,7 +8,7 @@ export default Icon = ({ size, name, color, ...attributes }) => {
         <VectorIcon
             size={size} 
             name={name}
-            color={color || colors.PRIMARY_COLOR}
+            color={color || colors.ACCENT_COLOR}
             {...attributes}
         /> 
     )
