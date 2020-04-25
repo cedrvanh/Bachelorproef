@@ -18,7 +18,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('v1')->group(function() {
+
+Route::prefix('auth')->group(function() {
+    Route::post('signup', 'Api\AuthController@signUp');
+    Route::post('signin', 'Api\AuthController@signIn');
+});
+
+
+Route::group(['prefix' => 'v1', 'middleware' => ['auth:api', 'auth.verify']], function() {
     Route::apiResources([
         'users' => 'Api\UserController',
         'characters' => 'Api\CharacterController'

@@ -6,25 +6,21 @@ import LeaderboardItem from './Item';
 
 export default LeaderboardList = ({ items }) => {
     return (
-        // <List>
-        //     {items && items.map(item => {
-        //         return <LeaderboardItem item={ item } key={ item.name } />
-        //     })}
-        // </List>
-        <Wrapper>
-            <List 
-                data={ items }
-                renderItem={({ item }) => <LeaderboardItem item={ item } />}
-                keyExtractor={item => item.name}
-            />
-        </Wrapper>
+        <List 
+            data={ items }
+            renderItem={({ item, index }) => (
+                    <LeaderboardItem 
+                        item={ item } 
+                        key={ item.name } 
+                        ranking={ index + 1 }
+                    />
+            )}
+            keyExtractor={item => item.name}
+            showsVerticalScrollIndicator={false}
+        />
     )
 }
 
-const Wrapper = styled.View`
-    flex: 1;
-`
-
 const List = styled.FlatList`
-    backgroundColor: red;
+    flex: 1;
 `

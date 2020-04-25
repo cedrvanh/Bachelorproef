@@ -19,11 +19,11 @@ export default HomeScreen = ({ navigation }) => {
 
     return (
         <Container>
-            {position && (
+             {position && (
                 <MapContainer location={ position } />
             )}
             <Content>
-                {/* <UserIcon /> */}
+                {/*<UserIcon />*/}
                 <Header title ={ 'Select a route' || navigation.state.routeName } />
 {/* 
                 {visible && (
