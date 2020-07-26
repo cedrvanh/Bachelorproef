@@ -17,8 +17,7 @@ class CharacterController extends Controller
     public function index()
     {
         $characters = Character::paginate(10);
-
-        return CharacterResource::collection($characters);  
+        return CharacterResource::collection($characters);
     }
 
     /**
@@ -29,7 +28,8 @@ class CharacterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $task = Character::create($request->all());
+        return new CharacterResource($task);
     }
 
     /**
@@ -40,9 +40,8 @@ class CharacterController extends Controller
      */
     public function show($id)
     {
-        $character = Character::findOrFail($id);
-
-        return new CharacterResource($character);
+        $task = Character::findOrFail($id);
+        return new CharacterResource($task);
     }
 
     /**
@@ -54,7 +53,9 @@ class CharacterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $task = Character::findOrFail($id);
+        $task->update($request->all());
+        return new CharacterResource($task);
     }
 
     /**
@@ -65,6 +66,8 @@ class CharacterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $task = Character::findOrFail($id);
+        $task->delete();
+        return new CharacterResource($task);
     }
 }

@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\UserResource;
-use App\User;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class CharacterClassController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(10);
-        return UserResource::collection($users);
+        $characterclasses = CharacterClass::paginate(10);
+        return CharacterClassResource::collection($characterclasses);
     }
 
     /**
@@ -28,8 +26,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = User::create($request->all());
-        return new UserResource($user);
+        $task = CharacterClass::create($request->all());
+        return new CharacterClassResource($task);
     }
 
     /**
@@ -40,8 +38,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::findOrFail($id);
-        return new UserResource($user);
+        $task = CharacterClass::findOrFail($id);
+        return new CharacterClassResource($task);
     }
 
     /**
@@ -53,9 +51,9 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-        $user->update($request->all());
-        return new UserResource($user);
+        $task = CharacterClass::findOrFail($id);
+        $task->update($request->all());
+        return new CharacterClassResource($task);
     }
 
     /**
@@ -66,8 +64,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
-        $user->delete();
-        return new UserResource($user);
+        $task = CharacterClass::findOrFail($id);
+        $task->delete();
+        return new CharacterClassResource($task);
     }
 }
