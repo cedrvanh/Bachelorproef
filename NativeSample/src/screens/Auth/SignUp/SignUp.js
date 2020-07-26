@@ -1,0 +1,37 @@
+import React from 'react';
+import styled from 'styled-components';
+
+import { colors, utils } from '~/styles';
+
+import SignUpForm from '~/components/SignUpForm';
+import Logo from '~/components/Logo';
+
+export default SignUpScreen = ({ navigation }) => {
+    return (
+        <Container>
+            <LogoWrapper>
+                <Logo tagline />
+            </LogoWrapper>
+            <SignUpForm />
+            <Message onPress={() => navigation.navigate('SignIn')}>Already have an account? Sign In</Message>
+        </Container>
+    )
+}
+
+const Container = styled.View`
+    flex: 1;
+    alignItems: center;
+    justifyContent: center;
+    background-color: ${ colors.PRIMARY_COLOR };
+    padding: ${ utils.GUTTER_LARGE };
+`
+
+const LogoWrapper = styled.View`
+    flex: 1;
+    alignItems: center;
+    justifyContent: center;
+`
+
+const Message = styled.Text`
+    color: ${ colors.WHITE }
+`

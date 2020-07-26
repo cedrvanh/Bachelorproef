@@ -1,25 +1,33 @@
 import React from 'react';
-import { AsyncStorage } from 'react-native';
 import styled from 'styled-components';
 
+import { AuthService as _authService } from '~/services';
+
+
+// Import custom form hook
 import { useForm } from '../hooks';
 
 import Input from './Input';
 import Button from './Button';
 
-export default SignInForm = (props) => {
+import axios from 'axios';
+
+export default SignInForm = ({ handleLogin }) => {
     const { values, setValue, handleSubmit } = useForm();
     
-    _onLogin = async () => {
-        // await AsyncStorage.setItem('token', values.username);
+    _onPress = () => {
+        _authService.signIn(values)
+            .then(() => {
+                handleLogin();
+            });
     }
 
     return (
         <Form>
             <Input 
-                onChangeText={(val) => setValue('username', val)}
-                name="username"
-                placeholder="Enter name"
+                onChangeText={(val) => setValue('email', val)}
+                name="email"
+                placeholder="Enter email"
             />
             <Input 
                 onChangeText={(val) => setValue('password', val)}
@@ -28,7 +36,7 @@ export default SignInForm = (props) => {
             />
             <Button 
                 label="Sign In"
-                onPress={() => handleSubmit(_onLogin)}
+                onPress={() => handleSubmit(_onPress)}
             />
         </Form>
     )

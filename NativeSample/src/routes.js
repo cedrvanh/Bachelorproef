@@ -1,31 +1,35 @@
 import React from 'react';
-
-import styled from 'styled-components';
-
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import styled from 'styled-components';
 
-import HomeScreen from './screens/Home';
-import ProfileScreen from './screens/Profile';
-import CameraScreen from './screens/Camera';
-import LeaderboardScreen from './screens/Leaderboard';
-import SignInScreen from './screens/Auth/SignIn';
+import HomeScreen from '~/screens/Home';
+import ProfileScreen from '~/screens/Profile';
+import CameraScreen from '~/screens/Camera';
+import LeaderboardScreen from '~/screens/Leaderboard';
+import SignInScreen from '~/screens/Auth/SignIn';
+import SignUpScreen from '~/screens/Auth/SignUp';
+import AuthLoadingScreen from '~/screens/Auth/AuthLoading';
 
-import Icon from './components/Icon';
-import { colors } from './styles';
+import Icon from '~/components/Icon';
+import { colors } from '~/styles';
 
 const ICON_SIZE = 28;
 
+// Auth Routes -  If user is not logged in
 const AuthNavigator = createStackNavigator(
     {
-        SignIn: SignInScreen
+        SignIn: SignInScreen,
+        SignUp: SignUpScreen
     },
     {
+        initialRouteName: 'SignIn',
         headerMode: 'none'
     }
 )
 
+// App Routes - Tab bar
 const AppNavigator = createBottomTabNavigator(
     {
         Home: {
@@ -70,6 +74,7 @@ const AppNavigator = createBottomTabNavigator(
     }
 );
 
+// User Routes - Not part of main app flow
 const UserNavigator = createStackNavigator(
     {
         Leaderboard: LeaderboardScreen,
@@ -85,10 +90,11 @@ export default createAppContainer(
         {
             App: AppNavigator,
             Auth: AuthNavigator,
-            User: UserNavigator
+            AuthLoading: AuthLoadingScreen
+            // User: UserNavigator
         },
         {
-            initialRouteName: 'App',
+            initialRouteName: 'AuthLoading',
         }
     )
 );
