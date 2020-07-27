@@ -1,13 +1,13 @@
 import React from 'react';
-
+import { withNavigation } from 'react-navigation';
 import styled from 'styled-components';
 
-import { colors, utils, typography } from '../styles';
+import { colors, utils, typography } from '~/styles';
 
-export default Header = ({ title }) => {
+const Header = ({ navigation, title }) => {
     return (
         <Wrapper>
-            <Title>{ title }</Title>
+            <Title>{ title || navigation.state.routeName }</Title>
         </Wrapper>
     )
 }
@@ -21,7 +21,10 @@ const Wrapper = styled.View`
 `
 
 const Title = styled.Text`
+    color: ${ colors.WHITE }
     fontSize: ${ typography.FONT_SIZE_HEADING };
     fontWeight: ${ typography.FONT_WEIGHT_BOLD };
-    color: ${ colors.WHITE }
+    textTransform: uppercase;
 `
+
+export default withNavigation(Header);

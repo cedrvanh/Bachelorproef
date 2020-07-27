@@ -3,14 +3,11 @@ import styled from 'styled-components';
 
 import { AuthService as _authService } from '~/services';
 
-
 // Import custom form hook
 import { useForm } from '../hooks';
 
 import Input from './Input';
 import Button from './Button';
-
-import axios from 'axios';
 
 export default SignInForm = ({ handleLogin }) => {
     const { values, setValue, handleSubmit } = useForm();
