@@ -4,13 +4,14 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import styled from 'styled-components';
 
+import SignInScreen from '~/screens/Auth/SignIn';
+import SignUpScreen from '~/screens/Auth/SignUp';
+import AuthLoadingScreen from '~/screens/Auth/AuthLoading';
 import HomeScreen from '~/screens/Home';
 import ProfileScreen from '~/screens/Profile';
 import CameraScreen from '~/screens/Camera';
 import LeaderboardScreen from '~/screens/Leaderboard';
-import SignInScreen from '~/screens/Auth/SignIn';
-import SignUpScreen from '~/screens/Auth/SignUp';
-import AuthLoadingScreen from '~/screens/Auth/AuthLoading';
+import HeroScreen from '~/screens/Hero';
 
 import Icon from '~/components/Icon';
 import { colors } from '~/styles';
@@ -29,8 +30,8 @@ const AuthNavigator = createStackNavigator(
     }
 )
 
-// App Routes - Tab bar
-const AppNavigator = createBottomTabNavigator(
+// Home Routes - Tab bar
+const TabNavigator = createBottomTabNavigator(
     {
         Home: {
             screen: HomeScreen,
@@ -75,12 +76,13 @@ const AppNavigator = createBottomTabNavigator(
 );
 
 // User Routes - Not part of main app flow
-const UserNavigator = createStackNavigator(
+const AppNavigator = createStackNavigator(
     {
+        Hero: HeroScreen,
         Leaderboard: LeaderboardScreen,
     }, 
     {
-        initialRouteName: 'Leaderboard',
+        initialRouteName: 'Hero',
         headerMode: 'none'
     }
 );
@@ -89,12 +91,12 @@ export default createAppContainer(
     createSwitchNavigator(
         {
             App: AppNavigator,
+            Tab: TabNavigator,
             Auth: AuthNavigator,
             AuthLoading: AuthLoadingScreen
-            // User: UserNavigator
         },
         {
-            initialRouteName: 'AuthLoading',
+            initialRouteName: 'App',
         }
     )
 );
