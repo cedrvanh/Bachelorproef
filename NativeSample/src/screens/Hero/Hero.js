@@ -13,8 +13,8 @@ export default HeroScreen = ({ navigation }) => {
     return (
         <Container>
             <Header title ={ 'Create a hero' } />
-            {/* <HeroForm /> */}
-            <InteractiveModel />
+            <HeroForm />
+            {/* <InteractiveModel /> */}
             <Button label="Proceed" />
         </Container>
     )
