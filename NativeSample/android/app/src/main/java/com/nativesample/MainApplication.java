@@ -6,6 +6,7 @@ import com.airbnb.android.react.maps.MapsPackage;
 import com.viromedia.bridge.ReactViroPackage;
 
 import com.facebook.react.ReactApplication;
+import com.rnglmodelview.RNGLModelViewPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.reactnativecommunity.geolocation.GeolocationPackage;
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
@@ -33,6 +34,7 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
+                    new RNGLModelViewPackage(),
                     new VectorIconsPackage(),
                     new GeolocationPackage(),
                     new SafeAreaContextPackage(),
