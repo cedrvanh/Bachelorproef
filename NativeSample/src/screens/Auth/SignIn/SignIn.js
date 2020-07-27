@@ -13,15 +13,20 @@ export default SignInScreen = ({ navigation }) => {
                 <Logo tagline />
             </LogoWrapper>
             <SignInForm handleLogin={() => navigation.navigate('Home')} />
-            <Message onPress={() => navigation.navigate('SignUp')}>Don't have an account? Sign Up</Message>
+            <Message onPress={() => navigation.navigate('SignUp')}>
+                Don't have an account? <MessageBold>Sign Up</MessageBold>
+            </Message>
         </Container>
     )
 }
 
-const Container = styled.View`
-    flex: 1;
-    alignItems: center;
-    justifyContent: center;
+const Container = styled.ScrollView.attrs({
+    contentContainerStyle:  {
+        flexGrow: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
+})`
     background-color: ${ colors.PRIMARY_COLOR };
     padding: ${ utils.GUTTER_LARGE };
 `
@@ -33,5 +38,11 @@ const LogoWrapper = styled.View`
 `
 
 const Message = styled.Text`
-    color: ${ colors.WHITE }
+    fontSize: 12px;
+    color: ${ colors.WHITE };
+    textTransform: uppercase;
+`
+
+const MessageBold = styled.Text`
+    fontWeight: bold;
 `

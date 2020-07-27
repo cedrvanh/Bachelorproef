@@ -27,6 +27,7 @@ const DefaultButton = styled.View`
     padding: 8px 16px;
     marginTop: 24px;
     backgroundColor: ${ colors.ACCENT_COLOR };
+    borderRadius: ${ utils.BORDER_RADIUS_LARGE };
 `
 
 const SmallButton = styled(DefaultButton)`

@@ -8,6 +8,10 @@ export class AuthService {
         this.setToken(data.token);
     }
 
+    static async signUp(payload) {
+        await axiosInstance.post('auth/signup', payload);
+    }
+
     static async getAccount() {
         await axiosInstance.get('auth/account');
     }
