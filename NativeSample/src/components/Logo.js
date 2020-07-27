@@ -6,10 +6,10 @@ import { colors, utils } from '../styles';
 export default Logo = ({ tagline = false }) => {
     return (
         <React.Fragment>
-            <Title>Augmented Routes</Title>
             {tagline &&
-                <TagLine>Discover the rich history near you</TagLine>
+                <TagLine>An augmented reality experience</TagLine>
             }
+            <Title>Augmented Hunt</Title>
         </React.Fragment>
     )
 }
@@ -17,11 +17,13 @@ export default Logo = ({ tagline = false }) => {
 const Title = styled.Text`
     color: ${ colors.WHITE };
     fontWeight: bold;
-    fontSize: 28px;
-    margin: ${ utils.GUTTER_SMALL } 0;
+    fontSize: 30px;
+    margin: ${ utils.GUTTER_TINY } 0 0 0;
     textTransform: uppercase;
 `
 
 const TagLine = styled.Text`
-    color: ${ colors.TEXT_PRIMARY_LIGHT_COLOR }
+    color: ${ colors.TEXT_PRIMARY_LIGHT_COLOR };
+    textTransform: uppercase;
+    fontSize: 12px;
 `

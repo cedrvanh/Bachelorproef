@@ -24,7 +24,7 @@ export default HomeScreen = ({ navigation }) => {
             )}
             <Content>
                 {/*<UserIcon />*/}
-                <Header title ={ 'Select a route' || navigation.state.routeName } />
+                <Header title ={ 'Select a route' } />
 {/* 
                 {visible && (
                     <CarouselWrapper>
