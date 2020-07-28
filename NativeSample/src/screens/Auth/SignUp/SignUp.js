@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { colors, utils } from '~/styles';
 
-import SignUpForm from '~/components/SignUpForm';
+import SignUpForm from '~/components/Form/SignUpForm';
 import Logo from '~/components/Logo';
 
 export default SignUpScreen = ({ navigation }) => {

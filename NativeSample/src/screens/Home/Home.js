@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 
 import styled from 'styled-components';
 
-import MapContainer from '../../components/Map/MapContainer';
-import Header from '../../components/Header';
-import usePosition from '../../hooks/usePosition';
-import Carousel from '../../components/Carousel';
-import UserIcon from '../../components/UserIcon';
+import MapContainer from '~/components/Map/MapContainer';
+import Header from '~/components/Header';
+import usePosition from '~/hooks/usePosition';
+import Carousel from '~/components/Carousel';
+import UserIcon from '~/components/UserIcon';
 
 
 export default HomeScreen = ({ navigation }) => {

@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { colors, typography, utils } from '../styles';
-import Button from './Button';
+import { colors, typography, utils } from '~/styles';
+
+import Button from '~/components/Base/Button';
 
 export default Card = ({ item }) => {
     return (

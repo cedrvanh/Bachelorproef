@@ -1,21 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
+import AnimatedMultistep from "react-native-animated-multistep";
 
 import { colors, utils } from '~/styles';
 
 import Header from '~/components/Header';
-import Button from '~/components/Button';
-import HeroForm from '~/components/HeroForm';
-import InteractiveModel from '~/components/InteractiveModel';
+import CreateHeroStep from '~/components/Hero/CreateHeroStep';
+import PickClassStep from '~/components/Hero/PickClassStep';
 
+const steps = [
+    { name: "Step 1", component: CreateHeroStep },
+    { name: "Step 2", component: PickClassStep },
+];
 
 export default HeroScreen = ({ navigation }) => {
     return (
         <Container>
             <Header title ={ 'Create a hero' } />
-            <HeroForm />
-            {/* <InteractiveModel /> */}
-            <Button label="Proceed" />
+            <AnimatedMultistep 
+                steps={steps}
+                comeInOnNext="fadeInDown"
+                OutOnNext="fadeOutDown"
+                comeInOnBack="fadeIn"
+                OutOnBack="fadeOut"
+            />
         </Container>
     )
 }
