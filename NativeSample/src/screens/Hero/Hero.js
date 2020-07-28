@@ -28,8 +28,11 @@ export default HeroScreen = ({ navigation }) => {
     )
 }
 
-const Container = styled.View`
-    flex: 1;
+const Container = styled.ScrollView.attrs({
+    contentContainerStyle:  {
+        flexGrow: 1,
+    }
+})`
     background-color: ${ colors.PRIMARY_COLOR };
     padding: ${ utils.GUTTER_LARGE };
 `

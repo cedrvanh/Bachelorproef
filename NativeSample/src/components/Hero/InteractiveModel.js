@@ -3,6 +3,10 @@ import { Animated } from 'react-native';
 import ModelView from 'react-native-gl-model-view';
 import styled from 'styled-components';
 
+import Icon from '~/components/Icon';
+
+import { colors } from '~/styles';
+
 // Use React Animated API
 const AnimatedModelView = Animated.createAnimatedComponent(ModelView);
 

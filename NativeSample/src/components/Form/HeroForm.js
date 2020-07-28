@@ -7,11 +7,10 @@ import { useForm } from '~/hooks';
 import { colors, utils } from '~/styles';
 
 import Input from '~/components/Base/Input';
-import Button from '~/components/Base/Button';
 import SelectedCard from '~/components/SelectedCard';
 
-export default HeroForm = ({ selected }) => {
-    const { values, setValue, handleSubmit } = useForm();    
+export default HeroForm = () => {
+    const { setValue } = useForm();    
     const [selectedGender, setSelectedGender] = useState();
     
     const genders = [
@@ -39,8 +38,8 @@ export default HeroForm = ({ selected }) => {
                     <SelectedCard 
                         key={gender.id}
                         data={gender.name}
-                        selected={selectedGender}
-                        onPress={() => selectGender(gender.id)}
+                        selected={selectedGender === gender.id}
+                        onPress={() => setSelectedGender(gender.id)}
                     />
                 ))}
             </CardContainer>
@@ -62,5 +61,6 @@ const Label = styled.Text`
 
 const CardContainer = styled.View`
     flexDirection: row;
+    justifyContent: space-between;
     marginTop: ${ utils.GUTTER };
 `

@@ -3,17 +3,21 @@ import styled from 'styled-components';
 
 import { colors, typography, utils } from '~/styles';
 
-export default SelectedCard = ({ data, selected, onPress }) => {
+export default SelectedCard = ({ data, selected, onPress, column }) => {
     return (
-        <Card onPress={onPress}>
+        <Card 
+            onPress={onPress} 
+            selected={selected}
+            column={column || 2}
+        >
             <CardContent>{data}</CardContent>
         </Card>
     )
 }
 
 const Card = styled.TouchableOpacity`
-    flex: 1;
-    height: 125px;
+    width: ${props => 96 / props.column }%;
+    min-height: 75px;
     justifyContent: center;
     alignItems: center;
     backgroundColor: ${ props => props.selected ? colors.ACCENT_COLOR : colors.PRIMARY_LIGHT_COLOR };
@@ -21,6 +25,8 @@ const Card = styled.TouchableOpacity`
 `
 
 const CardContent = styled.Text`
-    color: ${ colors.PRIMARY_COLOR };
-    fontWeight: bold;
+    color: ${ colors.PLACEHOLDER_COLOR };
+    fontWeight: ${ typography.FONT_WEIGHT_BOLD };
+    fontSize: 16px;
+    textTransform: uppercase;
 `

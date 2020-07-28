@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\CharacterClass;
+use App\Http\Resources\CharacterClassResource;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
