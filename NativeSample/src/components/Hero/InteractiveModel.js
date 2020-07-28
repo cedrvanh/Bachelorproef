@@ -6,7 +6,7 @@ import styled from 'styled-components';
 // Use React Animated API
 const AnimatedModelView = Animated.createAnimatedComponent(ModelView);
 
-export default InteractiveModel = () => {
+export default InteractiveModel = (props) => {
     const [coords, setCoords] = useState({
         rotateX: new Animated.Value(-90),
         rotateZ: new Animated.Value(0),

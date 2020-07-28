@@ -4,18 +4,18 @@ import styled from 'styled-components';
 import { AuthService as _authService } from '~/services';
 
 // Import custom form hook
-import { useForm } from '../hooks';
+import { useForm } from '~/hooks';
 
-import Input from './Input';
-import Button from './Button';
+import Input from '~/components/Base/Input';
+import Button from '~/components/Base/Button';
 
-export default SignInForm = ({ handleLogin }) => {
+export default SignInForm = ({ handleRegister }) => {
     const { values, setValue, handleSubmit } = useForm();
     
     _onPress = () => {
-        _authService.signIn(values)
+        _authService.signUp(values)
             .then(() => {
-                handleLogin();
+                handleRegister();
             });
     }
 
@@ -27,12 +27,17 @@ export default SignInForm = ({ handleLogin }) => {
                 placeholder="Enter email"
             />
             <Input 
+                onChangeText={(val) => setValue('name', val)}
+                name="name"
+                placeholder="Enter name"
+            />
+            <Input 
                 onChangeText={(val) => setValue('password', val)}
                 name="password"
                 placeholder="Enter password"
             />
             <Button 
-                label="Sign In"
+                label="Sign Up"
                 onPress={() => handleSubmit(_onPress)}
             />
         </Form>
