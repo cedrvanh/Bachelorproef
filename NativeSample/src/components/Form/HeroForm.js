@@ -8,9 +8,10 @@ import { colors, utils } from '~/styles';
 
 import Input from '~/components/Base/Input';
 import SelectedCard from '~/components/SelectedCard';
+import Button from '~/components/Base/Button';
 
-export default HeroForm = () => {
-    const { setValue } = useForm();    
+export default HeroForm = ({ nextStep }) => {
+    const { values, setValue } = useForm();    
     const [selectedGender, setSelectedGender] = useState();
     
     const genders = [
@@ -24,26 +25,36 @@ export default HeroForm = () => {
         }
     ]
 
+    onSubmit = () => {
+        nextStep({
+            ...values,
+            gender: selectedGender
+        });
+    }
+
     return (
-        <Form>
-            <Input 
-                onChangeText={(val) => setValue('email', val)}
-                name="email"
-                placeholder="Character Name"
-                label="Name your character"
-            />
-            <Label>Pick a gender</Label>
-            <CardContainer>
-                {genders.map((gender) => (
-                    <SelectedCard 
-                        key={gender.id}
-                        data={gender.name}
-                        selected={selectedGender === gender.id}
-                        onPress={() => setSelectedGender(gender.id)}
-                    />
-                ))}
-            </CardContainer>
-        </Form>
+        <React.Fragment>
+            <Form>
+                <Input 
+                    onChangeText={(val) => setValue('name', val)}
+                    name="name"
+                    placeholder="Character Name"
+                    label="Name your character"
+                />
+                <Label>Pick a gender</Label>
+                <CardContainer>
+                    {genders && genders.map((gender) => (
+                        <SelectedCard 
+                            key={gender.id}
+                            data={gender.name}
+                            selected={selectedGender === gender.id}
+                            onPress={() => setSelectedGender(gender.id)}
+                        />
+                    ))}
+                </CardContainer>
+            </Form>
+            <Button onPress={onSubmit} label="Proceed" />
+        </React.Fragment>
     )
 }
 

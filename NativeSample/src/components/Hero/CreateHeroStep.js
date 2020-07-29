@@ -20,19 +20,17 @@ class CreateHeroStep extends Component {
         };
     };
 
-    nextStep = () => {
-        const { next, saveState } = this.props;
+
+    nextStep = (state) => {
+        // Save MultiStep state
+        this.props.saveState(state);
         // Move to next step
-        next();
+        this.props.next();
     }
     
     render() {
-        const { currentStep, totalSteps } = this.state;
         return (
-            <React.Fragment>
-                <HeroForm />
-                <Button onPress={this.nextStep} label="Proceed" />
-            </React.Fragment>    
+            <HeroForm nextStep={this.nextStep} />
         )
     }
 }

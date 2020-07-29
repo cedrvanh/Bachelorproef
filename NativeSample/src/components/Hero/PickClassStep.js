@@ -9,7 +9,7 @@ import { HeroService as _heroService } from "~/services/HeroService";
 
 import { utils } from '~/styles';
 
-class PickClassStep extends Component {
+export default class PickClassStep extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,12 +33,12 @@ class PickClassStep extends Component {
   };
   
   nextStep = () => {
-    const { next, saveState } = this.props;
-    // Save state for use in other steps
-    saveState({ name: "samad" });
-
+    // Save MultiStep state
+    this.props.saveState({
+      class: this.state.selectedClass
+    })
     // Go to next step
-    next();
+    this.props.next();
   };
 
   goBack() {
@@ -84,11 +84,9 @@ class PickClassStep extends Component {
   }
 }
 
-export default PickClassStep;
-
 const CardContainer = styled.View`
     flexDirection: row;
     flexWrap: wrap;
     justifyContent: space-between;
-    marginTop: ${ utils.GUTTER };
+    margin: ${ utils.GUTTER } 0; 
 `

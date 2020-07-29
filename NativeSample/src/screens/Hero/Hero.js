@@ -7,20 +7,29 @@ import { colors, utils } from '~/styles';
 import Header from '~/components/Header';
 import CreateHeroStep from '~/components/Hero/CreateHeroStep';
 import PickClassStep from '~/components/Hero/PickClassStep';
+import OverviewStep from '~/components/Hero/OverviewStep';
 
+// Define components for Multi Step Form
 const steps = [
     { name: "Step 1", component: CreateHeroStep },
     { name: "Step 2", component: PickClassStep },
+    { name: "Step 3", component: OverviewStep },
 ];
 
 export default HeroScreen = ({ navigation }) => {
+
+    onFinish = (finalState) => {
+        navigation.navigate('/', { data: finalState });
+    }
+
     return (
         <Container>
             <Header title ={ 'Create a hero' } />
             <AnimatedMultistep 
                 steps={steps}
-                comeInOnNext="fadeInDown"
-                OutOnNext="fadeOutDown"
+                onFinish={onFinish}
+                comeInOnNext="fadeIn"
+                OutOnNext="fadeOut"
                 comeInOnBack="fadeIn"
                 OutOnBack="fadeOut"
             />
