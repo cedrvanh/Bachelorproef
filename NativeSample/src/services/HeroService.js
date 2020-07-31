@@ -10,4 +10,8 @@ export class HeroService {
         const { data } = await axiosInstance.get(`classes/${id}`);
         return data;
     }
+
+    static async createCharacter(payload) {
+        await axiosInstance.post(`characters`, payload);
+    }
 }

@@ -17,7 +17,7 @@ class CreateCharactersTable extends Migration
             $table->id();
             $table->string('name', 70);
             $table->char('gender', 1)->default(0);
-            $table->integer('gold');
+            $table->integer('gold')->default(0);
 
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
             $table->foreignId('character_class_id')->nullable()->constrained();

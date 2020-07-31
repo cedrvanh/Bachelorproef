@@ -23,7 +23,6 @@ export default class OverviewStep extends Component {
 
     this.getClass(character.class)
       .then(res => {
-        console.log(res);
         this.setState({
           characterClass: res.name,
         });

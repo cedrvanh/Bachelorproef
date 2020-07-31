@@ -16,7 +16,7 @@ class CharacterController extends Controller
      */
     public function index()
     {
-        $characters = Character::paginate(10);
+        $characters = Character::with('class')->paginate(15);
         return CharacterResource::collection($characters);
     }
 
@@ -28,8 +28,8 @@ class CharacterController extends Controller
      */
     public function store(Request $request)
     {
-        $task = Character::create($request->all());
-        return new CharacterResource($task);
+        $character = Character::firstOrCreate($request->all());
+        return new CharacterResource($character);
     }
 
     /**

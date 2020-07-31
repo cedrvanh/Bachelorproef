@@ -9,6 +9,8 @@ import CreateHeroStep from '~/components/Hero/CreateHeroStep';
 import PickClassStep from '~/components/Hero/PickClassStep';
 import OverviewStep from '~/components/Hero/OverviewStep';
 
+import { HeroService as _heroService } from '~/services/HeroService';
+
 // Define components for Multi Step Form
 const steps = [
     { name: "Step 1", component: CreateHeroStep },
@@ -18,8 +20,10 @@ const steps = [
 
 export default HeroScreen = ({ navigation }) => {
 
-    onFinish = (finalState) => {
-        navigation.navigate('/', { data: finalState });
+    onFinish = async (finalState) => {
+        await _heroService.createCharacter(finalState);
+        
+        navigation.navigate('Story', { character: finalState });
     }
 
     return (
