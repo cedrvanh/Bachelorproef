@@ -4,12 +4,12 @@ import styled from 'styled-components';
 
 export default Error = ({ message }) => {
     return (
-        <Message>
+        <ErrorMessage>
             { message }
-        </Message>
+        </ErrorMessage>
     )
 }
 
-const Message = styled.Text`
+const ErrorMessage = styled.Text`
     color: red;
 `

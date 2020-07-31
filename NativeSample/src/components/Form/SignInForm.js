@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { AuthService as _authService } from '~/services';
@@ -11,12 +11,15 @@ import Button from '~/components/Base/Button';
 
 export default SignInForm = ({ handleLogin }) => {
     const { values, setValue, handleSubmit } = useForm();
-    
-    _onPress = () => {
-        _authService.signIn(values)
-            .then(() => {
-                handleLogin();
-            });
+    const [errors, setErrors] = useState({});
+
+    _onPress = async () => {
+        try {
+            await _authService.signIn(values);
+            // handleLogin();
+        } catch (err) {
+            setErrors(err.response.data.errors);
+        }
     }
 
     return (
@@ -25,12 +28,13 @@ export default SignInForm = ({ handleLogin }) => {
                 onChangeText={(val) => setValue('email', val)}
                 name="email"
                 placeholder="Enter email"
+                errors={errors.email}
             />
-            <Input 
+            {/* <Input 
                 onChangeText={(val) => setValue('password', val)}
                 name="password"
                 placeholder="Enter password"
-            />
+            /> */}
             <Button 
                 label="Sign In"
                 onPress={() => handleSubmit(_onPress)}
@@ -42,4 +46,8 @@ export default SignInForm = ({ handleLogin }) => {
 const Form = styled.View`
     flex: 2;
     width: 100%;
+`
+
+const Error = styled.Text`
+    color: red;
 `

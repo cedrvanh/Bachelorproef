@@ -9,7 +9,7 @@ export default Logo = ({ tagline = false }) => {
             {tagline &&
                 <TagLine>An augmented reality experience</TagLine>
             }
-            <Title>Augmented Hunt</Title>
+            <Title>Adventure Routes</Title>
         </React.Fragment>
     )
 }

@@ -25,3 +25,13 @@ axiosInstance.interceptors.response.use(response => {
 export const setAuthHeader = (token) => {
     axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 }
+
+export const handleError = (error) => {
+    if (error.response) {
+        console.log(error.response.data);
+    } else if (error.request) {
+        console.log(error.request);
+    } else {
+        console.log(error.message);
+    }
+}

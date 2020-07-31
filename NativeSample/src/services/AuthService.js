@@ -1,6 +1,6 @@
 import { AsyncStorage } from 'react-native';
 
-import { axiosInstance, setAuthHeader } from './api';
+import { axiosInstance, setAuthHeader, handleError } from './api';
 
 export class AuthService {
     static async signIn(payload) {
@@ -28,6 +28,7 @@ export class AuthService {
         try {
             await AsyncStorage.setItem('token', token); 
             await setAuthHeader(token);
+            console.log('Setting token');
         } catch (error) {
             console.log(`AsyncStorage error: ${error.message}`);
         }
