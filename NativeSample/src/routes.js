@@ -12,6 +12,7 @@ import ProfileScreen from '~/screens/Profile';
 import CameraScreen from '~/screens/Camera';
 import LeaderboardScreen from '~/screens/Leaderboard';
 import HeroScreen from '~/screens/Hero';
+import StoryScreen from '~/screens/Story';
 
 import Icon from '~/components/Icon';
 import { colors } from '~/styles';
@@ -79,10 +80,11 @@ const TabNavigator = createBottomTabNavigator(
 const AppNavigator = createStackNavigator(
     {
         Hero: HeroScreen,
+        Story: StoryScreen,
         Leaderboard: LeaderboardScreen,
     }, 
     {
-        initialRouteName: 'Hero',
+        initialRouteName: 'Leaderboard',
         headerMode: 'none'
     }
 );
@@ -96,7 +98,7 @@ export default createAppContainer(
             AuthLoading: AuthLoadingScreen
         },
         {
-            initialRouteName: 'App',
+            initialRouteName: 'Auth',
         }
     )
 );
