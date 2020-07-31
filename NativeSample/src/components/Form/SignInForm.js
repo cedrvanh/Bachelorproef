@@ -16,7 +16,7 @@ export default SignInForm = ({ handleLogin }) => {
     _onPress = async () => {
         try {
             await _authService.signIn(values);
-            // handleLogin();
+            handleLogin();
         } catch (err) {
             setErrors(err.response.data.errors);
         }
@@ -30,11 +30,12 @@ export default SignInForm = ({ handleLogin }) => {
                 placeholder="Enter email"
                 errors={errors.email}
             />
-            {/* <Input 
+            <Input 
                 onChangeText={(val) => setValue('password', val)}
                 name="password"
                 placeholder="Enter password"
-            /> */}
+                errors={errors.password}
+            />
             <Button 
                 label="Sign In"
                 onPress={() => handleSubmit(_onPress)}
@@ -46,8 +47,4 @@ export default SignInForm = ({ handleLogin }) => {
 const Form = styled.View`
     flex: 2;
     width: 100%;
-`
-
-const Error = styled.Text`
-    color: red;
 `

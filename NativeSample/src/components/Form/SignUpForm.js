@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { AuthService as _authService } from '~/services';
@@ -11,12 +11,15 @@ import Button from '~/components/Base/Button';
 
 export default SignInForm = ({ handleRegister }) => {
     const { values, setValue, handleSubmit } = useForm();
+    const [errors, setErrors] = useState({});
     
-    _onPress = () => {
-        _authService.signUp(values)
-            .then(() => {
-                handleRegister();
-            });
+    _onPress = async () => {
+        try {
+            await _authService.signUp(values);
+            handleRegister();
+        } catch (err) {
+            setErrors(err.response.data.errors);
+        }
     }
 
     return (
@@ -25,16 +28,19 @@ export default SignInForm = ({ handleRegister }) => {
                 onChangeText={(val) => setValue('email', val)}
                 name="email"
                 placeholder="Enter email"
+                errors={errors.email}
             />
             <Input 
                 onChangeText={(val) => setValue('name', val)}
                 name="name"
                 placeholder="Enter name"
+                errors={errors.name}
             />
             <Input 
                 onChangeText={(val) => setValue('password', val)}
                 name="password"
                 placeholder="Enter password"
+                errors={errors.password}
             />
             <Button 
                 label="Sign Up"
