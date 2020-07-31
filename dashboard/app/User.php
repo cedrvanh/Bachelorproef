@@ -39,6 +39,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Relations
+     */
     public function character()
     {
         return $this->hasOne('App\Character');
@@ -49,34 +52,51 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
+    /**
+     * Helpers
+     */
+
+    // Assign a role to the user by name
+    public function assignRole($name)
+    {
+        $role = Role::where('name', $name)->first();
+        return $this->roles()->sync($role->id);
+    }
+
+    // Returns the role of the user
     public function getRole()
     {
         return $this->roles->first()->name;
     }
 
+    // Checks if user has a certain role by name
     public function hasRole($role)
     {
         return null !== $this->roles()->where('name', $role)->first();
     }
 
+    // Checks if user has any roles assigned
     public function hasAnyRole($roles)
     {
         return null !== $this->roles()->whereIn(‘name’, $roles)->first();
     }
 
+    // Checks if user is verified
     public function verified()
     {
         return $this->verify_token === null;
     }
 
+    // Checks if user has been disabled
     public function disabled()
     {
         return $this->restore_token !== null;
     }
 
+    // Checks if user exists
     public function exists()
     {
-        return $this->email !==null;
+        return $this->email !== null;
     }
 
     public function validatePassport($password) {
