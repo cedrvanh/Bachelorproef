@@ -4,9 +4,19 @@ import styled from 'styled-components';
 
 import { colors, utils, typography } from '~/styles';
 
-const Header = ({ navigation, title }) => {
+import Icon from '~/components/Icon';
+
+const Header = ({ navigation, title, back }) => {
     return (
         <Wrapper>
+            {back && (
+                <BackArrow 
+                    name={'ios-arrow-back'} 
+                    size={32} 
+                    color={colors.WHITE}
+                    onPress={() => navigation.goBack()}
+                />
+            )}
             <Title>{ title || navigation.state.routeName }</Title>
         </Wrapper>
     )
@@ -25,6 +35,13 @@ const Title = styled.Text`
     fontSize: ${ typography.FONT_SIZE_HEADING };
     fontWeight: ${ typography.FONT_WEIGHT_BOLD };
     textTransform: uppercase;
+`
+
+const BackArrow = styled(Icon)`
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-16px);
 `
 
 export default withNavigation(Header);
