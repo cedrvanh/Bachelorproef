@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Animated } from 'react-native';
 import ModelView from 'react-native-gl-model-view';
 import styled from 'styled-components';
@@ -10,13 +10,17 @@ import { colors } from '~/styles';
 // Use React Animated API
 const AnimatedModelView = Animated.createAnimatedComponent(ModelView);
 
-export default InteractiveModel = (props) => {
+export default InteractiveModel = ({ model }) => {
     const [coords, setCoords] = useState({
         rotateX: new Animated.Value(-90),
         rotateZ: new Animated.Value(0),
         fromXY: undefined,
         valueXY: undefined,
     })
+
+    useEffect(() => {
+        // TOOD 
+    }, [model])
 
     // Reset state when finished moving
     onMoveEnd = () => {
@@ -42,20 +46,25 @@ export default InteractiveModel = (props) => {
         }
     }
     
+    loadModel = () => {
+        const { name } = model;
+        return `${name.toLowerCase()}`;
+    }
+
     return (
         <AnimatedModel
             model={{
-                uri: 'demon.obj',
+                uri: `${loadModel()}.obj`
             }}
             texture={{
-                uri: 'demon.png',
+                uri: `${loadModel()}.png`
             }}
             onStartShouldSetResponder={() => true}
             onResponderRelease={onMoveEnd}
             onResponderMove={onMove}
             animate={!!coords.fromXY}
             tint={{r: 1.0, g: 1.0, b: 1.0, a: 1.0}}
-            scale={0.01}
+            scale={1.1}
             rotateX={coords.rotateX}
             rotateZ={coords.rotateZ}
             translateZ={-3}

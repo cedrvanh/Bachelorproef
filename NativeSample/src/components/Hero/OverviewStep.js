@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from 'styled-components';
 
 import Button from "~/components/Base/Button";
+import Header from "~/components/Header";
 
 import { utils, colors } from '~/styles';
 
@@ -14,20 +15,20 @@ export default class OverviewStep extends Component {
       totalSteps: "",
       currentStep: "",
       character: "",
-      characterClass: "",
     };
   }
 
-  componentDidMount() {
-    const { character } = this.state;
-
-    this.getClass(character.class)
-      .then(res => {
-        this.setState({
-          characterClass: res.name,
-        });
-      });
-  }
+  // componentDidMount() {
+  //   const { character } = this.state;
+  //   console.log(this.state);
+  //   this.getClass();
+  //   // this.getClass()
+  //   //   .then(res => {
+  //   //     this.setState({
+  //   //       characterClass: res.name,
+  //   //     });
+  //   //   });
+  // }
 
   static getDerivedStateFromProps = props => {
     const { getTotalSteps, getCurrentStep, getState } = props;
@@ -39,26 +40,45 @@ export default class OverviewStep extends Component {
     };
   };
   
-  getClass = async () => {
-    const { character } = this.state;
-    const { data } = await _heroService.getCharacterClassById(character.class);
-    return data;
+  // getClass = async () => {
+  //   const { selectedClass } = this.state.character;
+
+  //   try {
+  //     const { data } = await _heroService.getCharacterClassById(selectedClass.id);
+  //     return data;
+  //   } catch (err) {
+  //     handleError(err);
+  //   }
+  // }
+
+  // Move to previous step
+  previousStep = () => {
+    this.props.back();
+  }
+
+  // Move to next step
+  nextStep = () => {
+    this.props.next();
   }
 
   render() {
-    const { character, characterClass, isLoading } = this.state;
-    
+    const { character } = this.state;
+    console.log(character);
     return (
         <React.Fragment>
+            <Header 
+              title={'Your hero'}
+              onBack={this.previousStep}
+            />
             <Container>
               <Label>Name</Label>
               <Value>{character.name}</Value>
               <Label>Gender</Label>
               <Value>{character.gender ? 'Female' : 'Male'}</Value>
               <Label>Class</Label>
-              <Value>{characterClass}</Value>
+              <Value>{character.class.name}</Value>
             </Container>
-            <Button onPress={this.props.next} label="Finish" />
+            <Button onPress={this.nextStep} label="Finish" />
         </React.Fragment>
     );
   }

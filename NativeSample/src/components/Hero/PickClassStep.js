@@ -4,8 +4,11 @@ import styled from 'styled-components';
 import InteractiveModel from "~/components/Hero/InteractiveModel";
 import Button from "~/components/Base/Button";
 import SelectedCard from "~/components/SelectedCard";
+import Header from "~/components/Header";
+import LoadingIndicator from "~/components/LoadingIndicator";
 
 import { HeroService as _heroService } from "~/services/HeroService";
+import { handleError } from "~/services/api";
 
 import { utils } from '~/styles';
 
@@ -16,12 +19,13 @@ export default class PickClassStep extends Component {
       totalSteps: "",
       currentStep: "",
       characterClasses: [],
-      selectedClass: null
+      selectedClass: [],
+      isLoading: true,
     };
   }
 
   componentDidMount() {
-    this.getClasses();
+    this.getClasses();  
   }
 
   static getDerivedStateFromProps = props => {
@@ -32,53 +36,68 @@ export default class PickClassStep extends Component {
     };
   };
   
+  // Go to next step
   nextStep = () => {
-    // Save MultiStep state
+    // Save MultiStep state - different from component state
     this.props.saveState({
       class: this.state.selectedClass
     })
-    // Go to next step
     this.props.next();
   };
 
-  goBack() {
-    const { back } = this.props;
-    // Go to previous step
-    back();
+  // Move to previous step
+  previousStep = () => {
+    this.props.back();
   }
 
   getClasses = async () => {
-    const { data } = await _heroService.getCharacterClasses();
-    this.setState(prevState => ({
-      ...prevState,
-      characterClasses: data
-    }));
+    try {
+      const { data } = await _heroService.getCharacterClasses();
+      this.setState(prevState => ({
+        ...prevState,
+        characterClasses: data,
+        selectedClass: data[0],  // Assign first class for active card state
+        isLoading: false
+      }));
+    } catch (err) {
+      handleError(err);
+    }
   }
 
-  selectClass = (id) => {
+  selectClass = (characterClass) => {
     this.setState(prevState => ({
       ...prevState,
-      selectedClass: id
+      selectedClass: characterClass
     }))
   }
 
   render() {
-    const { characterClasses, selectedClass } = this.state;
+    const { characterClasses, selectedClass, isLoading } = this.state;
     return (
         <React.Fragment>
-            <CardContainer>
-              {characterClasses && characterClasses.map((characterClass) => (
-                <SelectedCard 
-                  key={characterClass.id}
-                  data={characterClass.name}
-                  selected={selectedClass === characterClass.id}
-                  onPress={() => this.selectClass(characterClass.id)}
-                  column={3}
+          {isLoading ? (
+            <LoadingIndicator />
+          ) : (
+            <React.Fragment>
+                <Header 
+                  title={'Pick your class'}
+                  onBack={this.previousStep}
                 />
-              ))}
-            </CardContainer>
-            <InteractiveModel />
-            <Button onPress={this.nextStep} label="Proceed" />
+                <CardContainer>
+                  {characterClasses && characterClasses.map((characterClass) => (
+                    <SelectedCard 
+                      column={3}
+                      key={characterClass.id}
+                      value={characterClass.name}
+                      selected={selectedClass.id === characterClass.id}
+                      onPress={() => this.selectClass(characterClass)}
+                    />
+                  ))}
+                </CardContainer>
+                <InteractiveModel model={selectedClass} />
+                <Button onPress={this.nextStep} label="Proceed" />
+            </React.Fragment>
+          )}
         </React.Fragment>
     );
   }

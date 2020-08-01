@@ -1,7 +1,7 @@
-import React, { useState, Component } from 'react';
+import React, { Component } from 'react';
 
 import HeroForm from '~/components/Form/HeroForm';
-import Button from '~/components/Base/Button';
+import Header from "~/components/Header";
 
 class CreateHeroStep extends Component {
     constructor(props) {
@@ -15,22 +15,24 @@ class CreateHeroStep extends Component {
     static getDerivedStateFromProps = props => {
         const { getTotalSteps, getCurrentStep } = props;
         return {
-          totalSteps: getTotalSteps(),
-          currentStep: getCurrentStep()
+            totalSteps: getTotalSteps(),
+            currentStep: getCurrentStep()
         };
     };
 
-
+    // Move to next step
     nextStep = (state) => {
         // Save MultiStep state
         this.props.saveState(state);
-        // Move to next step
         this.props.next();
     }
     
     render() {
         return (
-            <HeroForm nextStep={this.nextStep} />
+            <React.Fragment>
+                <Header title ={ 'Create a hero' } />
+                <HeroForm nextStep={this.nextStep} />
+            </React.Fragment>
         )
     }
 }

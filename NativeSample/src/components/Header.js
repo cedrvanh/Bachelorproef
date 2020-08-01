@@ -6,15 +6,15 @@ import { colors, utils, typography } from '~/styles';
 
 import Icon from '~/components/Icon';
 
-const Header = ({ navigation, title, back }) => {
+const Header = ({ navigation, title, back, onBack }) => {
     return (
         <Wrapper>
-            {back && (
+            {onBack && (
                 <BackArrow 
                     name={'ios-arrow-back'} 
                     size={32} 
                     color={colors.WHITE}
-                    onPress={() => navigation.goBack()}
+                    onPress={onBack}
                 />
             )}
             <Title>{ title || navigation.state.routeName }</Title>
