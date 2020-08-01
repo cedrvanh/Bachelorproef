@@ -20,6 +20,7 @@ export default SelectedCard = ({ value, selected, onPress, children, column }) =
 
 const Card = styled.TouchableOpacity`
     width: ${props => 96 / props.column }%;
+    marginTop: 8px;
     min-height: 75px;
     justifyContent: center;
     alignItems: center;

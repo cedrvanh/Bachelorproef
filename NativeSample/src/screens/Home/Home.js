@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import { Text } from 'react-native';
 import styled from 'styled-components';
 
 import MapContainer from '~/components/Map/MapContainer';
@@ -7,32 +7,36 @@ import Header from '~/components/Header';
 import usePosition from '~/hooks/usePosition';
 import Carousel from '~/components/Carousel';
 import UserIcon from '~/components/UserIcon';
+import CustomModal from '~/components/CustomModal';
 
 
 export default HomeScreen = ({ navigation }) => {
     const { position, error } = usePosition();
-    const { visible, setVisiblity } = useState(false);
+    const [visible, setVisiblity] = useState(false);
 
-    if(error) {
-        return <ErrorMessage>Geolocation Error: {error.message}</ErrorMessage>;
-    }
+    // if(error) {
+    //     return <ErrorMessage>Geolocation Error: {error.message}</ErrorMessage>;
+    // }
 
     return (
-        <Container>
-             {position && (
-                <MapContainer location={ position } />
-            )}
-            <Content>
-                {/*<UserIcon />*/}
-                <Header title ={ 'Select a route' } />
-{/* 
-                {visible && (
-                    <CarouselWrapper>
-                        <Carousel />
-                    </CarouselWrapper>
-                )} */}
-            </Content>
-        </Container>
+        <CustomModal>
+            <Text>In order for this app to work we will need access to your GPS location</Text>
+        </CustomModal>
+//         <Container>
+//              {position && (
+//                 <MapContainer location={ position } />
+//             )}
+//             <Content>
+//                 {/*<UserIcon />*/}
+//                 <Header title ={ 'Select a route' } />
+// {/* 
+//                 {visible && (
+//                     <CarouselWrapper>
+//                         <Carousel />
+//                     </CarouselWrapper>
+//                 )} */}
+//             </Content>
+//         </Container>
     )
 }
 

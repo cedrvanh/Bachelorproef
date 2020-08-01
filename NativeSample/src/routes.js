@@ -98,7 +98,7 @@ export default createAppContainer(
             AuthLoading: AuthLoadingScreen
         },
         {
-            initialRouteName: 'App',
+            initialRouteName: 'Tab',
         }
     )
 );

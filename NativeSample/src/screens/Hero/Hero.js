@@ -13,8 +13,8 @@ import { handleError } from '~/services/api';
 
 // Define components for Multi Step Form
 const steps = [
-    { name: "Step 2", component: PickClassStep },
     { name: "Step 1", component: CreateHeroStep },
+    { name: "Step 2", component: PickClassStep },
     { name: "Step 3", component: OverviewStep },
 ];
 
