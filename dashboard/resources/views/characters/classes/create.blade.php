@@ -28,7 +28,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputImage">Image</label>
-                                <input type="file" class="form-control-file" id="inputImage" placeholder="Enter full name" name="image">
+                                <input type="file" class="form-control-file" id="inputImage" name="image">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputModel">Model</label>
+                                <input type="file" class="form-control-file" id="inputModel" name="model">
                             </div>
                             <div class="divider"></div>
                             <div class="d-flex justify-content-end">

@@ -56,6 +56,16 @@ class CharacterClassController extends Controller
             $characterClass->image = $name;
         }
 
+        if ($request->has('model')) {
+            $file = $request->file('model');
+            $name = Str::slug($request->name) . '.' . $file->getClientOriginalExtension();
+
+            // Store image with slugified name
+            $this->uploadImage($file, 'images/character-classes/models', $name);
+
+            $characterClass->model = $name;
+        }
+
         $characterClass->save();
 
         return redirect('character-classes');
@@ -75,12 +85,12 @@ class CharacterClassController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\CharacterClass  $CharacterClass
+     * @param  \App\CharacterClass  $characterClass
      * @return \Illuminate\Http\Response
      */
-    public function edit(CharacterClass $CharacterClass)
+    public function edit(CharacterClass $characterClass)
     {
-        //
+        return view('characters.classes.edit', compact('characterClass'));
     }
 
     /**
@@ -90,15 +100,46 @@ class CharacterClassController extends Controller
      * @param  \App\CharacterClass  $CharacterClass
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CharacterClass $CharacterClass)
+    public function update(Request $request, CharacterClass $characterClass)
     {
-        //
+        $characterClass->update([
+            'name' => $request->name,
+            'model' => $request->model
+        ]);
+
+        if ($request->has('image')) {
+            $file = $request->file('image');
+            $name = Str::slug($request->name) . '.' . $file->getClientOriginalExtension();
+
+            // Store image with slugified name
+            $this->uploadImage($file, 'images/character-classes', $name);
+
+            $characterClass->update([
+                'image' => $name
+            ]);
+        }
+
+        if ($request->has('model')) {
+            $file = $request->file('model');
+            $name = Str::slug($request->name) . '.' . $file->getClientOriginalExtension();
+
+            // Store image with slugified name
+            $this->uploadImage($file, 'images/character-classes/models', $name);
+
+            $characterClass->update([
+                'model' => $name
+            ]);
+        }
+
+        $characterClass->save();
+
+        return redirect('character-classes');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\CharacterClass  $CharacterClass
+     * @param  \App\CharacterClass  $characterClass
      * @return \Illuminate\Http\Response
      */
     public function destroy(CharacterClass $CharacterClass)
