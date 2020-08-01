@@ -9,7 +9,9 @@ export class AuthService {
     }
 
     static async signUp(payload) {
-        await axiosInstance.post('auth/signup', payload);
+        const { data } = await axiosInstance.post('auth/signup', payload);
+        this.setToken(data.token);
+        return data;
     }
 
     static async getAccount() {

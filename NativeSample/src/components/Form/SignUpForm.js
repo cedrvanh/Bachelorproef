@@ -15,8 +15,8 @@ export default SignInForm = ({ handleRegister }) => {
     
     _onPress = async () => {
         try {
-            await _authService.signUp(values);
-            handleRegister();
+            const { user } = await _authService.signUp(values);
+            handleRegister(user);
         } catch (err) {
             setErrors(err.response.data.errors);
         }

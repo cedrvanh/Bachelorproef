@@ -9,4 +9,5 @@ export default {
     PLACEHOLDER_COLOR: '#4E4E61',
     TEXT_PRIMARY_LIGHT_COLOR: '#B9B9B9',
     WHITE: '#FFF',
+    ERROR_COLOR: '#FF0033'
 };

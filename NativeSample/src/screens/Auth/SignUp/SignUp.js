@@ -7,12 +7,19 @@ import SignUpForm from '~/components/Form/SignUpForm';
 import Logo from '~/components/Logo';
 
 export default SignUpScreen = ({ navigation }) => {
+    // Get authenticated user from child component and pass id to next screen
+    onNavigate = (user) => {
+        navigation.navigate('Hero', {
+            user
+        })
+    }
+
     return (
         <Container>
             <LogoWrapper>
                 <Logo tagline />
             </LogoWrapper>
-            <SignUpForm handleRegister={() => navigation.navigate('Hero')} />
+            <SignUpForm handleRegister={onNavigate} />
             <Message onPress={() => navigation.navigate('SignIn')}>
                 Already have an account? <MessageBold>Sign In</MessageBold>
             </Message>

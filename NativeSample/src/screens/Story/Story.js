@@ -9,7 +9,7 @@ import ResponsiveImage from '~/components/ResponsiveImage';
 const STORY_IMAGE = require('~/assets/story.png');
 
 export default StoryScreen = ({ navigation }) => {
-    const character = navigation.getParam('character', 'Character not found');
+    const character = navigation.getParam('character', 'Character not found'); // Default value should fetch from database as fallback
 
     return (
         <Container>
@@ -20,7 +20,7 @@ export default StoryScreen = ({ navigation }) => {
                     margin={32}
                 />
                 <Paragraph>
-                    Your name is <Highlight>{ character.name }</Highlight>. A brave adventurer who is on a quest to conquer the world after the evil King 
+                    Your name is <Highlight>{ character.name }</Highlight>. A brave <Highlight>{ character.class.name }</Highlight> who is on a quest to conquer the world after the evil King 
                     burned down the town you grew up in.
                 </Paragraph>
             </StoryContainer>
