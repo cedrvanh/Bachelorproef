@@ -2,10 +2,13 @@
 
 namespace App;
 
+use App\Traits\FtpImageable;
 use Illuminate\Database\Eloquent\Model;
 
 class Character extends Model
 {
+    use FtpImageable;
+
     protected $fillable = [
         'name', 'gender', 'gold', 'user_id', 'character_class_id'
     ];

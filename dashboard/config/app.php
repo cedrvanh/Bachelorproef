@@ -56,6 +56,8 @@ return [
 
     'asset_url' => env('ASSET_URL', null),
 
+    'ftp_url' => env('FTP_URL', 'http://localhost'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
@@ -165,7 +167,7 @@ return [
         /*
          * Package Service Providers...
          */
-        
+
          /*
          * Application Service Providers...
          */

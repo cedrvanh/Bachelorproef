@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\CharacterClass;
+use App\Traits\FtpImageable;
 use App\Http\Requests\CharacterClassStoreRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class CharacterClassController extends Controller
 {
+    use FtpImageable;
+
     /**
      * Display a listing of the resource.
      *
@@ -39,16 +42,20 @@ class CharacterClassController extends Controller
     public function store(CharacterClassStoreRequest $request)
     {
         $validated = $request->validated();
-        
-        // Store image with slugified name
-        $file = $request->file('image');
-        $path = $file->storeAs(
-            'images/character-classes', Str::slug($request->name). '.' .$file->extension()
-        );
 
         // Save new class record
         $characterClass = new CharacterClass($validated);
-        $characterClass->image = $path;
+
+        if ($request->has('image')) {
+            $file = $request->file('image');
+            $name = Str::slug($request->name) . '.' . $file->getClientOriginalExtension();
+
+            // Store image with slugified name
+            $this->uploadImage($file, 'images/character-classes', $name);
+
+            $characterClass->image = $name;
+        }
+
         $characterClass->save();
 
         return redirect('character-classes');
