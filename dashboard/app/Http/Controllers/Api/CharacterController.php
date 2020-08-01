@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Character;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CharacterStoreRequest;
 use App\Http\Resources\CharacterResource;
 use Illuminate\Http\Request;
 
@@ -26,9 +27,18 @@ class CharacterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CharacterStoreRequest $request)
     {
-        $character = Character::firstOrCreate($request->all());
+        $character = Character::firstOrCreate((
+            [
+                'name' => $request->name,
+                'gender' => $request->gender,
+                'gold' => $request->gold,
+                'user_id' => $request->user,
+                'character_class_id' => $request->class,
+            ]
+        ));
+
         return new CharacterResource($character);
     }
 

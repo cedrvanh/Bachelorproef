@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\SignInRequest;
 use App\Http\Requests\Api\SignUpRequest;
-use App\Role;
 use App\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -34,6 +33,7 @@ class AuthController extends Controller
             $token = $user->createToken($user->email.'-'.now());
 
             return response()->json([
+                'user' => $user->id,
                 'token' => $token->accessToken
             ]);
         }

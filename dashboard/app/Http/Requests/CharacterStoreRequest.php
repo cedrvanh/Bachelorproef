@@ -24,7 +24,7 @@ class CharacterStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:45',
+            'name' => 'required|min:2|max:45',
             'gold' => 'integer|nullable'
         ];
     }
