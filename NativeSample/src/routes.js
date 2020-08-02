@@ -84,7 +84,7 @@ const AppNavigator = createStackNavigator(
         Leaderboard: LeaderboardScreen,
     }, 
     {
-        initialRouteName: 'Hero',
+        initialRouteName: 'Story',
         headerMode: 'none'
     }
 );

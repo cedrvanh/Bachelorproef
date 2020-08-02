@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text } from 'react-native';
+import { Text, PermissionsAndroid } from 'react-native';
 import styled from 'styled-components';
 
 import MapContainer from '~/components/Map/MapContainer';
@@ -7,36 +7,53 @@ import Header from '~/components/Header';
 import usePosition from '~/hooks/usePosition';
 import Carousel from '~/components/Carousel';
 import UserIcon from '~/components/UserIcon';
-import CustomModal from '~/components/CustomModal';
+
+import PermissionModal from '~/components/Map/PermissionModal';
 
 
 export default HomeScreen = ({ navigation }) => {
     const { position, error } = usePosition();
     const [visible, setVisiblity] = useState(false);
-
+    const [granted, setGranted] = useState(false);
     // if(error) {
     //     return <ErrorMessage>Geolocation Error: {error.message}</ErrorMessage>;
     // }
 
+    useEffect(() => {
+        checkPermission();
+    }, [granted]);
+
+    // Check if Location permission have been granted
+    checkPermission = async () => {
+        const status = await PermissionsAndroid.check( PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION );
+        setGranted(status);
+    }
+
+    // Render map component
+    renderMap = () => {
+        return (
+            <Container>
+                {position && (
+                    <MapContainer location={ position } />
+                )}
+                <Content>
+                    {/*<UserIcon />*/}
+                    <Header title ={ 'Select a route' } />
+                    {/* 
+                    {visible && (
+                        <CarouselWrapper>
+                            <Carousel />
+                        </CarouselWrapper>
+                    )} */}
+                </Content>
+            </Container>
+        )
+    }
+
     return (
-        <CustomModal>
-            <Text>In order for this app to work we will need access to your GPS location</Text>
-        </CustomModal>
-//         <Container>
-//              {position && (
-//                 <MapContainer location={ position } />
-//             )}
-//             <Content>
-//                 {/*<UserIcon />*/}
-//                 <Header title ={ 'Select a route' } />
-// {/* 
-//                 {visible && (
-//                     <CarouselWrapper>
-//                         <Carousel />
-//                     </CarouselWrapper>
-//                 )} */}
-//             </Content>
-//         </Container>
+        <React.Fragment>
+            {granted ? renderMap() : <PermissionModal onRequestPermission={(status) => setGranted(status)} />}
+        </React.Fragment>
     )
 }
 
@@ -48,7 +65,7 @@ const Container = styled.View`
     bottom: -30px;
     flex: 1;
     elevation: 0;
-    backgroundColor: grey;
+    backgroundColor: red;
 `
 
 const Content = styled.View`
