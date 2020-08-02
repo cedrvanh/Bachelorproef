@@ -2,19 +2,22 @@ import { useState, useEffect } from 'react';
 
 import Geolocation from '@react-native-community/geolocation';
 
+const PERMISSION_DENIED = 1;
+const POSITION_UNAVAILBLE = 2;
+const TIMEOUT = 3;
+
 export default usePosition = () => {
     const [position, setPosition] = useState(null);
     const [error, setError] = useState(null);
 
     const options = {
         enableHighAccuracy: true,
-        timeout: 10000
+        timeout: 20000
     }
 
     useEffect(() => {
-        // TODO: Use react-native-permissions error handling instead
         if(!Geolocation) {
-            setError('Geolocation is not enabled');
+            setError('Geolocation API is not available');
             return;
         };
 
@@ -22,15 +25,32 @@ export default usePosition = () => {
             setPosition({
                 latitude: coords.latitude,
                 longitude: coords.longitude,
-                heading: coords.heading // User facing direction
+                heading: coords.heading, // User facing direction,
+                speed: coords.speed // Velocity of device (m/s)
             });
         };
 
+        // Catch Geolocation errors by status code
         const onError = (error) => {
-            setError(error.message);
+            switch (error.code) {
+                 // Permission request has been denied
+                case PERMISSION_DENIED:
+                    setError(error.message);
+                    break;
+                // Location service of device is turned off
+                case POSITION_UNAVAILBLE:
+                    setError(error.message);
+                    break;
+                 // Timeout when fetching for location
+                case TIMEOUT:
+                    setError(error.message);
+                    break;
+                default:
+                    return;
+            }
         }
         
-        watcher = Geolocation.watchPosition(onChange, onError, options);
+        let watcher = Geolocation.watchPosition(onChange, onError, options);
 
         return () => Geolocation.clearWatch(watcher);
     }, []);
