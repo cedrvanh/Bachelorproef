@@ -10,7 +10,6 @@ import UserIcon from '~/components/UserIcon';
 
 import PermissionModal from '~/components/Map/PermissionModal';
 
-
 export default HomeScreen = ({ navigation }) => {
     const { position, error } = usePosition();
     const [visible, setVisiblity] = useState(false);

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { View, Text } from 'react-native';
 import styled from 'styled-components';
 import Modal from 'react-native-modal';
 
@@ -12,7 +11,6 @@ export default CustomModal = ({ title, onClose, children }) => {
   
     const toggleModal = () => {
       setModalVisible(!isModalVisible);
-      onClose();
     };
   
     const renderContent = () => {
@@ -31,11 +29,12 @@ export default CustomModal = ({ title, onClose, children }) => {
         <Modal 
             isVisible={isModalVisible}
             backdropColor={ colors.PRIMARY_COLOR }
-            backdropOpacity={0.6}
+            backdropOpacity={0.7}
+            onModalHide={toggleModal}
         >
             <ModalContent>
                 {renderContent()}
-                <Button label="Grant permission" onPress={toggleModal} />
+                <Button label="Grant permission" onPress={onClose} />
             </ModalContent>
         </Modal>
     )
