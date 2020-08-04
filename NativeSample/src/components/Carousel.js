@@ -1,11 +1,10 @@
 import React from 'react';
-import { ScrollView, Dimensions, Text } from 'react-native';
-import styled from 'styled-components';
+import { Dimensions } from 'react-native';
 import SnapCarousel from 'react-native-snap-carousel';
 
-import Card from './Card';
+import Card from '~/components/Card';
 
-export default Carousel = () => {
+export default Carousel = ({ cards }) => {
     const { width } = Dimensions.get('window');
 
     const SCREEN_WIDTH = width;
@@ -15,7 +14,7 @@ export default Carousel = () => {
         {
             id: 1,
             title: 'Gravensteen',
-            description: 'The castle is under attack and you are the only one who can help!'
+            description: 'The castle is under attack and you are the only one who can help! The castle is under attack and you are the only one who can help!The castle is under attack and you are the only one who can help!The castle is under attack and you are the only one who can help!The castle is under attack and you are the only one who can help!The castle is under attack and you are the only one who can help!'
         },
         {
             id: 2,
@@ -31,7 +30,7 @@ export default Carousel = () => {
 
     renderCards = ({ item, index }) => {
         return (
-            <Card item={item} key={index} />
+            <Card key={index} item={item} />
         );
     }
 
