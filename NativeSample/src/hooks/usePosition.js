@@ -12,48 +12,55 @@ export default usePosition = () => {
 
     const options = {
         enableHighAccuracy: true,
-        timeout: 20000
+        timeout: 10000,
+        maximumAge: 0,
+        distanceFilter: 1, // Minimum distance before location update
     }
+    
+    const onChange = async ({ coords }) => {
+        await setPosition({
+            latitude: coords.latitude,
+            longitude: coords.longitude,
+            heading: coords.heading, // User facing direction,
+            speed: coords.speed // Velocity of device (m/s)
+        });
+    };
+
+    // Catch Geolocation errors by status code
+    const onError = (error) => {
+        switch (error.code) {
+             // Permission request has been denied
+            case PERMISSION_DENIED:
+                setError(error.message);
+                break;
+            // Location service of device is turned off
+            case POSITION_UNAVAILBLE:
+                setError(error.message);
+                break;
+             // Timeout when fetching for location
+            case TIMEOUT:
+                setError(error.message);
+                break;
+            default:
+                return;
+        }
+    }
+
 
     useEffect(() => {
         if(!Geolocation) {
             setError('Geolocation API is not available');
             return;
         };
-
-        const onChange = ({ coords }) => {
-            setPosition({
-                latitude: coords.latitude,
-                longitude: coords.longitude,
-                heading: coords.heading, // User facing direction,
-                speed: coords.speed // Velocity of device (m/s)
-            });
-        };
-
-        // Catch Geolocation errors by status code
-        const onError = (error) => {
-            switch (error.code) {
-                 // Permission request has been denied
-                case PERMISSION_DENIED:
-                    setError(error.message);
-                    break;
-                // Location service of device is turned off
-                case POSITION_UNAVAILBLE:
-                    setError(error.message);
-                    break;
-                 // Timeout when fetching for location
-                case TIMEOUT:
-                    setError(error.message);
-                    break;
-                default:
-                    return;
-            }
-        }
         
-        let watcher = Geolocation.watchPosition(onChange, onError, options);
-
-        return () => Geolocation.clearWatch(watcher);
-    }, []);
+        watcher = Geolocation.watchPosition(onChange, onError, options);
+        
+        return () => watcher && Geolocation.clearWatch(watcher);
+    }, [
+        options.enableHighAccuracy,
+        options.timeout,
+        options.maximumAge
+    ]);
 
 
     return {

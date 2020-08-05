@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { PermissionsAndroid } from 'react-native';
+import React, { useState, useEffect, createRef } from 'react';
+import { PermissionsAndroid, Text } from 'react-native';
 import styled from 'styled-components';
 
 import usePosition from '~/hooks/usePosition';
@@ -8,10 +8,10 @@ import MapContainer from '~/components/Map/MapContainer';
 import PermissionModal from '~/components/Map/PermissionModal';
 import Header from '~/components/Header';
 import Carousel from '~/components/Carousel';
-import UserIcon from '~/components/UserIcon';
-import Error from '~/components/Base/Error';
+import ProfileIcon from '~/components/Base/ProfileIcon';
+import LoadingIndicator from '~/components/LoadingIndicator';
 
-import { colors } from '~/styles';
+import { colors, utils } from '~/styles';
 
 export default HomeScreen = ({ navigation }) => {
     const { position, error } = usePosition();
@@ -20,8 +20,7 @@ export default HomeScreen = ({ navigation }) => {
 
     useEffect(() => {
         checkPermission();
-    }, [isGranted]);
-
+    }, []);
 
     // Check if Location permission have been granted
     checkPermission = async () => {
@@ -32,33 +31,28 @@ export default HomeScreen = ({ navigation }) => {
     // Render map component
     renderMap = () => {
         return (
-            <Container>
-                {position && (
-                    <MapContainer location={ position } />
-                )}
-                <Content>
-                    <UserIcon />
-                    {/* <Header title ={ 'Select a route' } /> */}
+            <React.Fragment>
+                <MapContainer location={position} />
+
+                <OverlayContainer>
+                    <Topbar>
+                        <ProfileIcon />
+                    </Topbar>
                     {visible && (
                         <CarouselWrapper>
                             <Carousel />
                         </CarouselWrapper>
                     )}
-                </Content>
-            </Container>
+                </OverlayContainer>
+            </React.Fragment>
         )
     }
 
-    console.log(error);
-    
-    if(error) {
-        return <Error>Geolocation Error: {error}</Error>;
-    }
-
     return (
-        <React.Fragment>
+        // <LoadingIndicator />
+        <Container>
             {isGranted ? renderMap() : <PermissionModal onRequestPermission={(status) => setGranted(status)} />}
-        </React.Fragment>
+        </Container>
     )
 }
 
@@ -70,21 +64,27 @@ const Container = styled.View`
     bottom: -30px;
     flex: 1;
     elevation: 0;
-    backgroundColor: ${ colors.PRIMARY_LIGHT_COLOR };
+    backgroundColor: ${ colors.PLACEHOLDER_COLOR };
 `
 
-const Content = styled.View`
+const OverlayContainer = styled.View`
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     flex: 1;
-    alignItems: center;
 `
 
 const CarouselWrapper = styled.View`
     position: absolute;
     bottom: 75px;
     left: 0;
+`
+
+const Topbar = styled.View`
+    padding: ${utils.GUTTER};
+    height: ${utils.HEADER_HEIGHT};
+    justifyContent: center;
+    alignItems: flex-end;
 `

@@ -89,7 +89,7 @@ class AuthController extends Controller
 
     public function account()
     {
-        $user = Auth::user();
+        $user = Auth::user()->load('character.class');
 
         if (!$user) {
             return response()->json([
