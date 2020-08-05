@@ -1,3 +1,4 @@
+import { AsyncStorage } from 'react-native';
 import axios from 'axios';
 
 // Default axios instance for HTTP Requests
@@ -20,6 +21,15 @@ axiosInstance.interceptors.request.use(request => {
 axiosInstance.interceptors.response.use(response => {
     console.log('Response: ', response);
     return response;
+});
+
+// Set authorization token between requests
+axiosInstance.interceptors.request.use(async (config) => {
+    const token = await AsyncStorage.getItem('token');
+    if(token && token !== null) {
+        config.headers['Authorization'] = `Bearer ${token}`;
+    }
+    return config;
 });
 
 export const setAuthHeader = (token) => {

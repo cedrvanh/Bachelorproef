@@ -20,17 +20,16 @@ export class AuthService {
 
     static async getToken() {
         try {
-            await AsyncStorage.getItem('token');
+            return await AsyncStorage.getItem('token');
         } catch (error) {
             console.log(`AsyncStorage error: ${error.message}`);
         }
     }
-    
+
     static async setToken(token) {
         try {
             await AsyncStorage.setItem('token', token); 
             await setAuthHeader(token);
-            console.log('Setting token');
         } catch (error) {
             console.log(`AsyncStorage error: ${error.message}`);
         }
