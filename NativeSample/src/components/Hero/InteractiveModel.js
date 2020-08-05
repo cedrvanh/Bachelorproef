@@ -3,7 +3,7 @@ import { Animated } from 'react-native';
 import ModelView from 'react-native-gl-model-view';
 import styled from 'styled-components';
 
-import Icon from '~/components/Icon';
+import Icon from '~/components/Base/Icon';
 
 import { colors } from '~/styles';
 

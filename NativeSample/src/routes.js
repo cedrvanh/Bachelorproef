@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 import SignInScreen from '~/screens/Auth/SignIn';
 import SignUpScreen from '~/screens/Auth/SignUp';
-import AuthLoadingScreen from '~/screens/Auth/AuthLoading';
+import SplashScreen from '~/screens/Auth/SplashScreen';
 import HomeScreen from '~/screens/Home';
 import ProfileScreen from '~/screens/Profile';
 import CameraScreen from '~/screens/Camera';
@@ -14,7 +14,7 @@ import LeaderboardScreen from '~/screens/Leaderboard';
 import HeroScreen from '~/screens/Hero';
 import StoryScreen from '~/screens/Story';
 
-import Icon from '~/components/Icon';
+import Icon from '~/components/Base/Icon';
 import { colors } from '~/styles';
 
 const ICON_SIZE = 28;
@@ -52,8 +52,8 @@ const TabNavigator = createBottomTabNavigator(
                 )
             }
         },
-        Profile: {
-            screen: ProfileScreen,
+        Leaderboard: {
+            screen: LeaderboardScreen,
             navigationOptions: {
                 tabBarIcon: ({ tintColor }) => (
                     <Icon name="ios-cart" size={ICON_SIZE} color={tintColor} />
@@ -82,9 +82,10 @@ const AppNavigator = createStackNavigator(
         Hero: HeroScreen,
         Story: StoryScreen,
         Leaderboard: LeaderboardScreen,
+        Profile: ProfileScreen,
     }, 
     {
-        initialRouteName: 'Story',
+        initialRouteName: 'Profile',
         headerMode: 'none'
     }
 );
@@ -95,7 +96,7 @@ export default createAppContainer(
             App: AppNavigator,
             Tab: TabNavigator,
             Auth: AuthNavigator,
-            AuthLoading: AuthLoadingScreen
+            Splash: SplashScreen
         },
         {
             initialRouteName: 'Tab',

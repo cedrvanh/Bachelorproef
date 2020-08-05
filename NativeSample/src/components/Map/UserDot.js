@@ -10,7 +10,6 @@ export default UserDot = ({ location }) => {
     /*
     TODO: Style User heading FOV cone
     */
-   
     return (
         <Marker 
             coordinate={{
@@ -25,9 +24,9 @@ export default UserDot = ({ location }) => {
 }
 
 const UserMarker = styled.View`
-    width: 20px;
-    height: 20px;
-    borderWidth: 5px;
+    width: 15px;
+    height: 15px;
+    borderWidth: 3px;
     borderColor: ${ colors.ACCENT_COLOR };
     borderRadius: 16px;
     backgroundColor: ${ colors.WHITE };

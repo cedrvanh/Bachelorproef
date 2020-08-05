@@ -11,7 +11,7 @@ import { colors, utils } from '~/styles';
 import Input from '~/components/Base/Input';
 import Button from '~/components/Base/Button';
 import SelectedCard from '~/components/SelectedCard';
-import Icon from '~/components/Icon';
+import Icon from '~/components/Base/Icon';
 
 export default HeroForm = ({ nextStep }) => {
     const { values, setValue } = useForm();    

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { colors, utils, typography } from '~/styles';
 
-import Icon from '~/components/Icon';
+import Icon from '~/components/Base/Icon';
 
 const Header = ({ navigation, title, back, onBack }) => {
     return (
