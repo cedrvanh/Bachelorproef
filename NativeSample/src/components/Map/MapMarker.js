@@ -7,13 +7,14 @@ import { colors, typography, utils } from '~/styles';
 
 import Icon from '~/components/Base/Icon';
 
-const MapMarker = ({ label, coordinate }) => {
+const MapMarker = ({ label, coordinate, ...props }) => {
     return (
         <Marker.Animated
             title={label}
             tracksViewChanges={false}
             string={label}
             coordinate={coordinate}
+            {...props}
         >
             <Icon name={"ios-pin"} size={42}/>
 

@@ -11,15 +11,18 @@ import MapMarker from '~/components/Map/MapMarker';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-export default MapContainer = ({ location }) => {
+export default MapContainer = ({ location, ...props }) => {
+    const [selectedRoute, setSelectedRoute] = useState(null);
+
     const ASPECT_RATIO = SCREEN_WIDTH / SCREEN_HEIGHT;
     const LATITUDE_DELTA = 0.01;
     const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
     console.log('Render');
 
-    // TODO: Fetch from API
     const region = { 
+        // latitude: 50.81841251,
+        // longitude: 3.25652042,
         latitude: 50.84269204,
         longitude: 3.21211998,
         // latitude: location.latitude,
@@ -27,7 +30,6 @@ export default MapContainer = ({ location }) => {
         latitudeDelta: LATITUDE_DELTA,
         longitudeDelta: LONGITUDE_DELTA
     }
-
 
     // Render random markers around initialRegion
     renderRandomMarkers = (amount) => {
@@ -41,8 +43,15 @@ export default MapContainer = ({ location }) => {
                     latitude: latitude + (Math.random() - 0.5) * latitudeDelta,
                     longitude: longitude + (Math.random() - 0.5) * longitudeDelta
                 }}
+                onPress={selectMarker}
             />
         ));
+    }
+
+
+    selectMarker = ({ position }) => {
+        console.log(position);
+        setSelectedRoute(position);
     }
 
     return (
@@ -63,9 +72,10 @@ export default MapContainer = ({ location }) => {
             followsUserLocation={true}
             clusterColor={colors.ACCENT_COLOR}
             maxZoom={13}
+            {...props}
         >
             {/* <UserDot location={location} /> */}
-            {/* {renderRandomMarkers(10)} */}
+            {renderRandomMarkers(10)}
             {/* {markers && markers.map((marker, index) => (
                 <MapMarker label={marker.title} coords={marker.coords} key={ index } />
             ))} */}

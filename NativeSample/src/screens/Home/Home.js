@@ -15,7 +15,7 @@ import { colors, utils } from '~/styles';
 
 export default HomeScreen = ({ navigation }) => {
     const { position, error } = usePosition();
-    const [visible, setVisiblity] = useState(false);
+    const [visible, setVisiblity] = useState(true);
     const [isGranted, setGranted] = useState(false);
 
     useEffect(() => {
@@ -26,6 +26,12 @@ export default HomeScreen = ({ navigation }) => {
     checkPermission = async () => {
         const status = await PermissionsAndroid.check( PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION );
         setGranted(status);
+    }
+
+
+    centerMapOnMarker = (item, marker) => {
+        console.log(item);
+        console.log(marker);
     }
 
     // Render map component
@@ -40,7 +46,7 @@ export default HomeScreen = ({ navigation }) => {
                     </Topbar>
                     {visible && (
                         <CarouselWrapper>
-                            <Carousel />
+                            <Carousel onSnapToItem={centerMapOnMarker} />
                         </CarouselWrapper>
                     )}
                 </OverlayContainer>

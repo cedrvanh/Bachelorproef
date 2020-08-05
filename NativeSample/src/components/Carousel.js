@@ -4,7 +4,7 @@ import SnapCarousel from 'react-native-snap-carousel';
 
 import Card from '~/components/Card';
 
-export default Carousel = ({ cards }) => {
+export default Carousel = ({ cards, ...props }) => {
     const { width } = Dimensions.get('window');
 
     const SCREEN_WIDTH = width;
@@ -41,6 +41,7 @@ export default Carousel = ({ cards }) => {
             renderItem={renderCards}
             itemWidth={ITEM_WIDTH}
             sliderWidth={SCREEN_WIDTH}
+            {...props}
         />
     )
 }
