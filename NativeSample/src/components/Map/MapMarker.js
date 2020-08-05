@@ -5,18 +5,15 @@ import styled from 'styled-components';
 
 import { colors, typography, utils } from '~/styles';
 
-import Icon from '~/components/Icon';
+import Icon from '~/components/Base/Icon';
 
-const MapMarker = ({ label, coords }) => {
+const MapMarker = ({ label, coordinate }) => {
     return (
         <Marker.Animated
             title={label}
             tracksViewChanges={false}
             string={label}
-            coordinate={{
-                latitude: coords.latitude, 
-                longitude: coords.longitude
-            }}
+            coordinate={coordinate}
         >
             <Icon name={"ios-pin"} size={42}/>
 
@@ -32,7 +29,7 @@ const MapMarker = ({ label, coords }) => {
     )
 }
 
-export default MemoMarker = React.memo(MapMarker);
+export default MapMarker;
 
 const CalloutBubble = styled.View`
     width: 150px;
