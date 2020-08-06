@@ -7,7 +7,7 @@
             <i data-feather="mail" class="nav__link-icon"></i>
             <span class="nav__link-text">Routes</span>
             <i data-feather="chevron-down"></i>
-        </a> 
+        </a>
         <div class="collapse" id="dropdown1" aria-expanded="false">
             <ul class="nav flex-column">
                 <li class="nav__item">
@@ -49,7 +49,7 @@
             </ul>
         </div>
     </li>
-    @if(Auth::user()->hasRole('Admin'))
+    @if(Auth::user()->hasRole('admin'))
         <li class="nav__item">
             <a class="nav__link collapsed" data-toggle="collapse" data-target="#dropdown2">
                 <i data-feather="database" class="nav__link-icon"></i>

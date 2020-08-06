@@ -18,7 +18,7 @@
 @import 'base/typography';
 @import 'base/helpers';
 
-// 5. Components 
+// 5. Components
 @import 'components/sidebar';
 @import 'components/subheader';
 @import 'components/header';
@@ -31,3 +31,6 @@
 @import 'components/card';
 @import 'components/flash';
 @import 'components/pagination';
+
+// 6. Pages
+@import 'pages/login';
