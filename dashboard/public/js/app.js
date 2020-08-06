@@ -40281,7 +40281,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! mapbox-gl/dist/mapbox-gl */ "./node_modules/mapbox-gl/dist/mapbox-gl.js");
 /* harmony import */ var mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(mapbox_gl_dist_mapbox_gl__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./map */ "./resources/js/map.js");
-/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./helper */ "./resources/js/helper.js");
+/* harmony import */ var _chart__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./chart */ "./resources/js/chart.js");
+/* harmony import */ var _chart__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_chart__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./helper */ "./resources/js/helper.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -40290,6 +40292,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 // // Use bootstrap
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
 
 
 
@@ -40341,6 +40344,7 @@ var initApp = function initApp() {
   }
 
   initMessages();
+  Object(_chart__WEBPACK_IMPORTED_MODULE_4__["initChart"])();
 };
 
 if (document.querySelector('#taskType')) {
@@ -40408,6 +40412,25 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/chart.js":
+/*!*******************************!*\
+  !*** ./resources/js/chart.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// import { Chartisan } from '@chartisan/chartjs'
+// export const initChart = () => {
+//     if(document.querySelector('#chart')) {
+//         const chart = new Chartisan({
+//             el: '#chart',
+//             url: "@chart('home_chart')"
+//         })
+//     }
+// }
 
 /***/ }),
 
@@ -40571,8 +40594,8 @@ var reverseGeocode = /*#__PURE__*/function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Cedric Vanhaegenberg\Code\arteveldehogeschool\bachelorproef\repo\dashboard\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Cedric Vanhaegenberg\Code\arteveldehogeschool\bachelorproef\repo\dashboard\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Cedric Vanhaegenberg\Code\Bachelorproef\dashboard\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Cedric Vanhaegenberg\Code\Bachelorproef\dashboard\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

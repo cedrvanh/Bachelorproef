@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\HomeChart;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,8 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        return view('home');
+        $chart = new HomeChart();
+
+        return view('home', compact('chart'));
     }
 }

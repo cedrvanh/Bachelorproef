@@ -5,6 +5,7 @@ import feather from 'feather-icons';
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl';
 
 import { initMap, reverseGeocode } from './map';
+import { initChart } from './chart';
 import { toggleVisibility } from './helper';
 
 const initApp = () => {
@@ -32,7 +33,7 @@ const initApp = () => {
         })
 
         let saveCoordsBtn = document.querySelector('#saveCoords');
-        
+
         saveCoordsBtn.addEventListener('click', async () => {
             // Set coördinates to input field
             let coords = map.getCenter().toArray();
@@ -45,6 +46,8 @@ const initApp = () => {
     }
 
     initMessages();
+
+    initChart();
 }
 
 if(document.querySelector('#taskType')) {
@@ -56,9 +59,9 @@ if(document.querySelector('#taskType')) {
         types.forEach(type => {
             type.classList.add('hidden');
         })
-        
-        document.querySelector(`#type-${e.target.value}`).classList.remove('hidden');     
-        document.querySelector(`#type-${e.target.value}`).classList.add('show');     
+
+        document.querySelector(`#type-${e.target.value}`).classList.remove('hidden');
+        document.querySelector(`#type-${e.target.value}`).classList.add('show');
     });
 }
 

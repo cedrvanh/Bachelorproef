@@ -17071,3 +17071,27 @@ body {
   justify-content: flex-end;
 }
 
+.login-background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: #242939;
+}
+
+.login__title {
+  color: white;
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.login__form label {
+  color: white;
+}
+
+.card--dark {
+  background-color: #424b68;
+  box-shadow: none;
+}
+
