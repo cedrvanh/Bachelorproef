@@ -18,11 +18,11 @@
     <div class="form-group">
         <label for="inputImage">Optional Image</label>
         <input type="file" class="form-control-file" id="inputImage" name="image">
-    </div>    
+    </div>
     <div class="form-group">
         <label for="taskType">Select the task type</label>
         <select class="form-control" id="taskType">
-            {{-- <option selected disabled> Type: </option> --}}
+            <option selected disabled></option>
             @foreach($taskTypes as $taskType)
                 <option value="{{ $loop->iteration }}">{{ $taskType }}</option>
             @endforeach

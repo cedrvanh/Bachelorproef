@@ -68,6 +68,11 @@
                             <span class="nav__link-text">Classes</span>
                         </a>
                     </li>
+                    <li class="nav__item">
+                        <a class="nav-link"href="{{ route('items.index') }}">
+                            <span class="nav__link-text">Items</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </li>

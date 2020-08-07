@@ -15,8 +15,4 @@
         <label for="inputImage">Route thumbnail</label>
         <input type="file" class="form-control-file" id="inputImage" name="image">
     </div>
-    <div class="divider"></div>
-    <div class="d-flex justify-content-end">
-        <button type="submit" class="btn btn-primary">Create</button>
-    </div>
 @endsection

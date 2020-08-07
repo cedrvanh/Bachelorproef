@@ -1,3 +1,9 @@
 .pagination {
     justify-content: flex-end;
+
+
+    .page-item.active .page-link{
+        background-color: $navy-light;
+        border-color: $navy-light;
+    }
 }

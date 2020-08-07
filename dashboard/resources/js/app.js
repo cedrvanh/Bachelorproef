@@ -4,7 +4,9 @@ require('./bootstrap');
 import feather from 'feather-icons';
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl';
 
+
 import { initMap, reverseGeocode } from './map';
+import { initSelectBoxes, initSwitchButtons } from './form';
 import { initChart } from './chart';
 import { toggleVisibility } from './helper';
 
@@ -47,7 +49,11 @@ const initApp = () => {
 
     initMessages();
 
-    initChart();
+    // initChart();
+
+    initSelectBoxes();
+
+    initSwitchButtons();
 }
 
 if(document.querySelector('#taskType')) {
@@ -66,10 +72,9 @@ if(document.querySelector('#taskType')) {
 }
 
 const initMessages = () => {
-    $(".alert").fadeTo(2000, 500).fadeOut(1000, function(){
-        $(".alert").fadeOut(1000);
+    $(".flash-message").fadeTo(2000, 500).fadeOut(1000, function(){
+        $(".flash-message").fadeOut(1000);
     });
 }
 
 initApp();
-

@@ -7,6 +7,10 @@
     color: #fff;
     background-color: $navy-light;
     border-color: $navy-light;
+
+    &:hover {
+        background-color: darken($navy-light, 5);
+    }
 }
 
 .btn-danger {
@@ -30,5 +34,15 @@
     &:hover {
         color: #fff;
         background-color: $navy-light;
+    }
+
+    &:active {
+        color: #fff !important;
+        outline: none;
+        background-color: darken($navy-light, 3) !important;
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 0.2rem rgba(52, 144, 220, 0.25) !important;
     }
 }
