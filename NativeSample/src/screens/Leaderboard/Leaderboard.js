@@ -62,7 +62,7 @@ export default LeaderBoard = ({ navigation }) => {
 
     return (
         <Container>
-            <Header title={ navigation.state.routeName } />
+            <Header />
             <Tags>{ renderTags() }</Tags>
             <LeaderboardList items={ items } />
         </Container>

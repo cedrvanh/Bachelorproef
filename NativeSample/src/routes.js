@@ -13,6 +13,7 @@ import CameraScreen from '~/screens/Camera';
 import LeaderboardScreen from '~/screens/Leaderboard';
 import HeroScreen from '~/screens/Hero';
 import StoryScreen from '~/screens/Story';
+import ShopScreen from '~/screens/Shop';
 
 import Icon from '~/components/Base/Icon';
 import { colors } from '~/styles';
@@ -52,8 +53,8 @@ const TabNavigator = createBottomTabNavigator(
                 )
             }
         },
-        Leaderboard: {
-            screen: LeaderboardScreen,
+        Shop: {
+            screen: ShopScreen,
             navigationOptions: {
                 tabBarIcon: ({ tintColor }) => (
                     <Icon name="ios-cart" size={ICON_SIZE} color={tintColor} />
@@ -62,14 +63,14 @@ const TabNavigator = createBottomTabNavigator(
         }
     },
     {
-        initialRouteName: 'Home',
+        initialRouteName: 'Shop',
         tabBarOptions: {
             activeTintColor: colors.ACCENT_DARK_COLOR,
             inactiveTintColor: colors.PRIMARY_LIGHT_COLOR,
             showIcon: true,
             showLabel: false,
             style: {
-                backgroundColor: colors.PRIMARY_COLOR,
+                backgroundColor: colors.PRIMARY_DARK_COLOR,
                 borderTopColor: 'transparent',
             }
         }

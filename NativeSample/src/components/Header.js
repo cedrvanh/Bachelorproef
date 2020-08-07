@@ -6,7 +6,7 @@ import { colors, utils, typography } from '~/styles';
 
 import Icon from '~/components/Base/Icon';
 
-const Header = ({ navigation, title, back, onBack }) => {
+const Header = ({ navigation, title, onBack }) => {
     return (
         <Wrapper>
             {onBack && (

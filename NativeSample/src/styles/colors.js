@@ -1,5 +1,6 @@
 export default {
     PRIMARY_COLOR: '#14141F',
+    PRIMARY_DARK_COLOR: '#0E0E14',
     PRIMARY_LIGHT_COLOR: '#212130',
 
     ACCENT_COLOR: '#47D5CC',
