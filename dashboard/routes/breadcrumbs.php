@@ -31,5 +31,6 @@ Breadcrumbs::resource('tasks', 'Tasks');
 Breadcrumbs::resource('task-types', 'Task Types');
 Breadcrumbs::resource('characters', 'Characters');
 Breadcrumbs::resource('character-classes', 'Character Classes');
+Breadcrumbs::resource('items', 'Items');
 Breadcrumbs::resource('locations', 'Locations');
 Breadcrumbs::resource('cities', 'Cities');

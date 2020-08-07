@@ -12,6 +12,7 @@ $factory->define(App\Character::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'gold' => $faker->randomDigit,
+        'score' => $faker->numberBetween(0, 200),
         'character_class_id' => $characterClassId,
         'user_id' => $userId
     ];

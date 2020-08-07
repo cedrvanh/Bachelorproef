@@ -28,6 +28,7 @@ Route::resources([
     'task-types' => 'TaskTypeController',
     'characters' => 'CharacterController',
     'character-classes' => 'CharacterClassController',
+    'items' => 'ItemController',
     'locations' => 'LocationController',
     'cities' => 'CityController',
     'users' => 'UserController',
