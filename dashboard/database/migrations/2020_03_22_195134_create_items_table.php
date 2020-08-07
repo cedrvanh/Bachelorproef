@@ -15,10 +15,12 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
+            $table->dateTime('expiration_date')->nullable();
             $table->string('name', 70);
             $table->longText('description')->nullable();
-            $table->integer('price')->default(0);
-            $table->string('image', 512);
+            $table->integer('price');
+            $table->string('thumbnail', 512)->nullable();
+            $table->boolean('visible')->default(0);
             $table->timestamps();
         });
     }

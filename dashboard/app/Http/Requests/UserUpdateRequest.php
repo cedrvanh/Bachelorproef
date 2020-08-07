@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CharacterClassStoreRequest extends FormRequest
+class UserUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,9 @@ class CharacterClassStoreRequest extends FormRequest
     public function rules()
     {
         return [
+            'email' => 'bail|required|email|max:255',
             'name' => 'required|max:45',
-            'description' => 'required',
-            'image' => 'required|image',
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'image.required' => 'Please upload a thumbnail',
+            'role' => 'required|exists:roles,id'
         ];
     }
 }

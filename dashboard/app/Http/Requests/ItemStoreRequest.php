@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CharacterClassStoreRequest extends FormRequest
+class ItemStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,11 @@ class CharacterClassStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:45',
-            'description' => 'required',
-            'image' => 'required|image',
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'image.required' => 'Please upload a thumbnail',
+            'name' => 'required|min:2|max:255',
+            'description' => 'max:1000',
+            'thumbnail' => 'image',
+            'expiration_date' => 'required|date|after:today',
+            'price' => 'required|integer|min:5'
         ];
     }
 }
