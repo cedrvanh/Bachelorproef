@@ -10,21 +10,21 @@ class Character extends Model
     use FtpImageable;
 
     protected $fillable = [
-        'name', 'gender', 'gold', 'user_id', 'character_class_id'
+        'name', 'gender', 'gold', 'score', 'user_id', 'character_class_id'
     ];
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(Character::class);
     }
 
     public function class()
     {
-        return $this->belongsTo('App\CharacterClass', 'character_class_id');
+        return $this->belongsTo(CharacterClass::class, 'character_class_id');
     }
 
     public function items()
     {
-        return $this->hasMany('App\Item');
+        return $this->belongsToMany(Item::class);
     }
 }

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
@@ -10,7 +11,7 @@ use League\OAuth2\Server\Exception\OAuthServerException;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable;
+    use HasApiTokens, Notifiable, CanResetPassword;
 
     /**
      * The attributes that are mass assignable.
@@ -44,7 +45,7 @@ class User extends Authenticatable
      */
     public function character()
     {
-        return $this->hasOne('App\Character');
+        return $this->hasOne(Character::class);
     }
 
     public function roles()
@@ -55,6 +56,11 @@ class User extends Authenticatable
     /**
      * Helpers
      */
+    // Returns all users without a character
+    public static function withoutCharacter()
+    {
+        return self::has('character', '<', 1)->get();
+    }
 
     // Assign a role to the user by name
     public function assignRole($name)
