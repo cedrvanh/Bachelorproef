@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ItemStoreRequest;
 use App\Item;
+use App\Traits\FtpImageable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ItemController extends Controller
 {
+    use FtpImageable;
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +18,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::all();
+        $items = Item::paginate(10);
+
         return view('characters.items.index', compact('items'));
     }
 
@@ -34,9 +39,26 @@ class ItemController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ItemStoreRequest $request)
     {
-        //
+        $validated = $request->except('visible');
+
+        $item = new Item($validated);
+
+        if ($request->has('thumbnail')) {
+            $file = $request->file('thumbnail');
+            $name = Str::slug($request->name) . '.' . $file->getClientOriginalExtension();
+
+            // Store image with slugified name
+            $this->uploadImage($file, 'images/items', $name);
+
+            $item->thumbnail = $name;
+        }
+
+        $item->visible = $request->has('visible') ? 1 : 0;
+        $item->save();
+
+        return redirect('items')->with('message', 'Item has been created');
     }
 
     /**
@@ -58,7 +80,7 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        return view('characters.items.edit');        
+        return view('characters.items.edit', compact('item'));
     }
 
     /**
@@ -70,7 +92,24 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        //
+        $item->update($request->all());
+
+        if ($request->has('thumbnail')) {
+            $file = $request->file('thumbnail');
+            $name = Str::slug($request->name) . '.' . $file->getClientOriginalExtension();
+
+            // Store image with slugified name
+            $this->uploadImage($file, 'images/items', $name);
+
+            $item->update([
+                'thumbnail' => $name
+            ]);
+        }
+
+        $item->visible = $request->has('visible') ? 1 : 0;
+        $item->save();
+
+        return redirect('items')->with('message', 'Item has been updated');
     }
 
     /**
@@ -81,6 +120,8 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        //
+        $item->delete();
+
+        return redirect('items')->with('message', 'Item has been deleted');
     }
 }

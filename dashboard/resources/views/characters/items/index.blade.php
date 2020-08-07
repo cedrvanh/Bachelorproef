@@ -7,8 +7,9 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Join Date</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Creation Date</th>
+                    <th scope="col">Expiration Date</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
@@ -17,8 +18,9 @@
                     <tr>
                         <th scope="row">{{ $item->id }}</th>
                         <td>{{ $item->name }}</td>
-                        <td>{{ $item->email }}</td>
+                        <td>{{ $item->price }}</td>
                         <td>{{ $item->created_at }}</td>
+                        <td>{{ $item->expiration_date }}</td>
                         <td>
                             <div class="table__actions">
                                 <a href="/items/{{ $item->id }}/edit" class="btn btn-warning mr-2">
@@ -27,7 +29,7 @@
                                 <form action="/items/{{ $item->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    
+
                                     <button type="submit" class="btn btn-danger">
                                         Delete
                                     </button>

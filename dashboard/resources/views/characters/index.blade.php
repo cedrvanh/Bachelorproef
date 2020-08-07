@@ -8,6 +8,7 @@
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
                     <th scope="col">Gold</th>
+                    <th scope="col">Score</th>
                     <th scope="col">Class</th>
                     <th scope="col">Owner</th>
                     <th scope="col">Creation Date</th>
@@ -21,6 +22,7 @@
                         <th scope="row">{{ $character->id }}</th>
                         <td>{{ $character->name }}</td>
                         <td>{{ $character->gold }}</td>
+                        <td>{{ $character->score }}</td>
                         <td>{{ $character->class->name }}</td>
                         @isset($character->user)
                             <td>{{ $character->user->name }}</td>
@@ -35,7 +37,7 @@
                                 <form action="/characters/{{ $character->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    
+
                                     <button type="submit" class="btn btn-danger">
                                         Delete
                                     </button>
@@ -46,5 +48,6 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $characters->links() }}
     </div>
 @endsection

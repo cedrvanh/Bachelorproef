@@ -1,47 +1,31 @@
-@extends("layouts.dashboard")
+@extends("layouts.form", [
+    'route' => getRoute(),
+])
 
-@section("content")
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="row">
-                <div class="col-lg-6 mx-auto">
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    <form class="form" action="/character-classes" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <h3 class="mt-3 mb-5">Create a character class</h3>
-                        <div class="form__section">
-                            <div class="form-group">
-                                <label for="inputName">Name</label>
-                                <input type="text" class="form-control" id="inputName" placeholder="Enter name" name="name">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputDescription">Description</label>
-                                <input type="text" class="form-control" id="inputDescription" placeholder="Enter a description" name="description">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputImage">Image</label>
-                                <input type="file" class="form-control-file" id="inputImage" name="image">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputModel">Model</label>
-                                <input type="file" class="form-control-file" id="inputModel" name="model">
-                            </div>
-                            <div class="divider"></div>
-                            <div class="d-flex justify-content-end">
-                                <button type="submit" class="btn btn-primary">Create</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+@section("form-fields")
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="inputName">Name</label>
+            <input type="text" class="form-control" id="inputName" placeholder="Enter name" name="name" value="{{ old('name') }}">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="inputDescription">Description</label>
+            <textarea type="text" class="form-control" id="inputDescription" placeholder="Enter a description" name="description" rows="5">{{ old('description') }}</textarea>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="inputImage">Thumbnail</label>
+            <input type="file" class="form-control-file" id="inputImage" name="image" accept="image/*">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="inputModel">3D Model</label>
+            <span class="form-group__sublabel">(Currently only accepts .obj files)</span>
+            <input type="file" class="form-control-file" id="inputModel" name="model" accept=".obj">
         </div>
     </div>
 @endsection

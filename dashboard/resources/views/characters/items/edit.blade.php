@@ -1,31 +1,36 @@
-@extends("layouts.dashboard")
+@extends("layouts.form", [
+    'route' => getRoute(),
+    'method' => 'PUT'
+])
 
-@section("content")
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="row">
-                <div class="col-lg-6 mx-auto">
-                <form class="form" action="/users/{{ $user->id }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <h3 class="mt-3 mb-5">Edit a user</h3>
-                        <div class="form__section">
-                            <div class="form-group">
-                                <label for="inputEmail">Email address</label>
-                                <input type="email" class="form-control" id="inputEmail" value="{{ $user->email }}" name="email">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputName">Full Name</label>
-                                <input type="text" class="form-control" id="inputName" value="{{ $user->name }}" name="name">
-                            </div>
-                            <div class="divider"></div>
-                            <div class="d-flex justify-content-end">
-                                <button type="submit" class="btn btn-primary">Save</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+@section("form-fields")
+    <div class="form-row">
+        <div class="form-group  col-md-12">
+            <label for="inputName">Name</label>
+            <input type="text" class="form-control" id="inputName" value="{{ $item->name }}" name="name">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="inputDescription">Description</label>
+            <input type="text" class="form-control" id="inputDescription" value="{{ $item->description }}" name="description">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="inputImage">Thumbnail</label>
+            <input type="file" class="form-control-file" id="inputImage" name="image">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputPrice">Price</label>
+            <span class="form-group__sublabel">(Ingame gold currency)</span>
+            <input type="number" class="form-control" id="inputPrice" placeholder="Enter item price" name="price" value="{{ $item->price }}">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputExpiration">Expiration Date</label>
+            <input type="date" class="form-control" id="inputExpiration" name="expiration_date" value="{{ $item->expiration }}">
         </div>
     </div>
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::paginate(10);
-        // dd($users);
+
         return view('users.index', compact('users'));
     }
 
@@ -29,7 +30,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::all();
-    
+
         return view('users.create', compact('roles'));
     }
 
@@ -47,7 +48,7 @@ class UserController extends Controller
         $user->save();
         $user->roles()->sync($validated['role']);
 
-        return redirect('users')->with('message', 'User has been created');
+        return redirect('users')->with('message', $user->name . ' has been created');
     }
 
     /**
@@ -82,14 +83,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, $id)
     {
         $user = User::findOrFail($id);
+
         $user->update($request->all());
         $user->save();
         $user->roles()->sync($request->input('role'));
 
-        return redirect('users');
+        return redirect('users')->with('message', $user->name . ' has been edited');
     }
 
     /**
@@ -101,9 +103,10 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
+
         $user->roles()->detach();
         $user->delete();
 
-        return redirect('users');
+        return redirect('users')->with('message', $user->name . ' has been deleted');
     }
 }

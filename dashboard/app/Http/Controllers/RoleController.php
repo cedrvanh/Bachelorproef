@@ -37,7 +37,14 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required'
+        ]);
+
+        $role = new Role($validated);
+        $role->save();
+
+        return redirect('roles')->with('message', $role->name . ' has been created');
     }
 
     /**
@@ -82,6 +89,8 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        $role->delete();
+
+        return redirect('roles')->with('message', $role->name . ' has been deleted');
     }
 }

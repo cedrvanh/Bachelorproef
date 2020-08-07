@@ -68,7 +68,7 @@ class CharacterClassController extends Controller
 
         $characterClass->save();
 
-        return redirect('character-classes');
+        return redirect('character-classes')->with('message', $characterClass->name . ' has been created');
     }
 
     /**
@@ -133,7 +133,7 @@ class CharacterClassController extends Controller
 
         $characterClass->save();
 
-        return redirect('character-classes');
+        return redirect('character-classes')->with('message', $characterClass->name . ' has been updated');
     }
 
     /**
@@ -142,11 +142,10 @@ class CharacterClassController extends Controller
      * @param  \App\CharacterClass  $characterClass
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CharacterClass $CharacterClass)
+    public function destroy(CharacterClass $characterClass)
     {
-        $characterClass = CharacterClass::findOrFail($CharacterClass->id);
         $characterClass->delete();
 
-        return redirect('character-classes');
+        return redirect('character-classes')->with('message', $characterClass->name . ' has been deleted');
     }
 }

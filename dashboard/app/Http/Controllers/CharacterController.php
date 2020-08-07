@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Character;
+use App\CharacterClass;
+use App\User;
 use App\Http\Requests\CharacterStoreRequest;
+use App\Http\Requests\CharacterUpdateRequest;
 use Illuminate\Http\Request;
 
 class CharacterController extends Controller
@@ -15,7 +18,8 @@ class CharacterController extends Controller
      */
     public function index()
     {
-        $characters = Character::all();
+        $characters = Character::paginate(10);
+
         return view('characters.index', compact('characters'));
     }
 
@@ -26,7 +30,11 @@ class CharacterController extends Controller
      */
     public function create()
     {
-        return view('characters.create');
+        $characterClasses = CharacterClass::all();
+         // Select user without assigned character - defined in model (User.php)
+        $users = User::withoutCharacter();
+
+        return view('characters.create', compact('characterClasses', 'users'));
     }
 
     /**
@@ -37,11 +45,10 @@ class CharacterController extends Controller
      */
     public function store(CharacterStoreRequest $request)
     {
-        $validated = $request->validated();
-        $character = new Character($validated);
+        $character = new Character($request->all());
         $character->save();
 
-        return redirect('characters');
+        return redirect('characters')->with('message', $character->name . ' has been created');
     }
 
     /**
@@ -63,7 +70,11 @@ class CharacterController extends Controller
      */
     public function edit(Character $character)
     {
-        return view('characters.edit');
+        $characterClasses = CharacterClass::all();
+        // Select user without assigned character - defined in model (User.php)
+        $users = User::withoutCharacter();
+
+        return view('characters.edit', compact('character', 'characterClasses', 'users'));
     }
 
     /**
@@ -73,9 +84,12 @@ class CharacterController extends Controller
      * @param  \App\Character  $character
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Character $character)
+    public function update(CharacterUpdateRequest $request, Character $character)
     {
-        //
+        $character->update($request->all());
+        $character->save();
+
+        return redirect('characters')->with('message', $character->name . ' has been updated');
     }
 
     /**
@@ -86,9 +100,8 @@ class CharacterController extends Controller
      */
     public function destroy(Character $character)
     {
-        $character = Character::findOrFail($character->id);
         $character->delete();
-        
-        return redirect('characters');
+
+        return redirect('characters')->with('message', $character->name . ' has been deleted');
     }
 }
