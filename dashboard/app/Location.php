@@ -12,6 +12,11 @@ class Location extends Model
 
     public function city()
     {
-        $this->belongsTo('App\City');
+        return $this->belongsTo(City::class);
+    }
+
+    public function task()
+    {
+        return $this->hasOne(Task::class);
     }
 }

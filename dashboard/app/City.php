@@ -10,13 +10,13 @@ class City extends Model
         'name'
     ];
 
-    public function locations() 
+    public function locations()
     {
-        $this->hasMany('App\Location');
+        return $this->hasMany('App\Location');
     }
 
     public function routes()
     {
-        $this->hasMany('App\Route');
+        return $this->hasMany('App\Route');
     }
 }

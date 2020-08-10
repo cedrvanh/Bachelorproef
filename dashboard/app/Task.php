@@ -17,6 +17,11 @@ class Task extends Model
 
     public function route()
     {
-        return $this->belongsTo('App\Route');
+        return $this->belongsTo(Route::class);
+    }
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
     }
 }

@@ -5,6 +5,8 @@ namespace App\Providers;
 use ConsoleTVs\Charts\Registrar as Charts;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -32,11 +34,29 @@ class AppServiceProvider extends ServiceProvider
             \App\Charts\HomeChart::class
         ]);
 
-        // Relation::morphMap([
-        //     'question' => 'App\Question',
-        //     'scan' => 'App\Scan',
-        //     'info' => 'App\Info',
-        //     'video' => 'App\Video',
-        // ]);
+        // Define names for our polymorphic relations
+        Relation::morphMap([
+            'question' => 'App\Question',
+            'scan' => 'App\Scan',
+            'info' => 'App\Info',
+            'video' => 'App\Video',
+        ]);
+
+        // Custom validation rule - checks if polymorphic type is valid
+        Validator::extend('poly_exists', function ($attribute, $value, $parameters, $validator) {
+            if (!$type = Arr::get($validator->getData(), $parameters[0], false)) {
+                return false;
+            }
+
+            if (Relation::getMorphedModel($type)) {
+                $type = Relation::getMorphedModel($type);
+            }
+
+            if (!class_exists($type)) {
+                return false;
+            }
+
+            return !empty(resolve($type)->find($value));
+        });
     }
 }

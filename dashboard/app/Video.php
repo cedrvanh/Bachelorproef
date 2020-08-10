@@ -6,12 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Video extends Model
 {
+    protected $morphClass = 'Video';
+
     protected $fillable = [
-        'path'
+        'path', 'panorama'
     ];
 
     public function task()
     {
-        return $this->morphOne('App\Task', 'taskable');
+        return $this->morphOne(Task::class, 'taskable');
     }
 }

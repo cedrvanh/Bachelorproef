@@ -4,16 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Question extends Model
+class Media extends Model
 {
-    protected $fillable = [
-        'text', 'hint'
-    ];
+    protected $morphClass = 'Media';
 
-    public function choices()
-    {
-        return $this->hasMany(Choice::class);
-    }
+    protected $fillable = [
+        'path', 'panorama'
+    ];
 
     public function task()
     {

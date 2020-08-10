@@ -7,16 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Route extends Model
 {
     protected $fillable = [
-        'name', 'description', 'thumbnail', 'status' 
+        'name', 'description', 'thumbnail', 'status'
     ];
 
     public function city()
     {
-        $this->belongsTo('App\City');
+        return $this->belongsTo(City::class);
     }
 
     public function tasks()
     {
-        $this->hasMany('App\Task');
+        return $this->hasMany(Task::class);
     }
 }
