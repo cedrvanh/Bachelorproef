@@ -14,4 +14,8 @@ export class HeroService {
     static async createCharacter(payload) {
         await axiosInstance.post(`characters`, payload);
     }
+
+    static async updateCharacter(id, payload) {
+        await axiosInstance.post(`characters/${id}`, payload);
+    }
 }

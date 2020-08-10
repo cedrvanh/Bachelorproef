@@ -14,20 +14,23 @@ import LeaderboardScreen from '~/screens/Leaderboard';
 import HeroScreen from '~/screens/Hero';
 import StoryScreen from '~/screens/Story';
 import ShopScreen from '~/screens/Shop';
+import InventoryScreen from '~/screens/Inventory';
 
 import Icon from '~/components/Base/Icon';
 import { colors } from '~/styles';
 
 const ICON_SIZE = 28;
 
-// Auth Routes -  If user is not logged in
+// Auth Routes
 const AuthNavigator = createStackNavigator(
     {
         SignIn: SignInScreen,
-        SignUp: SignUpScreen
+        SignUp: SignUpScreen,
+        Hero: HeroScreen,
+        Story: StoryScreen,
     },
     {
-        initialRouteName: 'SignIn',
+        initialRouteName: 'Hero',
         headerMode: 'none'
     }
 )
@@ -43,16 +46,16 @@ const TabNavigator = createBottomTabNavigator(
                 )
             }
         },
-        Camera: {
-            screen: CameraScreen,
-            navigationOptions: {
-                tabBarIcon: () => (
-                    <CircleTab>
-                        <Icon name="ios-camera" size={ICON_SIZE + 4} />
-                    </CircleTab>
-                )
-            }
-        },
+        // Camera: {
+        //     screen: CameraScreen,
+        //     navigationOptions: {
+        //         tabBarIcon: () => (
+        //             <CircleTab>
+        //                 <Icon name="ios-camera" size={ICON_SIZE + 4} />
+        //             </CircleTab>
+        //         )
+        //     }
+        // },
         Shop: {
             screen: ShopScreen,
             navigationOptions: {
@@ -63,7 +66,7 @@ const TabNavigator = createBottomTabNavigator(
         }
     },
     {
-        initialRouteName: 'Shop',
+        initialRouteName: 'Home',
         tabBarOptions: {
             activeTintColor: colors.ACCENT_DARK_COLOR,
             inactiveTintColor: colors.PRIMARY_LIGHT_COLOR,
@@ -80,13 +83,13 @@ const TabNavigator = createBottomTabNavigator(
 // User Routes - Not part of main app flow
 const AppNavigator = createStackNavigator(
     {
-        Hero: HeroScreen,
-        Story: StoryScreen,
+
         Leaderboard: LeaderboardScreen,
         Profile: ProfileScreen,
+        Inventory: InventoryScreen,
     }, 
     {
-        initialRouteName: 'Profile',
+        initialRouteName: 'Inventory',
         headerMode: 'none'
     }
 );
@@ -100,7 +103,7 @@ export default createAppContainer(
             Splash: SplashScreen
         },
         {
-            initialRouteName: 'Tab',
+            initialRouteName: 'App',
         }
     )
 );

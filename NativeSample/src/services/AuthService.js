@@ -14,6 +14,11 @@ export class AuthService {
         return data;
     }
 
+    static async signOut() {
+        await axiosInstance.post('auth/signout');
+        await this.removeToken();
+    }
+
     static async getAccount() {
         await axiosInstance.get('auth/account');
     }
@@ -30,6 +35,15 @@ export class AuthService {
         try {
             await AsyncStorage.setItem('token', token); 
             await setAuthHeader(token);
+        } catch (error) {
+            console.log(`AsyncStorage error: ${error.message}`);
+        }
+    }
+
+    static async removeToken() {
+        try {
+            await AsyncStorage.removeItem('token'); 
+            await setAuthHeader();
         } catch (error) {
             console.log(`AsyncStorage error: ${error.message}`);
         }

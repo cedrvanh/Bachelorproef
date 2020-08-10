@@ -30,7 +30,7 @@ class CreateHeroStep extends Component {
     render() {
         return (
             <React.Fragment>
-                <Header title ={ 'Create a hero' } />
+                <Header title="Create a hero" hideBack />
                 <HeroForm nextStep={this.nextStep} />
             </React.Fragment>
         )

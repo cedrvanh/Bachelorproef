@@ -33,7 +33,11 @@ axiosInstance.interceptors.request.use(async (config) => {
 });
 
 export const setAuthHeader = (token) => {
-    axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    if(token) {
+        axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    } else {
+        axiosInstance.defaults.headers.common['Authorization'] = ``;
+    }
 }
 
 export const handleError = (error) => {
