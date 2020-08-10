@@ -23,8 +23,8 @@
     </div>
     <div class="form-row">
         <div class="form-group col-md-12">
-            <label for="inputThumbnail">Thumbnail</label>
-            <input type="file" class="form-control-file" id="inputThumbnail" name="thumbnail" accept="image/*">
+            <label for="inputThumbnail">Barcode</label>
+            <input type="file" class="form-control-file" id="inputBarcode" name="barcode" accept="image/*">
         </div>
     </div>
     <div class="form-row">

@@ -42,13 +42,6 @@ class LocationController extends Controller
     {
         $validated = $request->validated();
 
-        // if(!City::where('name', '=', $validated['city'])->exists()) {
-        //     $city = new City([
-        //         'name' => $validated['city']
-        //     ]);
-        //     $city->save();
-        // }
-        
         $location = new Location($validated);
         $location->save();
 
@@ -74,7 +67,7 @@ class LocationController extends Controller
      */
     public function edit(Location $location)
     {
-        return view('locations.edit');
+        return view('locations.edit', compact('location'));
     }
 
     /**
@@ -86,7 +79,10 @@ class LocationController extends Controller
      */
     public function update(Request $request, Location $location)
     {
-        //
+        $location->update($request->all());
+        $location->save();
+
+        return redirect('locations')->with('message', 'Location has been updated');
     }
 
     /**
@@ -97,6 +93,8 @@ class LocationController extends Controller
      */
     public function destroy(Location $location)
     {
-        //
+        $location->delete();
+
+        return redirect('locations')->with('message', 'Location has been deleted');
     }
 }

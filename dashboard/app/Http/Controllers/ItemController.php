@@ -45,14 +45,14 @@ class ItemController extends Controller
 
         $item = new Item($validated);
 
-        if ($request->has('thumbnail')) {
-            $file = $request->file('thumbnail');
+        if ($request->has('barcode')) {
+            $file = $request->file('barcode');
             $name = Str::slug($request->name) . '.' . $file->getClientOriginalExtension();
 
             // Store image with slugified name
             $this->uploadImage($file, 'images/items', $name);
 
-            $item->thumbnail = $name;
+            $item->barcode = $name;
         }
 
         $item->visible = $request->has('visible') ? 1 : 0;

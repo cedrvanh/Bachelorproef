@@ -1,31 +1,28 @@
-@extends("layouts.dashboard")
+@extends("layouts.form", [
+    'route' => getRoute(),
+    'method' => 'PUT'
+])
 
-@section("content")
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="row">
-                <div class="col-lg-6 mx-auto">
-                <form class="form" action="/users/{{ $user->id }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <h3 class="mt-3 mb-5">Edit a user</h3>
-                        <div class="form__section">
-                            <div class="form-group">
-                                <label for="inputEmail">Email address</label>
-                                <input type="email" class="form-control" id="inputEmail" value="{{ $user->email }}" name="email">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputName">Full Name</label>
-                                <input type="text" class="form-control" id="inputName" value="{{ $user->name }}" name="name">
-                            </div>
-                            <div class="divider"></div>
-                            <div class="d-flex justify-content-end">
-                                <button type="submit" class="btn btn-primary">Save</button>
-                            </div>
-                        </div>
-                    </form>
+@section("form-fields")
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="inputName">Location Name</label>
+            <input type="text" class="form-control" id="inputName" placeholder="Enter location name" name="name" value="{{ $location->name }}">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="inputAddress">Address</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="inputAddress" placeholder="Enter location address" name="address" value="{{ $location->address }}">
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="button" id="openMapBtn" data-toggle="modal" data-target="#mapModal">Open map</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <x-modal title="Select an address">
+        @include("partials.map")
+    </x-modal>
 @endsection

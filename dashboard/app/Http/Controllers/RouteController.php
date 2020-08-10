@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Route;
+use App\Task;
 use Illuminate\Http\Request;
 
 class RouteController extends Controller
@@ -25,7 +26,9 @@ class RouteController extends Controller
      */
     public function create()
     {
-        return view('routes.create');
+        $tasks = Task::doesntHave('route')->get();
+
+        return view('routes.create', compact('tasks'));
     }
 
     /**
@@ -36,7 +39,12 @@ class RouteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $route = Route::create($request->only('name', 'description'));
+        $tasks = Task::whereIn('id', $request->task)->get();
+
+        $route->tasks()->saveMany($tasks);
+
+        return redirect('routes')->with('message', 'Route: ' . $route->name . ' has been created');
     }
 
     /**
