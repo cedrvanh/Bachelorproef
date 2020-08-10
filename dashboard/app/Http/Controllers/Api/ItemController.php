@@ -3,20 +3,21 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\RouteResource;
-use App\Route;
+use App\Http\Resources\ItemResource;
+use App\Item;
 use Illuminate\Http\Request;
-class RouteController extends Controller
+
+class ItemController extends Controller
 {
-    /**
+        /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $routes = Route::with('tasks')->get();
-        return RouteResource::collection($routes);
+        $items = Item::paginate(15);
+        return ItemResource::collection($items);
     }
 
     /**
@@ -25,10 +26,19 @@ class RouteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CharacterStoreRequest $request)
     {
-        $route = Route::create($request->all());
-        return new RouteResource($route);
+        $character = Character::firstOrCreate((
+            [
+                'name' => $request->name,
+                'gender' => $request->gender,
+                'gold' => $request->gold,
+                'user_id' => $request->user,
+                'character_class_id' => $request->class,
+            ]
+        ));
+
+        return new CharacterResource($character);
     }
 
     /**
@@ -39,8 +49,8 @@ class RouteController extends Controller
      */
     public function show($id)
     {
-        $route = Route::findOrFail($id);
-        return new RouteResource($route);
+        $item = Item::findOrFail($id);
+        return new ItemResource($item);
     }
 
     /**
@@ -52,9 +62,9 @@ class RouteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $route = Route::findOrFail($id);
-        $route->update($request->all());
-        return new RouteResource($route);
+        $task = Character::findOrFail($id);
+        $task->update($request->all());
+        return new CharacterResource($task);
     }
 
     /**
@@ -65,8 +75,8 @@ class RouteController extends Controller
      */
     public function destroy($id)
     {
-        $route = Route::findOrFail($id);
-        $route->delete();
-        return new RouteResource($route);
+        $item = Item::findOrFail($id);
+        $item->delete();
+        return new CharacterResource($item);
     }
 }

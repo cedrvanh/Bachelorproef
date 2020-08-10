@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\SignInRequest;
 use App\Http\Requests\Api\SignUpRequest;
+use App\Http\Resources\UserResource;
 use App\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -97,6 +98,6 @@ class AuthController extends Controller
             ], 404);
         }
 
-        return response()->json($user);
+        return new UserResource($user);
     }
 }
