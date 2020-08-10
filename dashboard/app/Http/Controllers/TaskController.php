@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Choice;
 use App\Http\Requests\TaskStoreRequest;
+use App\Location;
+use App\Media;
+use App\Question;
 use App\Task;
 use App\TaskType;
+use App\Video;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -16,7 +21,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
+        $tasks = Task::paginate(10);
         return view('routes.tasks.index', compact('tasks'));
     }
 
@@ -27,16 +32,10 @@ class TaskController extends Controller
      */
     public function create()
     {
-        // $task_types = TaskType::all();
+        $taskTypes = TaskType::select('id', 'name')->get();
+        $locations = Location::doesntHave('task')->get();
 
-        $taskTypes = [
-            'Question',
-            'Scan',
-            'Info',
-            'Video'
-        ];
-
-        return view('routes.tasks.create', compact('taskTypes'));
+        return view('routes.tasks.create', compact('taskTypes', 'locations'));
     }
 
     /**
@@ -47,16 +46,61 @@ class TaskController extends Controller
      */
     public function store(TaskStoreRequest $request)
     {
-        $validated = $request->validated();
+        $type = TaskType::where('id', $request->input('taskType'))->first();
+        $task = new Task($request->only('name', 'description', 'reward'));
 
-        $file = $request->file('image');
-        $path = $file->store('images/tasks');
+        switch($type->name) {
+            case 'Video':
+                $request->validate([
+                    'videoPath' => 'bail|required|url|string',
+                    'videoPanorama' => 'nullable'
+                ]);
 
-        $task = new Task($validated);
-        $task->image = $path;
+                $video = Video::create([
+                    'path' => $request->input('videoPath'),
+                    'panorama' => $request->input('videoPanorama') ? 1 : 0
+                ]);
+                $task->taskable()->associate($video);
+
+                break;
+            case 'Media':
+                $request->validate([
+                    'mediaPath' => 'bail|required|url|string',
+                    'mediaPanorama' => 'nullable'
+                ]);
+
+                $media = Media::create([
+                    'path' => $request->input('mediaPath'),
+                    'panorama' => $request->input('mediaPanorama') ? 1 : 0
+                ]);
+                $task->taskable()->associate($media);
+
+                break;
+            case 'Question':
+                $question = new Question([
+                    'text' => $request->input('question'),
+                    'hint' => $request->input('hint')
+                ]);
+
+                $choices = $request->input('choice');
+                collect($choices)->map(function($choice) use ($question) {
+                    $newChoice = Choice::create([
+                        "answer" => $choice
+                    ]);
+                    $question->choices()->save($newChoice);
+                });
+                $question->save();
+
+                $task->taskable()->associate($question);
+
+                break;
+            default:
+                return;
+        }
+
         $task->save();
 
-        return redirect('tasks');
+        return redirect('tasks')->with('message', 'Task has been created');
     }
 
     /**
@@ -102,7 +146,7 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         $task->delete();
-        
+
         return redirect('tasks');
     }
 }

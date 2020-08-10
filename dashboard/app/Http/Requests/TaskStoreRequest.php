@@ -26,8 +26,10 @@ class TaskStoreRequest extends FormRequest
         return [
             'name' => 'required|max:70',
             'description' => 'nullable',
-            'reward' => 'numeric',
-            'image' => 'image'
+            'reward' => 'integer',
+            'image' => 'image',
+            'location' => 'required|exists:locations,id',
+            'taskType' => 'required'
         ];
     }
 }
