@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
         $admin = factory(App\User::class)->create([
             'name' => 'John Doe',
             'email' => 'test@example.com',
-            'password' => bcrypt('secret')
+            'password' => bcrypt('secret'),
         ]);
 
         $admin->roles()->attach($role_admin);

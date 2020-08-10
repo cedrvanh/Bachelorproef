@@ -17,8 +17,8 @@ class CreateRoutesTable extends Migration
             $table->id();
             $table->string('name', 70);
             $table->longText('description');
-            $table->string('thumbnail', 512);
-            $table->tinyInteger('status');
+            $table->string('thumbnail', 512)->nullable();
+            // $table->foreignId('task_id')->constrained('tasks');
             $table->timestamps();
         });
     }
