@@ -1,0 +1,97 @@
+[
+    {
+        "id": 1,
+        "name": "Het Gravensteen",
+        "description": "Ontdek de buurt rondom het Gravensteen op deze leuke route die je langs verschillende locaties neemt.",
+        "thumbnail": "https://weekend.knack.be/medias/18289/9364467.jpg",
+        "tasks": [
+            {
+                "id": 1,
+                "name": "Leven rond het kasteel",
+                "score": 40,
+                "reward": 5,
+                "type": "video",
+                "location": {
+                    "address": "Kwadestraat",
+                    "latitude": 50.84464504543538,
+                    "longitude": 3.212517724933691
+                }
+            },
+            {
+                "id": 2,
+                "name": "Een kijk in de wereld",
+                "score": 32,
+                "reward": 10,
+                "type": "video",
+                "location": {
+                    "address": "Langedries",
+                    "latitude": 50.842177879638044,
+                    "longitude": 3.2126601228534626
+                }
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "De Lange Munte",
+        "description": "Ontdek de buurt rondom het De Lange Munte op deze leuke route die je langs verschillende locaties neemt.",
+        "tasks": [
+            {
+                "id": 1,
+                "name": "Leven rond het kasteel",
+                "score": 40,
+                "reward": 5,
+                "type": "video",
+                "location": {
+                    "address": "Kwadestraat",
+                    "latitude": 50.84322320336554,
+                    "longitude": 3.210075953991667
+                }
+            },
+            {
+                "id": 2,
+                "name": "Een kijk in de wereld",
+                "score": 32,
+                "reward": 10,
+                "type": "video",
+                "location": {
+                    "address": "Langedries",
+                    "latitude": 50.83793548932365,
+                    "longitude": 3.2145632405031423
+                }
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Geschiedenistocht",
+        "description": "Ontdek de buurt rondom het Gravensteen op deze leuke route die je langs verschillende locaties neemt.",
+        "thumbnail": "https://weekend.knack.be/medias/18289/9364467.jpg",
+        "tasks": [
+            {
+                "id": 1,
+                "name": "Leven rond het kasteel",
+                "score": 40,
+                "reward": 5,
+                "type": "video",
+                "location": {
+                    "address": "Kwadestraat",
+                    "latitude": 50.84703665253839,
+                    "longitude": 3.2108332907223347
+                }
+            },
+            {
+                "id": 2,
+                "name": "Een kijk in de wereld",
+                "score": 32,
+                "reward": 10,
+                "type": "video",
+                "location": {
+                    "address": "Langedries",
+                    "latitude": 50.84753664952457,
+                    "longitude": 3.2116790522116987
+                }
+            }
+        ]
+    }
+]
