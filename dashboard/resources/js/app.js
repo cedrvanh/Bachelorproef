@@ -6,7 +6,7 @@ import mapboxgl from 'mapbox-gl/dist/mapbox-gl';
 
 
 import { initMap, reverseGeocode } from './map';
-import { initSelectBoxes, initSwitchButtons } from './form';
+import { initSelectBoxes, initSwitchButtons, initSortableInputs } from './form';
 import { initChart } from './chart';
 import { toggleVisibility } from './helper';
 
@@ -49,16 +49,17 @@ const initApp = () => {
 
     initMessages();
 
-    // initChart();
+    initChart();
 
     initSelectBoxes();
 
     initSwitchButtons();
+
+    initSortableInputs();
 }
 
 if(document.querySelector('#taskType')) {
     let typeInput = document.querySelector('#taskType');
-    let typeDom = document.querySelector('.type');
     let types = document.querySelectorAll('.task-type');
 
     typeInput.addEventListener('change' , (e) => {
