@@ -15,8 +15,9 @@ class CreateItemCharacterTable extends Migration
     {
         Schema::create('item_character', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('character_id');
-            $table->unsignedInteger('item_id');
+            $table->foreignId('character_id')->nullable()->constrained();
+            $table->foreignId('item_id')->nullable()->constrained();
+
             $table->timestamps();
         });
     }

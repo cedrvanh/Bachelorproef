@@ -32,9 +32,7 @@
                         <div class="row">
                             @include("partials.subheader")
                         </div>
-                        <div class="row justify-content-center">
-                            @yield("content")
-                        </div>
+                        @yield("content")
                     </div>
                 </div>
             </main>

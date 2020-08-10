@@ -16805,7 +16805,7 @@ ul {
 }
 
 .show {
-  display: block;
+  display: flex;
 }
 
 .hidden {
@@ -17078,6 +17078,30 @@ ul {
 
 .select2-selection__arrow {
   top: 5px !important;
+}
+
+.my-handle {
+  cursor: move;
+  cursor: -webkit-grabbing;
+}
+
+.js-sort .form-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+}
+
+.js-sort .sort-handle {
+  margin-right: 16px;
+  cursor: move;
+  cursor: -webkit-grabbing;
+}
+
+.sort-ghost-class {
+  opacity: 0.4;
 }
 
 .breadcrumb {

@@ -15,11 +15,14 @@ class CreateTasksTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
+            $table->morphs('taskable'); // Define polymorphic relation in table
             $table->string('name', 70);
             $table->longText('description')->nullable();
-            $table->integer('reward');
-            $table->string('image', 512);
-            $table->nullableMorphs('taskable');
+            $table->integer('reward')->default(5);
+            $table->integer('score')->default(10);
+            $table->string('image', 512)->nullable();
+            $table->foreignId('location_id')->constrained('locations');
+            $table->foreignId('route_id')->nullable()->constrained();
             $table->timestamps();
         });
     }

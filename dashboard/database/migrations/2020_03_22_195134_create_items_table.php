@@ -19,8 +19,9 @@ class CreateItemsTable extends Migration
             $table->string('name', 70);
             $table->longText('description')->nullable();
             $table->integer('price');
-            $table->string('thumbnail', 512)->nullable();
-            $table->boolean('visible')->default(0);
+            $table->string('barcode', 512)->nullable();
+            $table->integer('discount')->default(0);
+            $table->tinyInteger('visible')->default(0);
             $table->timestamps();
         });
     }

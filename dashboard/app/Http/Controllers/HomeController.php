@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Character;
 use App\Charts\HomeChart;
+use App\Route;
+use App\Task;
+use App\User;
+use Charts;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,6 +31,12 @@ class HomeController extends Controller
     {
         $chart = new HomeChart();
 
-        return view('home', compact('chart'));
+        $totals = [
+            'routes' => Route::count(),
+            'tasks' => Task::count(),
+            'characters' => Character::count(),
+        ];
+
+        return view('home', compact('chart', 'totals'));
     }
 }

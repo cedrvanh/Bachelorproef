@@ -1,10 +1,25 @@
-// import { Chartisan } from '@chartisan/chartjs'
+import { Chartisan } from '@chartisan/chartjs'
 
-// export const initChart = () => {
-//     if(document.querySelector('#chart')) {
-//         const chart = new Chartisan({
-//             el: '#chart',
-//             url: "@chart('home_chart')"
-//         })
-//     }
-// }
+export const initChart = () => {
+    if(document.querySelector('.js-chart')) {
+        new Chartisan({
+            el: '#character-chart',
+            url: "api/chart/home_chart",
+            hooks: new ChartisanHooks()
+            .beginAtZero()
+            .colors()
+            .borderColors()
+            .datasets([{ type: 'line', fill: false }, 'bar']),
+        })
+
+        new Chartisan({
+            el: '#route-chart',
+            url: "api/chart/home_chart",
+            hooks: new ChartisanHooks()
+            .beginAtZero()
+            .colors()
+            .borderColors()
+            .datasets([{ type: 'line', fill: false }, 'bar']),
+        })
+    }
+}

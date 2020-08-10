@@ -1,4 +1,4 @@
-<nav class="col-md-2 d-none d-md-block sidebar no-padding">
+<nav class="col-md-3 col-lg-2 d-none d-md-block sidebar no-padding">
     <div class="sidebar__brand">
         <h4 class="sidebar__brand-logo">
             <a href="{{ route('home') }}">

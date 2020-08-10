@@ -15,6 +15,8 @@ class CreateChoicesTable extends Migration
     {
         Schema::create('choices', function (Blueprint $table) {
             $table->id();
+            $table->string('answer');
+            $table->boolean('correct')->default(0);
             $table->timestamps();
         });
     }

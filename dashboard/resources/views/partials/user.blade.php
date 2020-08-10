@@ -2,7 +2,7 @@
     <span class="header__menu-user--username">
         Hi, {{ Auth::user()->name }}
     </span>
-    <img alt="Profile Pic" src="{{ asset('images/profile.jpg') }}" class="header__menu-user--picture" /> 
+    <img alt="Profile Pic" src="{{ asset('images/profile.png') }}" class="header__menu-user--picture" />
 </div>
 
 <div class="dropdown-menu">

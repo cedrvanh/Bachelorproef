@@ -25,7 +25,6 @@ Route::get('/logout', 'Auth\LoginController@logout');
 Route::resources([
     'routes' => 'RouteController',
     'tasks' => 'TaskController',
-    'task-types' => 'TaskTypeController',
     'characters' => 'CharacterController',
     'character-classes' => 'CharacterClassController',
     'items' => 'ItemController',
