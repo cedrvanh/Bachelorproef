@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Modal from 'react-native-modal';
 
@@ -6,14 +6,8 @@ import { colors, typography, utils } from '~/styles';
 
 import Button from '~/components/Base/Button';
 
-export default CustomModal = ({ title, onClose, children }) => {
-    const [isModalVisible, setModalVisible] = useState(true);
-  
-    const toggleModal = () => {
-      setModalVisible(!isModalVisible);
-    };
-  
-    const renderContent = () => {
+export default CustomModal = ({ title, onClose, visible, label, onBackdropPress, children }) => {
+    renderContent = () => {
         // If children present, render those
         if (children) return children;
         
@@ -25,30 +19,34 @@ export default CustomModal = ({ title, onClose, children }) => {
         )
     }
 
+    _onPress = () => {
+        if (onClose) onClose()
+    }
+
     return (
         <Modal 
-            isVisible={isModalVisible}
-            backdropColor={ colors.PRIMARY_COLOR }
+            isVisible={visible}
+            backdropColor={colors.PRIMARY_COLOR}
             backdropOpacity={0.7}
-            onModalHide={toggleModal}
+            onBackdropPress={onBackdropPress}
         >
             <ModalContent>
                 {renderContent()}
-                <Button label="Grant permission" onPress={onClose} />
+                <Button label={label || 'Grant Permission'} onPress={_onPress} />
             </ModalContent>
         </Modal>
     )
 }
 
 const ModalContent = styled.View`
-    padding: ${ utils.GUTTER_LARGE };
-    borderRadius: ${ utils.BORDER_RADIUS_LARGE };
-    backgroundColor: ${ colors.PRIMARY_COLOR };
+    padding: ${utils.GUTTER_LARGE};
+    borderRadius: ${utils.BORDER_RADIUS_LARGE};
+    backgroundColor: ${colors.PRIMARY_COLOR};
 `
 
 const ModalText = styled.Text`
-    margin: ${ utils.GUTTER_LARGE } 0;
-    color: ${ colors.WHITE };
-    fontSize: ${ typography.FONT_SIZE_DEFAULT };
+    margin: ${utils.GUTTER_LARGE} 0;
+    color: ${colors.WHITE};
+    fontSize: ${typography.FONT_SIZE_DEFAULT};
     textAlign: center;
 `

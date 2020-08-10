@@ -7,6 +7,7 @@ import { AuthService as _authService } from '~/services';
 import { colors, typography, utils } from '~/styles';
 
 import Header from '~/components/Header';
+import Button from '~/components/Base/Button';
 
 const BACKGROUND_IMAGE = require('~/assets/map.png');
 
@@ -24,6 +25,15 @@ export default ProfileScreen = ({ navigation }) => {
         setUser(user);
     }
 
+    onSignOut = async () => {
+        try {
+            await _authService.signOut();
+            navigation.navigate('SignIn');
+        } catch (err) {
+            console.log(err.response);
+        }
+    }
+
     return (
         <Container>
             {/* <Header title="Your Hero" onBack={() => navigation.navigate('Home')}/> */}
@@ -36,13 +46,14 @@ export default ProfileScreen = ({ navigation }) => {
                     <SubTitle>Knight</SubTitle>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Card>
+                    <Card onPress={() => navigation.navigate('Inventory')}>
                         <CardContent>My Items</CardContent>
                     </Card>
                     <Card>
                         <CardContent>My Quests</CardContent>
                     </Card>
                 </View>
+                <Button label="Sign Out" onPress={onSignOut} /> 
             </View>
         </Container>
     )
@@ -64,8 +75,6 @@ const SubTitle = styled.Text`
     fontSize: 18px;
     textTransform: uppercase;
 `
-
-
 
 const BackgroundImage = styled.ImageBackground`
     width: 100%;
