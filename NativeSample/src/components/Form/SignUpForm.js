@@ -40,6 +40,7 @@ export default SignInForm = ({ handleRegister }) => {
                 onChangeText={(val) => setValue('password', val)}
                 name="password"
                 placeholder="Enter password"
+                password={true}
                 errors={errors.password}
             />
             <Button 

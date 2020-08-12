@@ -122,7 +122,9 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        return view('routes.tasks.edit');
+        $locations = Location::all();
+        $taskTypes = TaskType::all();
+        return view('routes.tasks.edit', compact('locations', 'task', 'taskTypes'));
     }
 
     /**
@@ -134,7 +136,10 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        $task->update($request->all());
+        $task->save();
+
+        return redirect('tasks')->with('message', $task->name . ' has been updated');
     }
 
     /**

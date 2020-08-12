@@ -3,18 +3,19 @@ import { withNavigation } from 'react-navigation';
 import styled from 'styled-components';
 
 import { colors } from '~/styles';
+import ResponsiveImage from '~/components/ResponsiveImage';
 
-const ProfileIcon = ({ navigation }) => {
+const ProfileIcon = ({ user, navigation }) => {
     _onPress = () => {
         navigation.navigate('Profile');
     }
 
     return (
-        <ProfileCircle onPress={_onPress} />
+        <Icon onPress={_onPress} name={"ios-person"} size={32} color={colors.WHITE}/>
     )
 }
 
-const ProfileCircle = styled.TouchableOpacity`
+const ProfileCircle = styled(ResponsiveImage)`
     width: 40px;
     height: 40px;
     backgroundColor: ${colors.DARK_COLOR};

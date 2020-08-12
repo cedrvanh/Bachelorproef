@@ -39,4 +39,6 @@ Route::group(['prefix' => 'v1'], function() {
         'items' => 'Api\ItemController',
         'characters.items' => 'Api\CharacterItemController'
     ]);
+
+    Route::post('characters/{characterId}/items/{itemId}', 'Api\CharacterItemController@store');
 });

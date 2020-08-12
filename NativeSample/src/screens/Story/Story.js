@@ -20,8 +20,8 @@ export default StoryScreen = ({ navigation }) => {
                     margin={32}
                 />
                 <Paragraph>
-                    Your name is <Highlight>{ character.name }</Highlight>. A brave <Highlight>{ character.class.name }</Highlight> who is on a quest to conquer the world after the evil King 
-                    burned down the town you grew up in.
+                    Your name is <Highlight>{ character.name }</Highlight>. A brave <Highlight>{ character.class.name }</Highlight> 
+                    who is on a quest to conquer the world! Participate in quests and tasks near your location and earn gold which you can spend in the item shop!
                 </Paragraph>
             </StoryContainer>
             <Button onPress={() => navigation.navigate('Home')} label={"Go on an adventure"} />

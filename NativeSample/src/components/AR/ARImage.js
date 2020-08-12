@@ -5,8 +5,8 @@ import styled from 'styled-components';
 import { colors, utils } from '~/styles';
 
 export default class ARImage extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             uri: '',
@@ -17,12 +17,14 @@ export default class ARImage extends Component {
     render() {
         return (
             <ViroARScene>
-                {this.state.panorama ? (
+                {!this.props.task.panorama ? (
                     <Viro360Image 
                         source={require('~/assets/360_park.jpg')}
                     />
                 ) : (
-                    <ViroImage 
+                    <ViroImage
+                        position={[0, 0, -4]}
+                        scale={[2, 2, 2]}
                         source={{
                             uri: 'https://weekend.knack.be/medias/18289/9364467.jpg'
                         }}

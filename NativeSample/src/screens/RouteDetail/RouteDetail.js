@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Dimensions } from 'react-native';
-import MapView, { PROVIDER_GOOGLE, AnimatedRegion, Animated } from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import styled from 'styled-components';
 
 import { colors, utils, typography, map as mapStyle } from '~/styles';
 
+import { handleError } from '~/services/api';
+import { RouteService as _routeService } from '~/services/RouteService';
+
 import MapPolyline from '~/components/Map/MapPolyline';
-import RouteCard from '~/components/RouteCard';
+import RouteCard from '~/components/Route/RouteCard';
 import Header from '~/components/Header';
 import MapMarker from '~/components/Map/MapMarker';
 
@@ -70,7 +73,6 @@ export default RouteDetailScreen = ({ navigation }) => {
         });
     }
 
-
     // Zoom map to coordinates
     onMapZoom = (coordinates, animated) => {
         _map.current.fitToCoordinates(coordinates, {
@@ -82,6 +84,15 @@ export default RouteDetailScreen = ({ navigation }) => {
             },
             animated
         });
+    }
+
+    onRouteStart = (id, index) => {
+        try {
+            _routeService.startRoute(id, index);
+            navigation.navigate('Home');
+        } catch (err) {
+            handleError(err);
+        }
     }
 
     return (
@@ -112,7 +123,7 @@ export default RouteDetailScreen = ({ navigation }) => {
                 />
                 <RouteCard 
                     route={currentRoute.data}
-                    onPress={() => onMapZoom(currentRoute.coords, true)}
+                    onRouteStart={onRouteStart}
                 />
             </OverlayContainer>
         </Container>

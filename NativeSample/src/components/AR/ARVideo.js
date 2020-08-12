@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ViroARScene, ViroImage, Viro360Image } from 'react-viro';
+import { ViroARScene, ViroVideo, Viro360Video } from 'react-viro';
 import styled from 'styled-components';
 
 import { colors, utils } from '~/styles';
@@ -18,13 +18,17 @@ export default class ARVideo extends Component {
         return (
             <ViroARScene>
                 {this.state.panorama ? (
-                    <Viro360Image 
-                        source={require('~/assets/360_park.jpg')}
+                    <Viro360Video 
+                        source={{ uri: 'https://slaskie.tenkai.pl/mobileapp/chudow_360_FINALNA_1.mp4' }} 
+                        loop={true}
                     />
                 ) : (
-                    <ViroImage 
+                    <ViroVideo
+                        height={2}
+                        width={2}
+                        position={[0, 0, -2]}
                         source={{
-                            uri: 'https://weekend.knack.be/medias/18289/9364467.jpg'
+                            uri: 'https://www.youtube.com/watch?v=rHqha40xRL4'
                         }}
                     />
                 )}

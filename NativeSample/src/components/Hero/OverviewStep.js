@@ -17,19 +17,6 @@ export default class OverviewStep extends Component {
       character: "",
     };
   }
-
-  // componentDidMount() {
-  //   const { character } = this.state;
-  //   console.log(this.state);
-  //   this.getClass();
-  //   // this.getClass()
-  //   //   .then(res => {
-  //   //     this.setState({
-  //   //       characterClass: res.name,
-  //   //     });
-  //   //   });
-  // }
-
   static getDerivedStateFromProps = props => {
     const { getTotalSteps, getCurrentStep, getState } = props;
 
@@ -39,17 +26,6 @@ export default class OverviewStep extends Component {
       character: getState(),
     };
   };
-  
-  // getClass = async () => {
-  //   const { selectedClass } = this.state.character;
-
-  //   try {
-  //     const { data } = await _heroService.getCharacterClassById(selectedClass.id);
-  //     return data;
-  //   } catch (err) {
-  //     handleError(err);
-  //   }
-  // }
 
   // Move to previous step
   previousStep = () => {

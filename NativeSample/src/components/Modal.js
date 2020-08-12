@@ -6,7 +6,7 @@ import { colors, typography, utils } from '~/styles';
 
 import Button from '~/components/Base/Button';
 
-export default CustomModal = ({ title, onClose, visible, label, onBackdropPress, children }) => {
+export default CustomModal = ({ title, onClose, visible, label, onBackdropPress, disabled, children }) => {
     renderContent = () => {
         // If children present, render those
         if (children) return children;
@@ -26,13 +26,13 @@ export default CustomModal = ({ title, onClose, visible, label, onBackdropPress,
     return (
         <Modal 
             isVisible={visible}
-            backdropColor={colors.PRIMARY_COLOR}
+            backdropColor={colors.PRIMARY_LIGHT_COLOR}
             backdropOpacity={0.7}
             onBackdropPress={onBackdropPress}
         >
             <ModalContent>
                 {renderContent()}
-                <Button label={label || 'Grant Permission'} onPress={_onPress} />
+                <Button label={label || 'Grant Permission'} onPress={_onPress} disabled={disabled} />
             </ModalContent>
         </Modal>
     )

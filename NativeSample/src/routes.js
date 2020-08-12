@@ -15,6 +15,7 @@ import HeroScreen from '~/screens/Hero';
 import StoryScreen from '~/screens/Story';
 import ShopScreen from '~/screens/Shop';
 import InventoryScreen from '~/screens/Inventory';
+import RouteDetailScreen from '~/screens/RouteDetail';
 
 import Icon from '~/components/Base/Icon';
 import { colors } from '~/styles';
@@ -30,7 +31,7 @@ const AuthNavigator = createStackNavigator(
         Story: StoryScreen,
     },
     {
-        initialRouteName: 'Hero',
+        initialRouteName: 'SignIn',
         headerMode: 'none'
     }
 )
@@ -46,16 +47,16 @@ const TabNavigator = createBottomTabNavigator(
                 )
             }
         },
-        // Camera: {
-        //     screen: CameraScreen,
-        //     navigationOptions: {
-        //         tabBarIcon: () => (
-        //             <CircleTab>
-        //                 <Icon name="ios-camera" size={ICON_SIZE + 4} />
-        //             </CircleTab>
-        //         )
-        //     }
-        // },
+        FakeCamera: {
+            screen: ShopScreen,
+            navigationOptions: {
+                tabBarIcon: () => (
+                    <CircleTab>
+                        <Icon name="ios-camera" size={ICON_SIZE + 4} />
+                    </CircleTab>
+                )
+            }
+        },
         Shop: {
             screen: ShopScreen,
             navigationOptions: {
@@ -87,12 +88,15 @@ const AppNavigator = createStackNavigator(
         Leaderboard: LeaderboardScreen,
         Profile: ProfileScreen,
         Inventory: InventoryScreen,
+        Camera: CameraScreen,
+        Detail: RouteDetailScreen
     }, 
     {
-        initialRouteName: 'Inventory',
+        initialRouteName: 'Profile',
         headerMode: 'none'
     }
 );
+
 
 export default createAppContainer(
     createSwitchNavigator(
@@ -103,7 +107,7 @@ export default createAppContainer(
             Splash: SplashScreen
         },
         {
-            initialRouteName: 'App',
+            initialRouteName: 'Splash',
         }
     )
 );

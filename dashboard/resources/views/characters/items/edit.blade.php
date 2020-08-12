@@ -5,6 +5,12 @@
 
 @section("form-fields")
     <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="inputName">Visible</label>
+            <input type="checkbox" class="js-switch" name="visible" @if($item->visible) checked @endif />
+        </div>
+    </div>
+    <div class="form-row">
         <div class="form-group  col-md-12">
             <label for="inputName">Name</label>
             <input type="text" class="form-control" id="inputName" value="{{ $item->name }}" name="name">
@@ -18,8 +24,8 @@
     </div>
     <div class="form-row">
         <div class="form-group col-md-12">
-            <label for="inputImage">Thumbnail</label>
-            <input type="file" class="form-control-file" id="inputImage" name="image">
+            <label for="inputBarcode">Barcode</label>
+            <input type="file" class="form-control-file" id="inputBarcode" name="barcode">
         </div>
     </div>
     <div class="form-row">

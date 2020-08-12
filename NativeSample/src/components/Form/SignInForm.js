@@ -14,6 +14,7 @@ export default SignInForm = ({ handleLogin }) => {
     const [errors, setErrors] = useState({});
 
     _onPress = async () => {
+        console.log(values);
         try {
             await _authService.signIn(values);
             handleLogin();
@@ -34,6 +35,7 @@ export default SignInForm = ({ handleLogin }) => {
                 onChangeText={(val) => setValue('password', val)}
                 name="password"
                 placeholder="Enter password"
+                password={true}
                 errors={errors.password}
             />
             <Button 

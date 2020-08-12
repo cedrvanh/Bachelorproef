@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { colors, utils, typography } from '~/styles';
 
+import { handleError } from '~/services/api';
 import { ShopService as _shopService } from '~/services/ShopService';
 import { HeroService as _heroService } from '~/services/HeroService';
 import { AuthService as _authService } from '~/services/AuthService';
@@ -11,79 +12,113 @@ import { AuthService as _authService } from '~/services/AuthService';
 import Header from '~/components/Header';
 import LoadingIndicator from "~/components/LoadingIndicator";
 import ShopList from "~/components/Shop/List";
-import Modal from "~/components/Modal";
+import PurchaseItem from '~/components/Shop/PurchaseItem';
 
 export default ShopScreen = ({ navigation }) => {
-    const [items, setItems] = useState([]);
-    const [selectedItem, setSelectedItem] = useState(1);
-    const [characterBalance, setCharacterBalance] = useState(0);
     const [isModalVisible, setModalVisibility] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [items, setItems] = useState([]);
+    const [selectedItem, setSelectedItem] = useState(1);
+    const [characterBalance, setCharacterBalance] = useState({
+        uid: 0,
+        amount: 0
+    });
 
+    // Run user balance on mount
     useEffect(() => {
-        getItems();
         getCharacterBalance();
     }, []);
 
+    // Re-run getItems fetch when user balance changes - removes bought item from items array
+    useEffect(() => {
+        getItems();
+    }, [characterBalance.amount]);
+
+    // Fetch user items
     getItems = async () => {
         try {
-            const { data } = await _shopService.getItems();
-            setItems(prevItems => [
-                ...prevItems, 
-                ...data
-            ]);
+            const { data } = await _shopService.getItems({
+                character: characterBalance.uid
+            });
+            setItems(data);
         } finally {
             setIsLoading(false);
         }
     }
 
+    // Get character id and balance
     getCharacterBalance = async () => {
         try {
-            const data = await _authService.getAccount();
-            console.log(data.data)
+            const { data: user } = await _authService.getAccount();
+            setCharacterBalance({
+                uid: user.character.id,
+                amount: user.character.gold
+            });
+            getItems();
         } catch (err) {
-            console.log(err.message)
+            handleError(err);
         }
+    }
+
+    // Update character balance with new value
+    updateCharacterBalance = (newAmount) => {
+        setCharacterBalance(prevState => ({
+            ...prevState,
+            amount: prevState.amount - newAmount
+        }));
     }
 
     onItemSelect = (item) => {
         setSelectedItem(item);
-        toggleModal()
+        toggleModal();
     }
 
-    onItemPurchase = () => {
-        toggleModal()
-        console.log('Item purchased');
+    // Add purchaseable item to pivot table
+    onItemPurchase = async () => {
+        try {
+            let id = characterBalance.uid;
+            await _shopService.purchaseItem(id, selectedItem.id);
+
+            if(characterBalance.amount >= selectedItem.price) {
+                await _heroService.updateCharacter(id, {
+                    gold: characterBalance.amount - selectedItem.price
+                });
+                updateCharacterBalance(selectedItem.price);
+            }
+        } catch (err) {
+            handleError(err)
+        } finally {
+            toggleModal();
+        }
     }
-    
+
     toggleModal = () => {
         setModalVisibility(!isModalVisible);
     }
 
     return (
         <Container>
-            <Header />
+            <Header hideBack />
             {isLoading ? <LoadingIndicator /> : (
-                <View style={{ marginBottom: 75 }}>
+                <View style={{ marginBottom: 50 }}>
                     <ShopList 
                         items={items}
                         headerComponent={() => (
                             <Balance>
-                                <BalanceHeader>Your Balance</BalanceHeader>
-                                <BalanceAmount>{characterBalance}</BalanceAmount>
+                                <BalanceHeader>Your Gold</BalanceHeader>
+                                <BalanceAmount>{characterBalance.amount}</BalanceAmount>
                             </Balance>
                         )}
                         onSelect={onItemSelect}
                     />
 
-                <Modal
-                    label="Purchase Item"
-                    title={selectedItem.name}
-                    visible={isModalVisible}
-                    onClose={onItemPurchase}
-                    onBackdropPress={toggleModal}
-                />
-
+                    <PurchaseItem 
+                        visible={isModalVisible}
+                        onClose={onItemPurchase}
+                        onBackdropPress={toggleModal}
+                        selectedItem={selectedItem}
+                        isPurchasable={characterBalance.amount >= selectedItem.price}
+                    />
                 </View>
             )}
         </Container>
@@ -94,19 +129,6 @@ const Container = styled.View`
     flex: 1;
     backgroundColor: ${colors.PRIMARY_COLOR};
     padding: ${utils.GUTTER_LARGE};
-`
-
-const ItemContainer = styled.ScrollView.attrs({
-    contentContainerStyle:  {
-        flexGrow: 1,
-        flexDirection: 'row',
-    }
-})`
-`
-const ModalContent = styled.View`
-    padding: ${ utils.GUTTER_LARGE };
-    borderRadius: ${ utils.BORDER_RADIUS_LARGE };
-    backgroundColor: ${ colors.PRIMARY_COLOR };
 `
 
 const Balance = styled.View`

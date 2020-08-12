@@ -23,7 +23,7 @@ export class HeroService {
     }
 
     static async updateCharacter(id, payload) {
-        await axiosInstance.post(`characters/${id}`, payload);
+        await axiosInstance.put(`characters/${id}`, payload);
     }
 
     static async getInventory(id) {

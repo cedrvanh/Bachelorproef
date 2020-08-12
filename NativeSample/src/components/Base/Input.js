@@ -5,13 +5,14 @@ import BaseError from '~/components/Base/Error';
 
 import { colors, utils } from '~/styles';
 
-export default Input = ({ name, placeholder, label, errors, ...props }) => {
+export default Input = ({ name, placeholder, label, errors, password, ...props }) => {
     return (
         <React.Fragment>
             {label &&
                 <Label>{ label }</Label>
             }
             <StyledInput 
+                secureTextEntry={password}
                 name={ name }
                 placeholder={ placeholder }
                 errors={ errors }

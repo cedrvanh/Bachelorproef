@@ -7,7 +7,6 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Status</th>
                     <th scope="col">Created Date</th>
                     <th scope="col">Actions</th>
                 </tr>
@@ -17,7 +16,6 @@
                     <tr>
                         <th scope="row">{{ $route->id }}</th>
                         <td>{{ $route->name }}</td>
-                        <td>{{ $route->status }}</td>
                         <td>{{ $route->created_at }}</td>
                         <td>
                             <div class="table__actions">
@@ -27,7 +25,7 @@
                                 <form action="/routes/{{ $route->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    
+
                                     <button type="submit" class="btn btn-danger">
                                         Delete
                                     </button>

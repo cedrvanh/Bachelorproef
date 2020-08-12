@@ -51,9 +51,6 @@ class CityController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $city = City::findOrFail($id);
-        $city->update($request->all());
-        return new CityResource($city);
     }
 
     /**

@@ -25,7 +25,7 @@ export default class PickClassStep extends Component {
   }
 
   componentDidMount() {
-    this.getClasses();  
+    this.getClasses();
   }
 
   static getDerivedStateFromProps = props => {
@@ -56,7 +56,7 @@ export default class PickClassStep extends Component {
       this.setState(prevState => ({
         ...prevState,
         characterClasses: data,
-        selectedClass: data[0],  // Assign first class for active card state
+        selectedClass: data[2],  // Assign first class for active card state
         isLoading: false
       }));
     } catch (err) {

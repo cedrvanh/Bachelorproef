@@ -19,7 +19,6 @@ export default LeaderboardItem = ({ user, ranking, selectedTag}) => {
         <Wrapper>
             <Ranking position={ranking} />
             <LeaderboardUser>
-                <ProfileCircle />
                 <UserInfo>
                     <Name>{user.name}</Name>
                     <Class>{user.class.name} - {renderRanking()}</Class>

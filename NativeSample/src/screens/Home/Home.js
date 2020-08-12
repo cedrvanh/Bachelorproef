@@ -1,10 +1,14 @@
 import React, { useState, useEffect, createRef } from 'react';
 import { PermissionsAndroid, Text } from 'react-native';
+import { getDistance } from 'geolib';
 import styled from 'styled-components';
 
 import usePosition from '~/hooks/usePosition';
 
 import { RouteService as _routeService } from '~/services/RouteService';
+import { handleError } from '~/services/api';
+
+import { colors, utils, typography } from '~/styles';
 
 import MapContainer from '~/components/Map/MapContainer';
 import PermissionModal from '~/components/Map/PermissionModal';
@@ -13,20 +17,32 @@ import Carousel from '~/components/Carousel';
 import ProfileIcon from '~/components/Base/ProfileIcon';
 import LoadingIndicator from '~/components/LoadingIndicator';
 import Icon from '~/components/Base/Icon';
-
-import { colors, utils } from '~/styles';
+import TaskCard from '~/components/Route/TaskCard';
 
 export default HomeScreen = ({ navigation }) => {
-    const {position, error} = usePosition();
     const [isCardsVisible, setIsCardsVisiblity] = useState(false);
     const [isGranted, setIsGranted] = useState(false);
     const [routes, setRoutes] = useState([]);
+    const [onRoute, setOnRoute] = useState({});
+    const [currentRoute, setCurrentRoute] = useState({});
     const [isLoading, setIsLoading] = useState(true);
-
+    const [isNearLocation, setIsNearLocation] = useState(false);
+    
+    const {position, error} = usePosition();
+    
     useEffect(() => {
         checkPermission();
-        getRoutes();
+        checkRoute();
+        getRouteInformation();
     }, [isLoading]);
+
+    useEffect(() => {
+        if(onRoute) {
+            watchGeolocation()
+                .then(status => setIsNearLocation(status))
+                .catch(err => handleError(err));
+        }
+    }, [position])
 
     // Check if Location permission have been granted
     checkPermission = async () => {
@@ -34,15 +50,21 @@ export default HomeScreen = ({ navigation }) => {
         setIsGranted(status);
     }
 
-    centerMapOnMarker = (index, marker) => {
-        console.log(selectedItem);
-        // return selectedItem;
+    checkRoute = async () => {
+        let status = await _routeService.checkRouteStatus();
+        setOnRoute(status);
     }
 
-    getRoutes = async () => {
-        const { data } = await _routeService.getRoutes();
-        setRoutes(data);
-        setIsLoading(false);
+    getRouteInformation = async () => {
+        if (onRoute && onRoute.status) {
+            const { data } = await _routeService.getRouteById(onRoute.currentRoute);
+            setCurrentRoute(data);
+            setIsLoading(false);
+        } else {
+            const { data } = await _routeService.getRoutes();
+            setRoutes(data); 
+            setIsLoading(false);
+        }
     }
 
     onRouteStart = (item) => {
@@ -51,6 +73,36 @@ export default HomeScreen = ({ navigation }) => {
         });
     }
     
+    onRouteCancel = async () => {
+        console.log('Clicked');
+        await _routeService.cancelRoute();
+        setCurrentRoute({});
+        setOnRoute({});
+    }
+
+    calculdateDistanceNearTask = () => {
+        // let distance = getDistance(position, currentRoute.tasks[onRoute.currentIndex].locations.coords); 
+        let distance = getDistance(position, {
+            latitude: 50.84269204,
+            longitude: 3.21211998,
+        });
+        return distance;
+    }
+
+    watchGeolocation = () => {
+        return new Promise((resolve, reject) => {
+            let distance = calculdateDistanceNearTask();
+            if (distance <= 10) resolve(true);
+        });
+    }
+
+    openCamera = () => {
+        navigation.navigate('Camera', {
+            task: currentRoute.tasks[onRoute.currentIndex],
+            onRoute: onRoute,
+        });
+    }
+
     // Render map component
     renderMap = () => {
         if(!isLoading) {
@@ -64,6 +116,8 @@ export default HomeScreen = ({ navigation }) => {
                             }
                         }}
                         routes={routes}
+                        onRoute={onRoute}
+                        currentRoute={currentRoute}
                     />
 
                     <OverlayContainer>
@@ -74,8 +128,18 @@ export default HomeScreen = ({ navigation }) => {
                                 size={32}
                                 onPress={() => navigation.navigate('Leaderboard')}
                             />
+                            <Title>{onRoute && onRoute.status ? 'On a quest' : 'Go on a quest'}</Title>
                             <ProfileIcon />
                         </Topbar>
+                        {onRoute && onRoute.status && currentRoute && (
+                            <TaskCard 
+                                currentTask={onRoute.currentIndex} 
+                                route={currentRoute}
+                                onRouteCancel={onRouteCancel}
+                                nearLocation={isNearLocation}
+                                openCamera={openCamera}
+                            />
+                        )}
                         {isCardsVisible && (
                             <CarouselWrapper>
                                 <Carousel 
@@ -90,10 +154,12 @@ export default HomeScreen = ({ navigation }) => {
         }
     }
 
+    if(isLoading) {
+        return <LoadingIndicator />
+    }
     return (
-        // <LoadingIndicator />
         <Container>
-            {isGranted ? renderMap() : <PermissionModal onRequestPermission={(status) => setGranted(status)} />}
+            {isGranted ? renderMap() : <PermissionModal onRequestPermission={(status) => setIsGranted(status)} />}
         </Container>
     )
 }
@@ -130,4 +196,11 @@ const Topbar = styled.View`
     height: ${utils.HEADER_HEIGHT};
     justifyContent: space-between;
     alignItems: center;
+`
+
+const Title = styled.Text`
+    color: ${colors.WHITE}
+    fontSize: ${typography.FONT_SIZE_HEADING};
+    fontWeight: ${typography.FONT_WEIGHT_BOLD};
+    textTransform: uppercase;
 `

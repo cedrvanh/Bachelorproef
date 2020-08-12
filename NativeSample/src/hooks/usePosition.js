@@ -56,11 +56,7 @@ export default usePosition = () => {
         watcher = Geolocation.watchPosition(onChange, onError, options);
         
         return () => watcher && Geolocation.clearWatch(watcher);
-    }, [
-        options.enableHighAccuracy,
-        options.timeout,
-        options.maximumAge
-    ]);
+    }, []);
 
 
     return {

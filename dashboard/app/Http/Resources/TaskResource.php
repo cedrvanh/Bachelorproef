@@ -22,7 +22,7 @@ class TaskResource extends JsonResource
             'score' => $this->score,
             'image' => $this->image,
             'location' => new LocationResource($this->location),
-            'type' => $this->taskable
+            'type' => $this->taskable,
         ];
     }
 }

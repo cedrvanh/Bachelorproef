@@ -27,7 +27,7 @@
                                 <form action="/task-types/{{ $taskType->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    
+
                                     <button type="submit" class="btn btn-danger">
                                         Delete
                                     </button>

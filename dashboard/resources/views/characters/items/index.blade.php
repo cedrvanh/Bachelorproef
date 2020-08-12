@@ -6,6 +6,7 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
+                    <th scope="col">Visible</th>
                     <th scope="col">Name</th>
                     <th scope="col">Price</th>
                     <th scope="col">Creation Date</th>
@@ -17,6 +18,7 @@
                 @foreach($items as $item)
                     <tr>
                         <th scope="row">{{ $item->id }}</th>
+                        <td>{{ $item->visible ? 'Visible' : 'Hidden' }}</td>
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->price }}</td>
                         <td>{{ $item->created_at }}</td>

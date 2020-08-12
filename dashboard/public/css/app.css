@@ -17104,6 +17104,10 @@ ul {
   opacity: 0.4;
 }
 
+.js-chart {
+  margin-top: 32px;
+}
+
 .breadcrumb {
   display: flex;
   flex-wrap: wrap;

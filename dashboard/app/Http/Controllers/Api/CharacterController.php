@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\User;
 use App\Character;
+use App\CharacterClass;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CharacterStoreRequest;
 use App\Http\Resources\CharacterResource;
@@ -40,7 +42,7 @@ class CharacterController extends Controller
                 'gender' => $request->gender,
                 'gold' => $request->gold,
                 'user_id' => $request->user,
-                'character_class_id' => $request->class,
+                'character_class_id' => $request->class
             ]
         ));
 
@@ -55,8 +57,8 @@ class CharacterController extends Controller
      */
     public function show($id)
     {
-        $task = Character::findOrFail($id);
-        return new CharacterResource($task);
+        $character = Character::findOrFail($id);
+        return new CharacterResource($character);
     }
 
     /**
@@ -68,9 +70,9 @@ class CharacterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $task = Character::findOrFail($id);
-        $task->update($request->all());
-        return new CharacterResource($task);
+        $character = Character::findOrFail($id);
+        $character->update($request->all());
+        return new CharacterResource($character);
     }
 
     /**
@@ -81,8 +83,8 @@ class CharacterController extends Controller
      */
     public function destroy($id)
     {
-        $task = Character::findOrFail($id);
-        $task->delete();
-        return new CharacterResource($task);
+        $character = Character::findOrFail($id);
+        $character->delete();
+        return new CharacterResource($character);
     }
 }

@@ -19,9 +19,5 @@
             <!-- Chart.JS container -->
             <div class="js-chart" id="character-chart" style="height: 300px;"></div>
         </div>
-        <div class="col-sm-4">
-            <!-- Chart.JS container -->
-            <div class="js-chart" id="route-chart" style="height: 300px;"></div>
-        </div>
     </div>
 @endsection

@@ -12,6 +12,7 @@ import Header from '~/components/Header';
 import Button from '~/components/Base/Button';
 import Icon from '~/components/Base/Icon';
 import LoadingIndicator from "~/components/LoadingIndicator";
+import ResponsiveImage from "~/components/ResponsiveImage";
 
 const BACKGROUND_IMAGE = require('~/assets/map.png');
 
@@ -42,13 +43,23 @@ export default ProfileScreen = ({ navigation }) => {
         }
     }
 
+    getCharacterImage = () => {
+        if (user.character.class.name === 'Knight') {
+            return require('~/assets/knight.png');
+        } else if (user.character.class.name === 'Ranger') {
+            return require('~/assets/ranger.png');
+        } else {
+            return require('~/assets/mage.png');
+        }
+    }
+
     return (
         <Container>
             {isLoading ? <LoadingIndicator /> : (
                 <React.Fragment>
                 <BackgroundImage source={BACKGROUND_IMAGE}>
                     <Header title="Your Hero" onBack={() => navigation.navigate('Home')}/>
-                    <ProfileImage />
+                    <ProfileImage source={getCharacterImage()} />
                 </BackgroundImage>
                 <View style={{ flex: 2, padding: 16, marginTop: 60 }}>
                     <View style={{ alignItems: 'center' }}>
@@ -56,11 +67,8 @@ export default ProfileScreen = ({ navigation }) => {
                         <SubTitle>{user.character.class.name}</SubTitle>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 32 }}>
-                        <Card onPress={() => navigation.navigate('Inventory', { uid: user.id })}>
+                        <Card onPress={() => navigation.navigate('Inventory', { uid: user.character.id })}>
                             <CardContent>My Items</CardContent>
-                        </Card>
-                        <Card>
-                            <CardContent>My Quests</CardContent>
                         </Card>
                     </View>
                     <View style={{ flex: 1, justifyContent: 'flex-end' }}>
@@ -96,14 +104,13 @@ const BackgroundImage = styled.ImageBackground`
     padding: 0 ${utils.GUTTER};
 `
 
-const ProfileImage = styled.View`
+const ProfileImage = styled(ResponsiveImage)`
     position: absolute;
-    bottom: -50px;
+    bottom: -150px;
+    left: 80px;
     alignSelf: center;
     width: 150px;
     height: 150px;
-    backgroundColor: red;
-    borderRadius: 100px;
 `
 
 const Card = styled.TouchableOpacity`

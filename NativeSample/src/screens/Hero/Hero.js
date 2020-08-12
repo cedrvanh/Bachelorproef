@@ -24,8 +24,8 @@ export default HeroScreen = ({ navigation }) => {
             const character = {
                 ...finalState, // Name & Gender fields
                 class: finalState.class.id,
-                user: navigation.getParam('user', 1), // Authenticated user ID
-                gold: 0, // Fix DB default value so this is not needed
+                user: navigation.getParam('user', 1), // Authenticated user ID,
+                gold: 0
             }
 
             await _heroService.createCharacter(character);

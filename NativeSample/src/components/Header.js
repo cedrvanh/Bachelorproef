@@ -1,5 +1,5 @@
 import React from 'react';
-import { withNavigation } from 'react-navigation';
+import { withNavigation, NavigationActions } from 'react-navigation';
 import styled from 'styled-components';
 
 import { colors, utils, typography } from '~/styles';
@@ -8,7 +8,7 @@ import Icon from '~/components/Base/Icon';
 
 const Header = ({ navigation, title, hideBack, onBack }) => {
     _onPress = () => {
-        navigation.goBack();
+        navigation.dispatch(NavigationActions.back())
     }
 
     return (

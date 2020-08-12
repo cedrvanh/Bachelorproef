@@ -31,7 +31,7 @@ class Character extends Model
 
     public function scopeAvailableItems()
     {
-        $ids = DB::table('character_item')->where('character_id', '=', $this->id)->pluck('character_id');
+        $ids = DB::table('character_item')->where('character_id', '=', $this->id)->pluck('item_id');
         return Item::whereNotIn('id', $ids)->get();
     }
 }

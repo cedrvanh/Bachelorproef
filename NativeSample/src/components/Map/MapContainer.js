@@ -11,7 +11,7 @@ import MapMarker from '~/components/Map/MapMarker';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-export default MapContainer = ({ location, routes, setCardVisibility, ...props }) => {
+export default MapContainer = ({ location, routes, setCardVisibility, onRoute, currentRoute, ...props }) => {
     const [selectedRoute, setSelectedRoute] = useState(null);
     const ASPECT_RATIO = SCREEN_WIDTH / SCREEN_HEIGHT;
     const LATITUDE_DELTA = 0.01;
@@ -45,20 +45,37 @@ export default MapContainer = ({ location, routes, setCardVisibility, ...props }
 
     // Render markers from fetched data
     renderMarkers = () => {
-        return routes.map(({id, name, tasks}) => {
+        if(!onRoute) {
+            return routes.map(({id, name, tasks}) => {
+                return (
+                    <MapMarker 
+                        key={`${id}${new Date()}`}
+                        label={name}
+                        coordinate={{
+                            latitude: parseFloat(tasks[0].location.coords.latitude),
+                            longitude: parseFloat(tasks[0].location.coords.longitude)
+                        }}
+                        onPress={selectMarker}
+                    />
+                )
+    
+            });
+        } else {
             return (
-                <MapMarker 
-                    key={`${id}${new Date()}`}
-                    label={name}
-                    coordinate={{
-                        latitude: parseFloat(tasks[0].location.coords.latitude),
-                        longitude: parseFloat(tasks[0].location.coords.longitude)
-                    }}
-                    onPress={selectMarker}
-                />
+                <React.Fragment>
+                    {currentRoute.tasks && (
+                        <MapMarker 
+                            key={`${currentRoute.id}${new Date()}`}
+                            label={currentRoute.tasks[onRoute.currentIndex].name}
+                            coordinate={{
+                                latitude: parseFloat(currentRoute.tasks[onRoute.currentIndex].location.coords.latitude),
+                                longitude: parseFloat(currentRoute.tasks[onRoute.currentIndex].location.coords.longitude)
+                            }}
+                        />   
+                    )}
+                </React.Fragment>
             )
-
-        });
+        }
     }
 
     selectMarker = ({ position }) => {

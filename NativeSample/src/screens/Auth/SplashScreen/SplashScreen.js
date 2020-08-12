@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import styled from 'styled-components';
 import Modal from 'react-native-modal';
 
 import { AuthService as _authService } from '~/services';
@@ -16,7 +17,7 @@ export default SplashScreen = ({ navigation }) => {
         const token = await _authService.getToken();
 
         setTimeout(() => {
-            navigation.navigate(token ? 'App' : 'Auth');
+            navigation.navigate(token ? 'Tab' : 'Auth');
         }, 3000);
     }
 

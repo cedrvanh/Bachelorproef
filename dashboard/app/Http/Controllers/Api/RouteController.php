@@ -39,7 +39,7 @@ class RouteController extends Controller
      */
     public function show($id)
     {
-        $route = Route::findOrFail($id);
+        $route = Route::with('tasks')->findOrFail($id);
         return new RouteResource($route);
     }
 

@@ -19,8 +19,8 @@ class ItemController extends Controller
     {
         $items = Item::all();
 
-        if ($request->has('user')) {
-            $character = Character::where('id', $request->user)->first();
+        if ($request->has('character')) {
+            $character = Character::find($request->character);
             $items = $character->availableItems(); // Get items that do not exist in pivot table with user - scope in Character model
         }
 

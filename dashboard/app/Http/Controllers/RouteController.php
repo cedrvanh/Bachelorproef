@@ -58,7 +58,7 @@ class RouteController extends Controller
         //
     }
 
-    /**
+    /**test
      * Show the form for editing the specified resource.
      *
      * @param  \App\Route  $route
@@ -66,7 +66,8 @@ class RouteController extends Controller
      */
     public function edit(Route $route)
     {
-        return view('routes.edit');
+        $tasks = Task::all();
+        return view('routes.edit', compact('tasks', 'route'));
     }
 
     /**
@@ -78,7 +79,10 @@ class RouteController extends Controller
      */
     public function update(Request $request, Route $route)
     {
-        //
+        $route->update($request->all());
+        $route->save();
+
+        return redirect('routes')->with('message', $route->name . ' has been updated');
     }
 
     /**
@@ -89,6 +93,7 @@ class RouteController extends Controller
      */
     public function destroy(Route $route)
     {
-        //
+        $route->delete();
+        return redirect('routes')->with('message', $route->name . ' has been deleted');
     }
 }

@@ -11,6 +11,7 @@ import { colors } from '~/styles';
 YellowBox.ignoreWarnings(['Warning: Async Storage has been extracted from react-native core', 'Remote Debugger is in a background tab']);
 
 export default App = () => {
+    console.disableYellowBox = true;
     return (
         <SafeAreaView style={{ flex: 1 }}>
           <StatusBar backgroundColor={ colors.PRIMARY_COLOR } />

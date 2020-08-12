@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { View, Text } from 'react-native';
 import SwipeablePanel from "rn-swipeable-panel";
 import styled from 'styled-components';
 
@@ -30,9 +31,10 @@ export default InventoryScreen = ({ navigation }) => {
         try {
             const { data } = await _heroService.getInventory(uid);
             setItems(data);
-            setIsLoading(false);
         } catch (err) {
             handleError(err);
+        } finally {
+            setIsLoading(false);
         }
     }
 
@@ -42,7 +44,6 @@ export default InventoryScreen = ({ navigation }) => {
     }
 
     openPanel = () => {
-        console.log('Open');
         setIsPanelActive(true);
     }
 
@@ -51,7 +52,7 @@ export default InventoryScreen = ({ navigation }) => {
             <Header />
             {isLoading ? <LoadingIndicator /> : (
                 <React.Fragment>
-                    {items ? (
+                    {items.length ? (
                         <React.Fragment>
                             <InventoryContainer>
                                 <ItemList 
@@ -74,7 +75,9 @@ export default InventoryScreen = ({ navigation }) => {
                             </SwipeablePanel>
                         </React.Fragment>
                     ) : (
-                        <Title>You haven't bought any items yet!</Title>
+                        <View style={{ flex: 1 }}>
+                            <Text style={{ color: colors.TEXT_PRIMARY_LIGHT_COLOR }}>You haven't bought any items yet!</Text>
+                        </View>
                     )}
                 </React.Fragment>
             )}

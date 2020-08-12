@@ -19,12 +19,15 @@ export default PermissionModal = ({ onRequestPermission }) => {
               console.log("Permission Denied");
             }
         } catch (err) {
-            Alert.alert(err);
+            Alert.alert(JSON.stringify(err.message));
         }
     }
 
     return (
-        <Modal onClose={requestPermission} >
+        <Modal 
+            onClose={requestPermission}
+            visible={true}
+        >
             <Container>
                 <LottieWrapper 
                     source={require('~/assets/lottie/marker.json')}
