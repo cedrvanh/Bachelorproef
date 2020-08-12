@@ -6,23 +6,31 @@ import { AuthService as _authService } from '~/services';
 
 import { colors, typography, utils } from '~/styles';
 
+import { handleError } from '~/services/api';
+
 import Header from '~/components/Header';
 import Button from '~/components/Base/Button';
+import Icon from '~/components/Base/Icon';
+import LoadingIndicator from "~/components/LoadingIndicator";
 
 const BACKGROUND_IMAGE = require('~/assets/map.png');
 
 export default ProfileScreen = ({ navigation }) => {
     const [user, setUser] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
     
     useEffect(() => {
         getUserData();
     }, []);
 
-    console.log(user);
-
     getUserData = async () => {
-        const user = await _authService.getAccount();
-        setUser(user);
+        try {
+            const { data } = await _authService.getAccount();
+            setUser(data);
+            setIsLoading(false);
+        } catch (err) {
+            handleError(err);
+        }
     }
 
     onSignOut = async () => {
@@ -30,31 +38,37 @@ export default ProfileScreen = ({ navigation }) => {
             await _authService.signOut();
             navigation.navigate('SignIn');
         } catch (err) {
-            console.log(err.response);
+            handleError(err);
         }
     }
 
     return (
         <Container>
-            {/* <Header title="Your Hero" onBack={() => navigation.navigate('Home')}/> */}
-            <BackgroundImage source={BACKGROUND_IMAGE} >
-                <ProfileImage />
-            </BackgroundImage>
-            <View style={{ flex: 2, padding: 16 }}>
-                <View style={{ alignItems: 'center' }}>
-                    <Title>Ser Podrick</Title>
-                    <SubTitle>Knight</SubTitle>
+            {isLoading ? <LoadingIndicator /> : (
+                <React.Fragment>
+                <BackgroundImage source={BACKGROUND_IMAGE}>
+                    <Header title="Your Hero" onBack={() => navigation.navigate('Home')}/>
+                    <ProfileImage />
+                </BackgroundImage>
+                <View style={{ flex: 2, padding: 16, marginTop: 60 }}>
+                    <View style={{ alignItems: 'center' }}>
+                        <Title>{user.character.name}</Title>
+                        <SubTitle>{user.character.class.name}</SubTitle>
+                    </View>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 32 }}>
+                        <Card onPress={() => navigation.navigate('Inventory', { uid: user.id })}>
+                            <CardContent>My Items</CardContent>
+                        </Card>
+                        <Card>
+                            <CardContent>My Quests</CardContent>
+                        </Card>
+                    </View>
+                    <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+                        <Button label="Sign Out" onPress={onSignOut}/> 
+                    </View>
                 </View>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Card onPress={() => navigation.navigate('Inventory')}>
-                        <CardContent>My Items</CardContent>
-                    </Card>
-                    <Card>
-                        <CardContent>My Quests</CardContent>
-                    </Card>
-                </View>
-                <Button label="Sign Out" onPress={onSignOut} /> 
-            </View>
+                </React.Fragment>
+            )}
         </Container>
     )
 }
@@ -79,16 +93,17 @@ const SubTitle = styled.Text`
 const BackgroundImage = styled.ImageBackground`
     width: 100%;
     flex: 1;
+    padding: 0 ${utils.GUTTER};
 `
 
 const ProfileImage = styled.View`
+    position: absolute;
+    bottom: -50px;
+    alignSelf: center;
     width: 150px;
     height: 150px;
     backgroundColor: red;
-    border-radius: 100;
-    position: absolute;
-    bottom: 0;
-    alignSelf: center;
+    borderRadius: 100px;
 `
 
 const Card = styled.TouchableOpacity`

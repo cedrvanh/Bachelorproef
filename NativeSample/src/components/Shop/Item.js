@@ -4,24 +4,28 @@ import styled from 'styled-components';
 
 import { colors, typography, utils } from '~/styles';
 
-export default ShopItem = ({ item, onItemSelect }) => {
+import { dateDifference } from '~/helpers';
+
+export default ShopItem = ({ item, onItemSelect, showTimeDifference, isInventory}) => {
 
     // Format given date in day/month/year
     formatDate = (date) => {
         let d = new Date(date);
-        return `${d.getUTCDate()}/${d.getUTCMonth()}/${d.getUTCFullYear()}`;
+        return `${d.getUTCDate()}/${d.getUTCMonth() + 1}/${d.getUTCFullYear()}`;
     }
 
     return (
         <ItemCard onPress={() => onItemSelect(item)}>
             <View style={{ flex: 1.5 }}>
-                <ItemDate>{formatDate(item.expiration_date)}</ItemDate>
+                <ItemDate>{showTimeDifference ? `Expires: ${formatDate(item.expiration_date)} - ${dateDifference(item.expiration_date)}` : `Expires: ${formatDate(item.expiration_date)}`}</ItemDate>
                 <ItemTitle>{item.name}</ItemTitle>
                 <ItemDescription>Coupon - Discount for -{item.discount}%</ItemDescription>
             </View>
-            <View style={{ flex: 0.5, justifyContent: 'center', alignItems: 'flex-end' }}>
-                <ItemPrice>{item.price}</ItemPrice>
-            </View>
+            {!isInventory && (
+                <View style={{ flex: 0.5, justifyContent: 'center', alignItems: 'flex-end' }}>
+                    <ItemPrice>{item.price}</ItemPrice>
+                </View>
+            )}
         </ItemCard>
     );
 }

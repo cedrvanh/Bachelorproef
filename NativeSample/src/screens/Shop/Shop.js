@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import styled from 'styled-components';
 
 import { colors, utils, typography } from '~/styles';
@@ -15,8 +15,8 @@ import Modal from "~/components/Modal";
 
 export default ShopScreen = ({ navigation }) => {
     const [items, setItems] = useState([]);
-    const [characterBalance, setCharacterBalance] = useState(0);
     const [selectedItem, setSelectedItem] = useState(1);
+    const [characterBalance, setCharacterBalance] = useState(0);
     const [isModalVisible, setModalVisibility] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -53,7 +53,7 @@ export default ShopScreen = ({ navigation }) => {
 
     onItemPurchase = () => {
         toggleModal()
-        console.log('Item purchased')
+        console.log('Item purchased');
     }
     
     toggleModal = () => {
@@ -112,13 +112,10 @@ const ModalContent = styled.View`
 const Balance = styled.View`
     padding: 10px 0 20px 0;
     marginBottom: 20px;
-    textAlign: center;
-    justifyContent: center;
     backgroundColor: ${colors.PRIMARY_COLOR};
 `
 
 const BalanceHeader = styled.Text`
-    textAlign: center;
     fontWeight: ${typography.FONT_WEIGHT_BOLD};
     fontSize: 20px;
     textTransform: uppercase;
@@ -128,6 +125,5 @@ const BalanceHeader = styled.Text`
 const BalanceAmount = styled.Text`
     fontSize: 20px;
     fontWeight: ${typography.FONT_WEIGHT_BOLD};
-    textAlign: center;
     color: ${colors.ACCENT_COLOR};
 `

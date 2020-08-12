@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import ShopItem from '~/components/Shop/Item';
 
-export default ShopList = ({ items, onSelect, headerComponent }) => {
+export default ShopList = ({ items, onSelect, headerComponent, showTimeDifference, isInventory }) => {
     return (
         <ItemList 
             data={items}
@@ -16,6 +16,8 @@ export default ShopList = ({ items, onSelect, headerComponent }) => {
                     item={item} 
                     key={item.id}
                     onItemSelect={onSelect}
+                    showTimeDifference={showTimeDifference}
+                    isInventory={isInventory}
                 />
             )}
         />

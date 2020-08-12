@@ -6,9 +6,9 @@ const window = Dimensions.get('window');
 const IMAGE_HEIGHT = Math.round(window.width * 9 / 16);
 const IMAGE_WIDTH = window.width;
 
-export default ResponsiveImage = ({ source, resizeMode, margin = 0, ...props }) => {
+export default ResponsiveImage = ({ source, resizeMode, margin, ...props }) => {
     return (
-        <BaseImageWrapper margin={margin} >
+        <BaseImageWrapper margin={margin || 0} >
             <BaseImage source={source} resizeMode={resizeMode} {...props} />
         </BaseImageWrapper>
     )

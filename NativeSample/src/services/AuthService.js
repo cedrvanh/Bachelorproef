@@ -20,7 +20,8 @@ export class AuthService {
     }
 
     static async getAccount() {
-        await axiosInstance.get('auth/account');
+        const { data } = await axiosInstance.get('auth/account');
+        return data;
     }
 
     static async getToken() {
