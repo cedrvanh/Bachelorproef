@@ -36,6 +36,7 @@ Route::group(['prefix' => 'v1'], function() {
         'locations' => 'Api\LocationController',
         'cities' => 'Api\CityController',
         'users' => 'Api\UserController',
-        'items' => 'Api\ItemController'
+        'items' => 'Api\ItemController',
+        'characters.items' => 'Api\CharacterItemController'
     ]);
 });
