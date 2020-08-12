@@ -8,6 +8,7 @@ import {
   ViroARScene,
   ViroText,
   ViroConstants,
+  Viro360Image
 } from 'react-viro';
 
 export default class HelloWorldSceneAR extends Component {
@@ -26,8 +27,8 @@ export default class HelloWorldSceneAR extends Component {
 
   render() {
     return (
-      <ViroARScene onTrackingUpdated={this._onInitialized} >
-        <ViroText text={this.state.text} scale={[.5, .5, .5]} position={[0, 0, -1]} style={styles.helloWorldTextStyle} />
+      <ViroARScene>
+        <Viro360Image source={require('~/assets/360_park.jpg')} />
       </ViroARScene>
     );
   }

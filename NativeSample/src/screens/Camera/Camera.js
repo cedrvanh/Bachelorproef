@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Text } from 'react-native';
 import styled from 'styled-components';
-import { ViroARSceneNavigator, ViroText, ViroConstants } from 'react-viro';
+import { ViroARSceneNavigator, ViroText, ViroConstants, ViroScene, Viro360Image } from 'react-viro';
+
+import ARImage from '~/components/AR/ARImage';
+import ARVideo from '~/components/AR/ARVideo';
+import ARQuestion from '~/components/AR/ARQuestion';
+import ARPortal from '~/components/AR/ARPortal';
 
 export default CameraScreen = () => {
-    var InitialARScene = require('~/js/HelloWorldSceneAR');
     var UNSET = "UNSET";
-    var VR_NAVIGATOR_TYPE = "VR";
     var AR_NAVIGATOR_TYPE = "AR";
     
     const [type, setType] = useState(UNSET);
@@ -33,8 +36,24 @@ export default CameraScreen = () => {
         }
     }
 
-    // <Text>Camera</Text>
+    getSceneByType = (type) => {
+        switch(type) {
+            case 'media': 
+                return ARImage;
+                break;
+            case 'video':
+                return;
+                break;
+            case 'question':
+                return;
+                break;
+            default: 
+                return;
+            
+        }
+    }
+
     return (
-        <ViroARSceneNavigator initialScene={{scene: InitialARScene}} />
+        <ViroARSceneNavigator initialScene={{scene: ARQuestion}}/>
     )
 }
