@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 import { PROVIDER_GOOGLE } from 'react-native-maps';
 import MapView from 'react-native-map-clustering';
@@ -11,18 +11,13 @@ import MapMarker from '~/components/Map/MapMarker';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
-export default MapContainer = ({ location, ...props }) => {
+export default MapContainer = ({ location, routes, setCardVisibility, ...props }) => {
     const [selectedRoute, setSelectedRoute] = useState(null);
-
     const ASPECT_RATIO = SCREEN_WIDTH / SCREEN_HEIGHT;
     const LATITUDE_DELTA = 0.01;
     const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
-    console.log('Render');
-
-    const region = { 
-        // latitude: 50.81841251,
-        // longitude: 3.25652042,
+    const INITIAL_REGION = { 
         latitude: 50.84269204,
         longitude: 3.21211998,
         // latitude: location.latitude,
@@ -48,16 +43,33 @@ export default MapContainer = ({ location, ...props }) => {
         ));
     }
 
+    // Render markers from fetched data
+    renderMarkers = () => {
+        return routes.map(({id, name, tasks}) => {
+            return (
+                <MapMarker 
+                    key={`${id}${new Date()}`}
+                    label={name}
+                    coordinate={{
+                        latitude: parseFloat(tasks[0].location.coords.latitude),
+                        longitude: parseFloat(tasks[0].location.coords.longitude)
+                    }}
+                    onPress={selectMarker}
+                />
+            )
+
+        });
+    }
 
     selectMarker = ({ position }) => {
-        console.log(position);
         setSelectedRoute(position);
+        setCardVisibility();
     }
 
     return (
         <StyledMap
             provider={PROVIDER_GOOGLE}
-            initialRegion={region}
+            initialRegion={INITIAL_REGION}
             minZoomLevel={8}
             showsScale={false}
             showsCompass={false}
@@ -74,11 +86,8 @@ export default MapContainer = ({ location, ...props }) => {
             maxZoom={13}
             {...props}
         >
+            {renderMarkers()}
             {/* <UserDot location={location} /> */}
-            {renderRandomMarkers(10)}
-            {/* {markers && markers.map((marker, index) => (
-                <MapMarker label={marker.title} coords={marker.coords} key={ index } />
-            ))} */}
         </StyledMap>
     )
 }

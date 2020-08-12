@@ -4,54 +4,90 @@ import styled from 'styled-components';
 
 import usePosition from '~/hooks/usePosition';
 
+import { RouteService as _routeService } from '~/services/RouteService';
+
 import MapContainer from '~/components/Map/MapContainer';
 import PermissionModal from '~/components/Map/PermissionModal';
 import Header from '~/components/Header';
 import Carousel from '~/components/Carousel';
 import ProfileIcon from '~/components/Base/ProfileIcon';
 import LoadingIndicator from '~/components/LoadingIndicator';
+import Icon from '~/components/Base/Icon';
 
 import { colors, utils } from '~/styles';
 
 export default HomeScreen = ({ navigation }) => {
-    const { position, error } = usePosition();
-    const [visible, setVisiblity] = useState(true);
-    const [isGranted, setGranted] = useState(false);
+    const {position, error} = usePosition();
+    const [isCardsVisible, setIsCardsVisiblity] = useState(false);
+    const [isGranted, setIsGranted] = useState(false);
+    const [routes, setRoutes] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         checkPermission();
-    }, []);
+        getRoutes();
+    }, [isLoading]);
 
     // Check if Location permission have been granted
     checkPermission = async () => {
         const status = await PermissionsAndroid.check( PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION );
-        setGranted(status);
+        setIsGranted(status);
     }
 
-
-    centerMapOnMarker = (item, marker) => {
-        console.log(item);
-        console.log(marker);
+    centerMapOnMarker = (index, marker) => {
+        console.log(selectedItem);
+        // return selectedItem;
     }
 
+    getRoutes = async () => {
+        const { data } = await _routeService.getRoutes();
+        setRoutes(data);
+        setIsLoading(false);
+    }
+
+    onRouteStart = (item) => {
+        navigation.navigate('Detail', {
+            route: item
+        });
+    }
+    
     // Render map component
     renderMap = () => {
-        return (
-            <React.Fragment>
-                <MapContainer location={position} />
+        if(!isLoading) {
+            return (
+                <React.Fragment>
+                    <MapContainer
+                        location={position}
+                        setCardVisibility={() => {
+                            if (!isCardsVisible) {
+                                setIsCardsVisiblity(true);
+                            }
+                        }}
+                        routes={routes}
+                    />
 
-                <OverlayContainer>
-                    <Topbar>
-                        <ProfileIcon />
-                    </Topbar>
-                    {visible && (
-                        <CarouselWrapper>
-                            <Carousel onSnapToItem={centerMapOnMarker} />
-                        </CarouselWrapper>
-                    )}
-                </OverlayContainer>
-            </React.Fragment>
-        )
+                    <OverlayContainer>
+                        <Topbar>
+                            <Icon 
+                                name="ios-trophy" 
+                                color={colors.WHITE}
+                                size={32}
+                                onPress={() => navigation.navigate('Leaderboard')}
+                            />
+                            <ProfileIcon />
+                        </Topbar>
+                        {isCardsVisible && (
+                            <CarouselWrapper>
+                                <Carousel 
+                                    items={routes}
+                                    onRouteStart={onRouteStart}
+                                />
+                            </CarouselWrapper>
+                        )}
+                    </OverlayContainer>
+                </React.Fragment>
+            )
+        }
     }
 
     return (
@@ -89,8 +125,9 @@ const CarouselWrapper = styled.View`
 `
 
 const Topbar = styled.View`
-    padding: ${utils.GUTTER};
+    flexDirection: row;
+    padding: ${utils.GUTTER_LARGE};
     height: ${utils.HEADER_HEIGHT};
-    justifyContent: center;
-    alignItems: flex-end;
+    justifyContent: space-between;
+    alignItems: center;
 `
