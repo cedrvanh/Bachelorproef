@@ -15,9 +15,14 @@ class CharacterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $characters = Character::with('class')->paginate(15);
+
+        if  ($request->has('sort')) {
+            $characters = Character::orderBy($request->sort, 'DESC')->paginate(15);
+        }
+
         return CharacterResource::collection($characters);
     }
 

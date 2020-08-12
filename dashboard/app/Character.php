@@ -4,6 +4,7 @@ namespace App;
 
 use App\Traits\FtpImageable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Character extends Model
 {
@@ -25,6 +26,12 @@ class Character extends Model
 
     public function items()
     {
-        return $this->belongsToMany(Item::class);
+        return $this->belongsToMany(Item::class)->orderBy('expiration_date');
+    }
+
+    public function scopeAvailableItems()
+    {
+        $ids = DB::table('character_item')->where('character_id', '=', $this->id)->pluck('character_id');
+        return Item::whereNotIn('id', $ids)->get();
     }
 }

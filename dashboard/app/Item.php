@@ -10,7 +10,6 @@ class Item extends Model
 {
     use Hideable;
 
-
     protected $dates = ['expiration_date'];
 
     protected $fillable = [

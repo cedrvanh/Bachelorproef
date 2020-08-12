@@ -19,6 +19,7 @@ class CharacterResource extends JsonResource
             'name' => $this->name,
             'gender' => $this->gender,
             'gold' => $this->gold,
+            'score' => $this->score,
             'class' => new CharacterClassResource($this->class)
         ];
     }

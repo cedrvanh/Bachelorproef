@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Character;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ItemResource;
 use App\Item;
@@ -14,9 +15,15 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $items = Item::paginate(15);
+        $items = Item::all();
+
+        if ($request->has('user')) {
+            $character = Character::where('id', $request->user)->first();
+            $items = $character->availableItems(); // Get items that do not exist in pivot table with user - scope in Character model
+        }
+
         return ItemResource::collection($items);
     }
 
