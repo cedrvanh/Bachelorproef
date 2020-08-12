@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>01 - Web AR (AR.js & A-Frame) Prototype</title>
+    <link href="main.css" rel="stylesheet" />
+    <script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/jeromeetienne/AR.js/2.1.8/aframe/build/aframe-ar.js"></script>
+</head>
+<body>
+    <a-scene vr-mode-ui="enabled: false" embedded arjs="souceType: webcam;">
+        <a-camera gps-camera rotation-reader></a-camera>
+    </a-scene>
+</body>
+<script defer src="main.js"></script>
+</html>
