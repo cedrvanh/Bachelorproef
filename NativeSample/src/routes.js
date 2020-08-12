@@ -47,8 +47,8 @@ const TabNavigator = createBottomTabNavigator(
                 )
             }
         },
-        FakeCamera: {
-            screen: ShopScreen,
+        Camera: {
+            screen: CameraScreen,
             navigationOptions: {
                 tabBarIcon: () => (
                     <CircleTab>
@@ -88,7 +88,6 @@ const AppNavigator = createStackNavigator(
         Leaderboard: LeaderboardScreen,
         Profile: ProfileScreen,
         Inventory: InventoryScreen,
-        Camera: CameraScreen,
         Detail: RouteDetailScreen
     }, 
     {
