@@ -4,15 +4,16 @@ import styled from 'styled-components';
 
 import LeaderboardItem from './Item';
 
-export default LeaderboardList = ({ items }) => {
+export default LeaderboardList = ({ items, selectedTag }) => {
     return (
         <List 
-            data={ items }
+            data={items}
             renderItem={({ item, index }) => (
                     <LeaderboardItem 
-                        item={ item } 
-                        key={ item.name } 
-                        ranking={ index + 1 }
+                        user={item} 
+                        key={item.id} 
+                        ranking={index + 1}
+                        selectedTag={selectedTag}
                     />
             )}
             keyExtractor={item => item.name}
