@@ -1,60 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import styled from 'styled-components';
 
-import { colors, utils, typography } from '../../styles';
+import { colors, utils, typography } from '~/styles';
 
-import Header from '../../components/Header';
-import LeaderboardList from '../../components/Leaderboard/List';
-import Tag from '../../components/Tag';
+import { HeroService as _heroService } from '~/services/HeroService';
 
-export default LeaderBoard = ({ navigation }) => {
-    const [tags, setTags] = useState(["Weekly", "Monthly", "All Time"]);
+import Header from '~/components/Header';
+import LoadingIndicator from "~/components/LoadingIndicator";
+import LeaderboardList from '~/components/Leaderboard/List';
+import Tag from '~/components/Tag';
 
-    const items = [
-        {
-            name: 'Ser Podrick',
-            highscore: 15
-        },
-        {
-            name: 'Lara Jones',
-            highscore: 12
-        },
-        {
-            name: 'John Doe',
-            highscore: 10
-        },
-        {
-            name: 'Peter Finkle',
-            highscore: 8
-        },
-        {
-            name: 'Tor Men',
-            highscore: 7
-        },
-        {
-            name: 'Joe Mama',
-            highscore: 5
-        },
-        {
-            name: 'Clue Ball',
-            highscore: 2
-        },
-    ]
+export default LeaderBoardScreen = ({ navigation }) => {
+    const [leaderboardData, setLeaderboardData] = useState({});
+    const [tags, setTags] = useState(["score", "gold"]);
+    const [selectedTag, setSelectedTag] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
+    const [query, setQuery] = useState('score');
 
-    selectedTag = (index) => {
-        const selectedItem = tags[index];
-        console.log(selectedItem);
+    useEffect(() => {
+        setIsLoading(true);
+        getLeaderboard();
+    }, [query]);
+
+    onSelectedTag = (index) => {
+        setSelectedTag(index);
+        setQuery(tags[index]);
+    }
+
+    getLeaderboard = async () => {
+        try {
+            const { data } = await _heroService.getCharacters({ sort: query });
+            setLeaderboardData(data);
+            setIsLoading(false);
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     renderTags = () => {
         return tags.map((tag, index) => {
             return ( 
                 <Tag 
-                    label={ tag }
-                    key={ tag }
-                    active={ index == 0 }
-                    onPress={() => selectedTag(index)}
+                    label={tag}
+                    key={tag}
+                    active={index === selectedTag}
+                    onPress={() => onSelectedTag(index)}
                 />
             )
         })
@@ -62,21 +53,25 @@ export default LeaderBoard = ({ navigation }) => {
 
     return (
         <Container>
-            <Header />
-            <Tags>{ renderTags() }</Tags>
-            <LeaderboardList items={ items } />
+            <Header onBack={() => navigation.navigate('Home')} />
+            <Tags>{renderTags()}</Tags>
+            {isLoading ? <LoadingIndicator /> : (
+                <LeaderboardList 
+                    items={leaderboardData}
+                    selectedTag={selectedTag}
+                />            
+            )}
         </Container>
     )
 };
 
 const Container = styled.View`
     flex: 1;
-    padding: 0 ${ utils.GUTTER_LARGE };
-    backgroundColor: ${ colors.PRIMARY_COLOR };
+    padding: 0 ${utils.GUTTER_LARGE};
+    backgroundColor: ${colors.PRIMARY_COLOR};
 `
 
 const Tags = styled.View`
-    display: flex;
     margin: 10px 0 40px 0;
     flexDirection: row;
     justifyContent: center;
