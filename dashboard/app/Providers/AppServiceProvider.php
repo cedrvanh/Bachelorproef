@@ -6,6 +6,7 @@ use ConsoleTVs\Charts\Registrar as Charts;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
@@ -29,6 +30,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(Charts $charts)
     {
         Paginator::defaultView("partials.pagination");
+
+        Schema::defaultStringLength(191);
 
         $charts->register([
             \App\Charts\HomeChart::class
