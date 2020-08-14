@@ -43,7 +43,7 @@ class CharacterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CharacterStoreRequest $request)
+    public function store(Request $request)
     {
         $character = new Character($request->all());
         $character->save();

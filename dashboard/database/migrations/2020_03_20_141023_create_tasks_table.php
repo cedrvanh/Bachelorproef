@@ -21,8 +21,8 @@ class CreateTasksTable extends Migration
             $table->integer('reward')->default(5);
             $table->integer('score')->default(10);
             $table->string('image', 512)->nullable();
-            $table->foreignId('location_id')->constrained('locations');
-            $table->foreignId('route_id')->nullable()->constrained();
+            $table->foreignId('location_id')->nullable()->constrained('locations');
+            $table->foreignId('route_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

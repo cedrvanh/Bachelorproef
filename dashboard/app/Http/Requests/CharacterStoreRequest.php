@@ -28,15 +28,17 @@ class CharacterStoreRequest extends FormRequest
             'user' => 'required|exists:users,id',
             'class' => 'required|exists:character_classes,id',
             'gender' => 'boolean',
-            'gold' => 'integer|nullable'
+            'gold' => 'integer|nullable',
+            'user_id' => 'required',
+            'character_class_id' => 'required'
         ];
     }
 
     public function messages()
     {
         return [
-            'user.required' => 'The character needs to be assigned to a user',
-            'class.required' => 'The character needs to be assigned to a class',
+            'user_id.required' => 'The character needs to be assigned to a user',
+            'character_class_id.required' => 'The character needs to be assigned to a class',
         ];
     }
 }
