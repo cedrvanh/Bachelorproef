@@ -107,6 +107,6 @@ class TaskTypeController extends Controller
     {
         $taskType->delete();
 
-        return redirect('routes.task-types');
+        return redirect('task-types');
     }
 }

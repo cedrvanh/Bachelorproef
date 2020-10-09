@@ -16,7 +16,7 @@ class Character extends Model
 
     public function user()
     {
-        return $this->belongsTo(Character::class);
+        return $this->belongsTo(User::class);
     }
 
     public function class()

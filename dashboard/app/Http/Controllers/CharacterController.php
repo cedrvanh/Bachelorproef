@@ -81,7 +81,7 @@ class CharacterController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Character  $character
+     * @param  \App\Character  $character^
      * @return \Illuminate\Http\Response
      */
     public function update(CharacterUpdateRequest $request, Character $character)

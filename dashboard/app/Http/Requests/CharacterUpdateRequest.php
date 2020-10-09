@@ -25,6 +25,7 @@ class CharacterUpdateRequest extends FormRequest
     {
         return [
             'name' => 'required|min:2|max:45',
+            'user_id' => 'required',
             'character_class_id' => 'required|exists:character_classes,id',
             'gender' => 'boolean',
             'gold' => 'integer|nullable',
